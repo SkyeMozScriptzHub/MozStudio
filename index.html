@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 
@@ -19,33 +20,24 @@
 
 :root{
 
---bg:#f5f7fb;
---bg2:#eef4ff;
-
+--bg:#f4f7fb;
 --card:#ffffff;
---text:#09101d;
---muted:#64748b;
-
 --primary:#2563eb;
 --primary2:#60a5fa;
-
+--text:#0f172a;
+--muted:#64748b;
 --border:rgba(15,23,42,.08);
 
 --shadow:
 0 10px 30px rgba(15,23,42,.05),
 0 20px 60px rgba(15,23,42,.06);
 
---footer:
-linear-gradient(
-135deg,
-#0f172a,
-#172554,
-#2563eb
-);
-
 }
 
+/* RESET */
+
 *{
+
 margin:0;
 padding:0;
 box-sizing:border-box;
@@ -54,10 +46,10 @@ box-sizing:border-box;
 
 user-select:none;
 -webkit-user-select:none;
+
 }
 
-input,
-textarea{
+input,textarea{
 user-select:text;
 -webkit-user-select:text;
 }
@@ -71,8 +63,8 @@ body{
 font-family:'Inter',sans-serif;
 
 background:
-radial-gradient(circle at top left, rgba(96,165,250,.10), transparent 30%),
-radial-gradient(circle at bottom right, rgba(37,99,235,.08), transparent 30%),
+radial-gradient(circle at top left, rgba(96,165,250,.08), transparent 30%),
+radial-gradient(circle at bottom right, rgba(37,99,235,.06), transparent 30%),
 var(--bg);
 
 color:var(--text);
@@ -99,16 +91,16 @@ width:min(1180px,92%);
 margin:auto;
 }
 
-a{
-text-decoration:none;
-color:inherit;
-}
-
 button{
 border:none;
 outline:none;
 cursor:pointer;
 font-family:inherit;
+}
+
+a{
+text-decoration:none;
+color:inherit;
 }
 
 img{
@@ -122,16 +114,15 @@ pointer-events:none;
 
 position:sticky;
 top:0;
-
-z-index:1000;
-
-padding:16px 0;
+z-index:999;
 
 background:rgba(255,255,255,.72);
 
-backdrop-filter:blur(18px);
+backdrop-filter:blur(20px);
 
 border-bottom:1px solid var(--border);
+
+padding:16px 0;
 
 }
 
@@ -151,8 +142,8 @@ font-size:1.12rem;
 }
 
 .logo img{
-width:44px;
-height:44px;
+width:46px;
+height:46px;
 border-radius:14px;
 }
 
@@ -169,18 +160,15 @@ padding:12px 16px;
 border-radius:14px;
 
 font-size:.95rem;
-font-weight:600;
+font-weight:700;
 
 transition:.25s ease;
 
 }
 
 .nav-links a:hover{
-
 background:#eff6ff;
-
 color:var(--primary);
-
 }
 
 .right-nav{
@@ -193,7 +181,7 @@ gap:14px;
 
 height:50px;
 
-padding:0 20px;
+padding:0 22px;
 
 border-radius:16px;
 
@@ -208,15 +196,73 @@ color:white;
 
 font-weight:700;
 
+font-size:.95rem;
+
 box-shadow:
-0 12px 30px rgba(37,99,235,.24);
+0 15px 35px rgba(37,99,235,.22);
 
 transition:.3s ease;
 
 }
 
 .login-btn:hover{
-transform:translateY(-2px);
+transform:translateY(-3px);
+}
+
+#authArea{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.profile-mini{
+
+display:flex;
+align-items:center;
+gap:12px;
+
+padding:8px 14px 8px 8px;
+
+border-radius:18px;
+
+background:white;
+
+border:1px solid var(--border);
+
+box-shadow:var(--shadow);
+
+cursor:pointer;
+
+transition:.3s ease;
+
+}
+
+.profile-mini:hover{
+transform:translateY(-3px);
+}
+
+.profile-mini img{
+width:42px;
+height:42px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.profile-info{
+display:flex;
+flex-direction:column;
+line-height:1.2;
+}
+
+.profile-info span{
+font-weight:700;
+font-size:.94rem;
+}
+
+.profile-info small{
+font-size:.8rem;
+color:var(--muted);
+font-weight:600;
 }
 
 /* HERO */
@@ -255,8 +301,8 @@ margin-bottom:24px;
 
 .hero h1{
 
-font-size:4.4rem;
-line-height:1.03;
+font-size:4.3rem;
+line-height:1.02;
 
 letter-spacing:-3px;
 
@@ -270,7 +316,7 @@ font-weight:900;
 
 max-width:560px;
 
-font-size:1.08rem;
+font-size:1.06rem;
 line-height:1.9;
 
 color:var(--muted);
@@ -294,7 +340,7 @@ border-radius:16px;
 
 font-weight:700;
 
-font-size:.96rem;
+font-size:.95rem;
 
 transition:.3s ease;
 
@@ -312,7 +358,7 @@ var(--primary2)
 color:white;
 
 box-shadow:
-0 15px 35px rgba(37,99,235,.25);
+0 15px 35px rgba(37,99,235,.22);
 
 }
 
@@ -345,10 +391,9 @@ height:520px;
 .hero-card{
 
 position:absolute;
-
 inset:30px;
 
-background:rgba(255,255,255,.75);
+background:rgba(255,255,255,.74);
 
 backdrop-filter:blur(20px);
 
@@ -435,17 +480,17 @@ border-radius:22px;
 
 background:rgba(255,255,255,.85);
 
-backdrop-filter:blur(16px);
-
 display:flex;
 align-items:center;
 justify-content:center;
 
-font-size:1.3rem;
+font-size:1.2rem;
+
+color:var(--primary);
 
 box-shadow:var(--shadow);
 
-color:var(--primary);
+animation:float 4s ease-in-out infinite;
 
 }
 
@@ -464,7 +509,23 @@ right:0;
 top:100px;
 }
 
-/* SECTION */
+@keyframes float{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-12px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+/* SECTIONS */
 
 .section{
 padding:18px 0;
@@ -507,6 +568,12 @@ color:var(--primary);
 .channels{
 display:grid;
 grid-template-columns:repeat(4,1fr);
+gap:18px;
+}
+
+.categories{
+display:grid;
+grid-template-columns:repeat(5,1fr);
 gap:18px;
 }
 
@@ -557,44 +624,24 @@ margin-bottom:18px;
 }
 
 .blue{
-background:
-linear-gradient(
-135deg,
-#2563eb,
-#60a5fa
-);
+background:linear-gradient(135deg,#2563eb,#60a5fa);
 }
 
 .green{
-background:
-linear-gradient(
-135deg,
-#10b981,
-#34d399
-);
+background:linear-gradient(135deg,#10b981,#34d399);
 }
 
 .purple{
-background:
-linear-gradient(
-135deg,
-#7c3aed,
-#a78bfa
-);
+background:linear-gradient(135deg,#7c3aed,#a78bfa);
 }
 
 .orange{
-background:
-linear-gradient(
-135deg,
-#f59e0b,
-#fbbf24
-);
+background:linear-gradient(135deg,#f59e0b,#fbbf24);
 }
 
 .card h3{
 margin-bottom:10px;
-font-size:1.02rem;
+font-size:1rem;
 }
 
 .card p{
@@ -610,21 +657,19 @@ font-size:.9rem;
 color:#94a3b8;
 }
 
-/* CATEGORIES */
-
-.categories{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:18px;
-}
-
 /* FOOTER */
 
 .footer{
 
 margin-top:80px;
 
-background:var(--footer);
+background:
+linear-gradient(
+135deg,
+#0f172a,
+#172554,
+#2563eb
+);
 
 border-radius:40px 40px 0 0;
 
@@ -690,6 +735,7 @@ gap:10px;
 .notify-input input{
 
 flex:1;
+
 height:52px;
 
 padding:0 16px;
@@ -997,6 +1043,10 @@ inset:0;
 border-radius:0;
 }
 
+.profile-info{
+display:none;
+}
+
 }
 
 </style>
@@ -1018,19 +1068,19 @@ border-radius:0;
 
 <a href="#">Home</a>
 
-<a onclick="openWebview('Templates','https://example.com/templates')">
+<a onclick="openWebview('Templates','https://example.com')">
 Templates
 </a>
 
-<a onclick="openWebview('Utilities','https://example.com/utilities')">
+<a onclick="openWebview('Utilities','https://example.com')">
 Utilities
 </a>
 
-<a onclick="openWebview('Packages','https://example.com/packages')">
+<a onclick="openWebview('Packages','https://example.com')">
 Packages
 </a>
 
-<a onclick="openWebview('About','https://example.com/about')">
+<a onclick="openWebview('About','https://example.com')">
 About
 </a>
 
@@ -1038,10 +1088,34 @@ About
 
 <div class="right-nav">
 
-<button class="login-btn" onclick="googleLogin()">
+<div id="authArea">
+
+<button class="login-btn" id="loginBtn" onclick="googleLogin()">
+
 <i class="fa-brands fa-google"></i>
 Login
+
 </button>
+
+<div id="profileCard" style="display:none;">
+
+<div class="profile-mini"
+onclick="openWebview('About','https://example.com')">
+
+<img id="profileAvatar" src="">
+
+<div class="profile-info">
+
+<span id="profileName">User</span>
+<small>About</small>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -1058,8 +1132,10 @@ Login
 <div>
 
 <div class="badge">
+
 <i class="fa-solid fa-sparkles"></i>
 Welcome to Moz Studio
+
 </div>
 
 <h1>
@@ -1074,7 +1150,7 @@ Explore a wide range of apps, mods, files, utilities and templates for creators 
 <div class="hero-buttons">
 
 <button class="btn btn-primary"
-onclick="openWebview('Downloads','https://example.com/downloads')">
+onclick="openWebview('Downloads','https://example.com')">
 
 <i class="fa-solid fa-download"></i>
 Browse Downloads
@@ -1156,7 +1232,7 @@ Join Community
 
 <h2>Explore Channels</h2>
 
-<a onclick="openWebview('Channels','https://example.com/channels')">
+<a onclick="openWebview('Channels','https://example.com')">
 View all
 </a>
 
@@ -1165,7 +1241,7 @@ View all
 <div class="channels">
 
 <div class="card"
-onclick="openWebview('Downloads','https://example.com/downloads')">
+onclick="openWebview('Downloads','https://example.com')">
 
 <div class="card-icon blue">
 <i class="fa-solid fa-download"></i>
@@ -1184,7 +1260,7 @@ Get the latest apps, mods, files and more.
 </div>
 
 <div class="card"
-onclick="openWebview('Packages','https://example.com/packages')">
+onclick="openWebview('Packages','https://example.com')">
 
 <div class="card-icon green">
 <i class="fa-solid fa-cube"></i>
@@ -1203,7 +1279,7 @@ Organized packages for easy integration.
 </div>
 
 <div class="card"
-onclick="openWebview('General Chat','https://example.com/chat')">
+onclick="openWebview('General Chat','https://example.com')">
 
 <div class="card-icon purple">
 <i class="fa-solid fa-comments"></i>
@@ -1222,7 +1298,7 @@ Talk, share, help and connect with others.
 </div>
 
 <div class="card"
-onclick="openWebview('Templates','https://example.com/templates')">
+onclick="openWebview('Templates','https://example.com')">
 
 <div class="card-icon orange">
 <i class="fa-solid fa-file"></i>
@@ -1256,7 +1332,7 @@ Beautiful templates for your next project.
 
 <h2>Featured Categories</h2>
 
-<a onclick="openWebview('Categories','https://example.com/categories')">
+<a onclick="openWebview('Categories','https://example.com')">
 Browse all
 </a>
 
@@ -1264,8 +1340,7 @@ Browse all
 
 <div class="categories">
 
-<div class="card"
-onclick="openWebview('Apps','https://example.com/apps')">
+<div class="card">
 
 <div class="card-icon blue">
 <i class="fa-solid fa-table-cells-large"></i>
@@ -1279,8 +1354,7 @@ Essential & useful applications.
 
 </div>
 
-<div class="card"
-onclick="openWebview('Mods','https://example.com/mods')">
+<div class="card">
 
 <div class="card-icon green">
 <i class="fa-solid fa-puzzle-piece"></i>
@@ -1294,8 +1368,7 @@ Enhance your apps and games.
 
 </div>
 
-<div class="card"
-onclick="openWebview('Files','https://example.com/files')">
+<div class="card">
 
 <div class="card-icon orange">
 <i class="fa-solid fa-folder"></i>
@@ -1309,8 +1382,7 @@ Important files and resources.
 
 </div>
 
-<div class="card"
-onclick="openWebview('Utilities','https://example.com/utilities')">
+<div class="card">
 
 <div class="card-icon purple">
 <i class="fa-solid fa-screwdriver-wrench"></i>
@@ -1324,8 +1396,7 @@ Tools to boost your productivity.
 
 </div>
 
-<div class="card"
-onclick="openWebview('Templates','https://example.com/templates')">
+<div class="card">
 
 <div class="card-icon orange">
 <i class="fa-solid fa-window-maximize"></i>
@@ -1375,21 +1446,10 @@ Your hub for apps, mods, files, utilities, templates and everything digital crea
 
 <h4>Resources</h4>
 
-<a onclick="openWebview('Downloads','https://example.com/downloads')">
-Downloads
-</a><br>
-
-<a onclick="openWebview('Packages','https://example.com/packages')">
-Packages
-</a><br>
-
-<a onclick="openWebview('Templates','https://example.com/templates')">
-Templates
-</a><br>
-
-<a onclick="openWebview('Utilities','https://example.com/utilities')">
-Utilities
-</a>
+<a href="#">Downloads</a><br>
+<a href="#">Packages</a><br>
+<a href="#">Templates</a><br>
+<a href="#">Utilities</a>
 
 </div>
 
@@ -1397,21 +1457,10 @@ Utilities
 
 <h4>Community</h4>
 
-<a onclick="openWebview('Chat','https://example.com/chat')">
-General Chat
-</a><br>
-
-<a onclick="openWebview('Members','https://example.com/members')">
-Members
-</a><br>
-
-<a onclick="openWebview('Rules','https://example.com/rules')">
-Rules
-</a><br>
-
-<a onclick="openWebview('Support','https://example.com/support')">
-Support
-</a>
+<a href="#">General Chat</a><br>
+<a href="#">Members</a><br>
+<a href="#">Rules</a><br>
+<a href="#">Support</a>
 
 </div>
 
@@ -1419,21 +1468,10 @@ Support
 
 <h4>About</h4>
 
-<a onclick="openWebview('About Us','https://example.com/about')">
-About Us
-</a><br>
-
-<a onclick="openWebview('Changelog','https://example.com/changelog')">
-Changelog
-</a><br>
-
-<a onclick="openWebview('Contact','https://example.com/contact')">
-Contact
-</a><br>
-
-<a onclick="openWebview('Privacy Policy','https://example.com/privacy')">
-Privacy Policy
-</a>
+<a href="#">About Us</a><br>
+<a href="#">Changelog</a><br>
+<a href="#">Contact</a><br>
+<a href="#">Privacy Policy</a>
 
 </div>
 
@@ -1455,7 +1493,9 @@ placeholder="Enter your email"
 
 <button class="subscribe-btn"
 onclick="saveEmail()">
+
 Subscribe
+
 </button>
 
 </div>
@@ -1501,26 +1541,22 @@ Subscribe
 <span>Home</span>
 </div>
 
-<div class="mobile-item"
-onclick="openWebview('Downloads','https://example.com/downloads')">
+<div class="mobile-item">
 <i class="fa-solid fa-download"></i>
 <span>Downloads</span>
 </div>
 
-<div class="mobile-item"
-onclick="openWebview('Packages','https://example.com/packages')">
+<div class="mobile-item">
 <i class="fa-solid fa-cube"></i>
 <span>Packages</span>
 </div>
 
-<div class="mobile-item"
-onclick="openWebview('Chat','https://example.com/chat')">
+<div class="mobile-item">
 <i class="fa-solid fa-comments"></i>
 <span>Chat</span>
 </div>
 
-<div class="mobile-item"
-onclick="openWebview('Profile','https://example.com/profile')">
+<div class="mobile-item">
 <i class="fa-solid fa-user"></i>
 <span>Profile</span>
 </div>
@@ -1570,7 +1606,10 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
 getAuth,
 GoogleAuthProvider,
-signInWithPopup
+signInWithPopup,
+onAuthStateChanged,
+setPersistence,
+browserLocalPersistence
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -1607,27 +1646,80 @@ const provider = new GoogleAuthProvider();
 
 const db = getFirestore(app);
 
-/* GOOGLE LOGIN */
+/* LOGIN */
 
 window.googleLogin = async function(){
 
+const loginBtn =
+document.getElementById("loginBtn");
+
 try{
 
+loginBtn.innerHTML =
+'<i class="fa-solid fa-spinner fa-spin"></i> Signing In';
+
+loginBtn.disabled = true;
+
+await setPersistence(
+auth,
+browserLocalPersistence
+);
+
+const result =
 await signInWithPopup(auth,provider);
 
-alert("Logged in successfully.");
+const user = result.user;
+
+showProfile(user);
 
 }catch(error){
 
 console.log(error);
 
-alert("Login failed.");
+alert(
+"Google Login Failed.\nEnable Google Provider in Firebase."
+);
+
+loginBtn.innerHTML =
+'<i class="fa-brands fa-google"></i> Login';
+
+loginBtn.disabled = false;
 
 }
 
 }
 
-/* EMAIL SAVE */
+/* PROFILE */
+
+function showProfile(user){
+
+document.getElementById("loginBtn")
+.style.display = "none";
+
+document.getElementById("profileCard")
+.style.display = "block";
+
+document.getElementById("profileAvatar")
+.src = user.photoURL;
+
+document.getElementById("profileName")
+.innerText = user.displayName;
+
+}
+
+/* AUTH CHECK */
+
+onAuthStateChanged(auth,(user)=>{
+
+if(user){
+
+showProfile(user);
+
+}
+
+});
+
+/* SAVE EMAIL */
 
 window.saveEmail = async function(){
 
@@ -1684,8 +1776,6 @@ document.getElementById("webview")
 document.body.style.overflow = "hidden";
 
 }
-
-/* CLOSE */
 
 function closeWebview(){
 
