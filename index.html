@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
 <title>Moz Studio</title>
 
 <link rel="icon" type="image/png" href="images/icon.png">
@@ -10,723 +11,1151 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
 <style>
 
 :root{
-    --bg:#f5f7fb;
-    --card:#ffffff;
-    --text:#0f172a;
-    --muted:#64748b;
-    --border:#e7edf5;
-    --primary:#2563eb;
-    --primary2:#4f8cff;
-    --shadow:0 10px 40px rgba(15,23,42,.08);
-    --radius:24px;
+
+--bg:#f3f7fc;
+--bg2:#edf4ff;
+
+--card:#ffffff;
+--card2:rgba(255,255,255,.72);
+
+--text:#081120;
+--muted:#64748b;
+
+--primary:#2563eb;
+--primary2:#60a5fa;
+
+--border:rgba(15,23,42,.08);
+
+--shadow:
+0 10px 30px rgba(15,23,42,.06),
+0 20px 60px rgba(15,23,42,.06);
+
+--footer:
+linear-gradient(
+135deg,
+#0f172a,
+#1e3a8a,
+#2563eb
+);
+
+--success:#10b981;
+
 }
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+
+-webkit-tap-highlight-color:transparent;
+
+user-select:none;
+-webkit-user-select:none;
+}
+
+input,
+textarea{
+user-select:text;
+-webkit-user-select:text;
 }
 
 html{
-    scroll-behavior:smooth;
+scroll-behavior:smooth;
 }
 
 body{
-    font-family:'Inter',sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    overflow-x:hidden;
+
+font-family:'Inter',sans-serif;
+
+background:
+radial-gradient(circle at top left, rgba(96,165,250,.12), transparent 30%),
+radial-gradient(circle at bottom right, rgba(37,99,235,.10), transparent 30%),
+var(--bg);
+
+color:var(--text);
+
+overflow-x:hidden;
+
+}
+
+/* BLOBS */
+
+.blob{
+position:fixed;
+border-radius:50%;
+filter:blur(90px);
+z-index:-1;
+opacity:.5;
+animation:floatBlob 10s ease-in-out infinite;
+}
+
+.blob1{
+width:380px;
+height:380px;
+background:#60a5fa;
+top:-100px;
+left:-100px;
+}
+
+.blob2{
+width:300px;
+height:300px;
+background:#3b82f6;
+right:-100px;
+top:40%;
+animation-delay:2s;
+}
+
+.blob3{
+width:260px;
+height:260px;
+background:#93c5fd;
+bottom:-100px;
+left:35%;
+animation-delay:4s;
+}
+
+@keyframes floatBlob{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-25px);}
+100%{transform:translateY(0px);}
 }
 
 a{
-    text-decoration:none;
-    color:inherit;
+text-decoration:none;
+color:inherit;
 }
 
 img{
-    max-width:100%;
+pointer-events:none;
+-webkit-user-drag:none;
+}
+
+button{
+font-family:inherit;
+border:none;
+outline:none;
+cursor:pointer;
 }
 
 .container{
-    width:min(1200px,92%);
-    margin:auto;
-}
-
-.section{
-    padding:90px 0;
-}
-
-.glass{
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-}
-
-.fade-up{
-    animation:fadeUp .8s ease forwards;
-}
-
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(25px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@keyframes float{
-    0%{
-        transform:translateY(0px);
-    }
-    50%{
-        transform:translateY(-14px);
-    }
-    100%{
-        transform:translateY(0px);
-    }
+width:min(1200px,92%);
+margin:auto;
 }
 
 /* NAVBAR */
 
 .navbar{
-    position:sticky;
-    top:0;
-    z-index:999;
-    background:rgba(255,255,255,.88);
-    border-bottom:1px solid var(--border);
+
+position:sticky;
+top:0;
+
+z-index:999;
+
+padding:16px 0;
+
+background:rgba(255,255,255,.55);
+
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+
+border-bottom:1px solid var(--border);
+
 }
 
 .nav-wrap{
-    height:82px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
 }
 
 .logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-size:1.2rem;
-    font-weight:800;
+display:flex;
+align-items:center;
+gap:14px;
+font-weight:800;
+font-size:1.15rem;
 }
 
 .logo img{
-    width:44px;
-    height:44px;
-    border-radius:14px;
-    object-fit:cover;
+width:48px;
+height:48px;
+border-radius:16px;
+box-shadow:0 10px 20px rgba(37,99,235,.25);
 }
 
 .nav-links{
-    display:flex;
-    align-items:center;
-    gap:10px;
+display:flex;
+align-items:center;
+gap:10px;
 }
 
 .nav-links a{
-    padding:12px 16px;
-    border-radius:14px;
-    color:#334155;
-    font-weight:600;
-    transition:.25s ease;
+
+padding:12px 16px;
+
+border-radius:16px;
+
+font-weight:600;
+
+transition:.3s ease;
+
 }
 
 .nav-links a:hover{
-    background:#eef4ff;
-    color:var(--primary);
+
+background:rgba(96,165,250,.14);
+
+color:var(--primary);
+
+transform:translateY(-2px);
+
 }
 
 .nav-actions{
-    display:flex;
-    align-items:center;
-    gap:12px;
+display:flex;
+align-items:center;
+gap:12px;
 }
 
-.btn{
-    border:none;
-    cursor:pointer;
-    transition:.3s ease;
-    border-radius:16px;
-    font-weight:700;
-    font-size:.95rem;
+.login-btn{
+
+height:52px;
+
+padding:0 20px;
+
+border-radius:18px;
+
+font-weight:700;
+
+background:
+linear-gradient(135deg,var(--primary),var(--primary2));
+
+color:white;
+
+box-shadow:
+0 15px 35px rgba(37,99,235,.26);
+
+transition:.3s ease;
+
 }
 
-.btn-primary{
-    background:linear-gradient(135deg,var(--primary),var(--primary2));
-    color:white;
-    padding:14px 22px;
-    box-shadow:0 12px 25px rgba(37,99,235,.22);
+.login-btn:hover{
+transform:translateY(-3px);
 }
 
-.btn-primary:hover{
-    transform:translateY(-2px) scale(1.02);
+/* USER PANEL */
+
+.user-panel{
+
+display:none;
+align-items:center;
+gap:12px;
+
+padding:8px 14px;
+
+border-radius:22px;
+
+background:rgba(255,255,255,.75);
+
+backdrop-filter:blur(16px);
+
+border:1px solid var(--border);
+
+position:relative;
+
+cursor:pointer;
+
 }
 
-.btn-secondary{
-    background:white;
-    border:1px solid var(--border);
-    padding:14px 22px;
-    color:#0f172a;
+.user-panel img{
+width:44px;
+height:44px;
+border-radius:50%;
+object-fit:cover;
 }
 
-.btn-secondary:hover{
-    background:#f8fafc;
+.status-dot{
+width:10px;
+height:10px;
+background:var(--success);
+border-radius:50%;
+box-shadow:0 0 15px var(--success);
 }
 
-.mobile-menu{
-    display:none;
-    font-size:1.4rem;
-    cursor:pointer;
+.dropdown{
+
+position:absolute;
+
+top:70px;
+right:0;
+
+width:260px;
+
+background:white;
+
+border:1px solid var(--border);
+
+border-radius:24px;
+
+padding:20px;
+
+box-shadow:var(--shadow);
+
+display:none;
+
+animation:dropdown .3s ease;
+
 }
 
-.mobile-nav{
-    position:fixed;
-    inset:0;
-    background:white;
-    z-index:2000;
-    padding:30px;
-    transform:translateX(100%);
-    transition:.35s ease;
+.dropdown.active{
+display:block;
 }
 
-.mobile-nav.active{
-    transform:translateX(0);
+@keyframes dropdown{
+from{
+opacity:0;
+transform:translateY(10px);
 }
-
-.mobile-nav .top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:40px;
+to{
+opacity:1;
+transform:translateY(0);
 }
-
-.mobile-links{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-}
-
-.mobile-links a{
-    background:#f8fafc;
-    border:1px solid var(--border);
-    padding:18px;
-    border-radius:18px;
-    font-weight:700;
 }
 
 /* HERO */
 
 .hero{
-    padding:90px 0 60px;
+padding:90px 0 70px;
 }
 
 .hero-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    align-items:center;
-    gap:70px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:70px;
+align-items:center;
 }
 
 .badge{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    padding:12px 18px;
-    background:#eef4ff;
-    color:var(--primary);
-    border-radius:999px;
-    font-weight:700;
-    margin-bottom:26px;
+
+display:inline-flex;
+align-items:center;
+gap:10px;
+
+padding:14px 18px;
+
+background:rgba(255,255,255,.6);
+
+backdrop-filter:blur(16px);
+
+border:1px solid rgba(255,255,255,.35);
+
+border-radius:999px;
+
+font-weight:700;
+
+color:var(--primary);
+
+margin-bottom:26px;
+
+box-shadow:var(--shadow);
+
 }
 
 .hero h1{
-    font-size:4.2rem;
-    line-height:1.05;
-    margin-bottom:24px;
-    font-weight:800;
-    letter-spacing:-2px;
+
+font-size:4.7rem;
+line-height:1.02;
+
+letter-spacing:-3px;
+
+margin-bottom:24px;
+
+font-weight:900;
+
 }
 
 .hero p{
-    color:var(--muted);
-    font-size:1.12rem;
-    line-height:1.8;
-    max-width:560px;
+
+font-size:1.1rem;
+line-height:1.9;
+
+color:var(--muted);
+
+max-width:580px;
+
 }
 
 .hero-buttons{
-    display:flex;
-    gap:16px;
-    margin-top:35px;
-    flex-wrap:wrap;
+display:flex;
+flex-wrap:wrap;
+gap:16px;
+margin-top:34px;
 }
+
+.btn{
+
+height:58px;
+
+padding:0 26px;
+
+border-radius:20px;
+
+font-weight:700;
+
+transition:.35s ease;
+
+position:relative;
+overflow:hidden;
+
+}
+
+.btn::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,.2),
+transparent
+);
+transform:translateX(-120%);
+transition:.6s ease;
+}
+
+.btn:hover::before{
+transform:translateX(120%);
+}
+
+.btn-primary{
+
+background:
+linear-gradient(135deg,var(--primary),var(--primary2));
+
+color:white;
+
+box-shadow:
+0 15px 35px rgba(37,99,235,.28);
+
+}
+
+.btn-primary:hover{
+transform:translateY(-4px) scale(1.03);
+}
+
+.btn-secondary{
+
+background:rgba(255,255,255,.75);
+
+backdrop-filter:blur(16px);
+
+border:1px solid var(--border);
+
+color:var(--text);
+
+}
+
+.btn-secondary:hover{
+transform:translateY(-4px);
+box-shadow:var(--shadow);
+}
+
+/* HERO VISUAL */
 
 .hero-visual{
-    position:relative;
-    min-height:520px;
-    animation:float 5s ease-in-out infinite;
+position:relative;
+height:580px;
 }
 
-.hero-main-card{
-    position:absolute;
-    inset:50px;
-    background:white;
-    border-radius:34px;
-    box-shadow:var(--shadow);
-    border:1px solid var(--border);
-    overflow:hidden;
+.hero-card{
+
+position:absolute;
+
+inset:40px;
+
+background:rgba(255,255,255,.7);
+
+backdrop-filter:blur(20px);
+
+border-radius:36px;
+
+border:1px solid var(--border);
+
+box-shadow:var(--shadow);
+
+overflow:hidden;
+
+animation:floatCard 6s ease-in-out infinite;
+
 }
 
-.hero-main-card::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-    radial-gradient(circle at top left,#dbeafe,transparent 35%),
-    radial-gradient(circle at bottom right,#dbeafe,transparent 35%);
-}
-
-.fake-dashboard{
-    position:absolute;
-    inset:25px;
-    border-radius:24px;
-    background:#f8fbff;
-    border:1px dashed #cbd5e1;
+@keyframes floatCard{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0px);}
 }
 
 .fake-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-    padding:30px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+padding:35px;
 }
 
 .fake-box{
-    height:90px;
-    background:white;
-    border-radius:20px;
-    box-shadow:0 8px 18px rgba(15,23,42,.04);
+height:100px;
+background:white;
+border-radius:24px;
+box-shadow:var(--shadow);
 }
 
 .phone{
-    position:absolute;
-    right:40px;
-    bottom:30px;
-    width:220px;
-    height:420px;
-    background:white;
-    border-radius:42px;
-    border:10px solid #111827;
-    box-shadow:0 30px 40px rgba(15,23,42,.18);
-    overflow:hidden;
+
+position:absolute;
+
+right:30px;
+bottom:20px;
+
+width:220px;
+height:430px;
+
+background:#ffffff;
+
+border:10px solid #0f172a;
+
+border-radius:44px;
+
+overflow:hidden;
+
+box-shadow:
+0 30px 60px rgba(0,0,0,.22);
+
+animation:floatPhone 5s ease-in-out infinite;
+
+}
+
+@keyframes floatPhone{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-16px);}
+100%{transform:translateY(0px);}
 }
 
 .phone::before{
-    content:"";
-    position:absolute;
-    width:120px;
-    height:24px;
-    background:#111827;
-    left:50%;
-    transform:translateX(-50%);
-    top:10px;
-    border-radius:999px;
+content:"";
+position:absolute;
+top:10px;
+left:50%;
+transform:translateX(-50%);
+width:120px;
+height:24px;
+background:#0f172a;
+border-radius:999px;
 }
 
 .phone-content{
-    padding:70px 20px 20px;
+padding:70px 16px 16px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
 }
 
-.phone-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-}
-
-.phone-card{
-    height:75px;
-    border-radius:16px;
-    background:#f1f5f9;
+.phone-box{
+height:80px;
+border-radius:18px;
+background:#f1f5f9;
 }
 
 .float-icon{
-    position:absolute;
-    width:64px;
-    height:64px;
-    border-radius:22px;
-    background:white;
-    box-shadow:var(--shadow);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:1.5rem;
-    color:var(--primary);
+
+position:absolute;
+
+width:70px;
+height:70px;
+
+border-radius:24px;
+
+background:rgba(255,255,255,.8);
+
+backdrop-filter:blur(16px);
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:1.5rem;
+
+box-shadow:var(--shadow);
+
+color:var(--primary);
+
+border:1px solid var(--border);
+
+animation:floatMini 4s ease-in-out infinite;
+
 }
 
-.f1{
-    left:10px;
-    bottom:50px;
+.float1{
+left:0;
+bottom:80px;
 }
 
-.f2{
-    right:0;
-    top:50px;
+.float2{
+right:0;
+top:80px;
+animation-delay:1s;
 }
 
-.f3{
-    top:0;
-    left:50%;
+.float3{
+top:0;
+left:50%;
+animation-delay:2s;
+}
+
+@keyframes floatMini{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-12px);}
+100%{transform:translateY(0px);}
+}
+
+/* SECTION */
+
+.section{
+padding:40px 0;
+}
+
+.section-box{
+
+background:rgba(255,255,255,.72);
+
+backdrop-filter:blur(20px);
+
+border-radius:34px;
+
+border:1px solid var(--border);
+
+padding:34px;
+
+box-shadow:var(--shadow);
+
+}
+
+.section-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:28px;
+}
+
+.section-header h2{
+font-size:1.45rem;
+}
+
+.section-header a{
+font-weight:700;
+color:var(--primary);
 }
 
 /* CARDS */
 
-.card-section{
-    margin-top:25px;
-}
-
-.section-box{
-    background:white;
-    border-radius:32px;
-    padding:34px;
-    border:1px solid var(--border);
-    box-shadow:var(--shadow);
-}
-
-.section-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:28px;
-}
-
-.section-header h2{
-    font-size:1.4rem;
-}
-
-.section-header a{
-    color:var(--primary);
-    font-weight:700;
+.channels-grid,
+.category-grid{
+display:grid;
+gap:22px;
 }
 
 .channels-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
+grid-template-columns:repeat(4,1fr);
 }
 
-.channel-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:26px;
-    padding:26px;
-    transition:.3s ease;
-    cursor:pointer;
+.category-grid{
+grid-template-columns:repeat(5,1fr);
 }
 
-.channel-card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 20px 40px rgba(15,23,42,.08);
+.card{
+
+background:white;
+
+border:1px solid var(--border);
+
+border-radius:28px;
+
+padding:26px;
+
+transition:.35s ease;
+
+cursor:pointer;
+
 }
 
-.channel-icon{
-    width:62px;
-    height:62px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-    margin-bottom:18px;
-    font-size:1.3rem;
+.card:hover{
+
+transform:
+translateY(-10px)
+scale(1.02);
+
+box-shadow:
+0 25px 50px rgba(15,23,42,.12);
+
 }
 
-.blue{background:#2563eb;}
-.green{background:#10b981;}
-.purple{background:#7c3aed;}
-.orange{background:#f59e0b;}
+.icon-wrap{
 
-.channel-card h3{
-    margin-bottom:10px;
+width:66px;
+height:66px;
+
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:1.35rem;
+
+color:white;
+
+margin-bottom:20px;
+
 }
 
-.channel-card p{
-    color:var(--muted);
-    line-height:1.7;
-    font-size:.95rem;
+.blue{
+background:linear-gradient(135deg,#2563eb,#60a5fa);
+}
+
+.green{
+background:linear-gradient(135deg,#10b981,#34d399);
+}
+
+.purple{
+background:linear-gradient(135deg,#7c3aed,#a78bfa);
+}
+
+.orange{
+background:linear-gradient(135deg,#f59e0b,#fbbf24);
+}
+
+.card h3{
+margin-bottom:12px;
+}
+
+.card p{
+line-height:1.8;
+font-size:.96rem;
+color:var(--muted);
 }
 
 .member{
-    margin-top:18px;
-    color:#94a3b8;
-    font-weight:600;
-}
-
-/* CATEGORY */
-
-.category-grid{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:20px;
-}
-
-.category-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:24px;
-    padding:24px;
-    transition:.3s ease;
-    cursor:pointer;
-}
-
-.category-card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 18px 30px rgba(15,23,42,.08);
-}
-
-.category-card i{
-    font-size:1.8rem;
-    color:var(--primary);
-    margin-bottom:18px;
+margin-top:18px;
+font-weight:700;
+color:#94a3b8;
 }
 
 /* ABOUT */
 
 .about-grid{
-    display:grid;
-    grid-template-columns:1.1fr .9fr;
-    gap:30px;
-}
-
-.about-card{
-    background:white;
-    border-radius:30px;
-    padding:34px;
-    border:1px solid var(--border);
-    box-shadow:var(--shadow);
-}
-
-.about-card p{
-    color:var(--muted);
-    line-height:1.9;
-    margin-top:16px;
+display:grid;
+grid-template-columns:1.1fr .9fr;
+gap:24px;
 }
 
 .stats{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:20px;
-    margin-top:24px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:18px;
+margin-top:24px;
 }
 
 .stat{
-    background:#f8fbff;
-    border-radius:22px;
-    padding:24px;
-    border:1px solid var(--border);
+
+background:white;
+
+padding:24px;
+
+border-radius:24px;
+
+border:1px solid var(--border);
+
 }
 
 .stat h3{
-    font-size:2rem;
-    color:var(--primary);
+font-size:2rem;
+color:var(--primary);
+margin-bottom:8px;
 }
 
 /* FOOTER */
 
 .footer{
-    margin-top:90px;
-    background:
-    linear-gradient(135deg,#081122,#14213d);
-    color:white;
-    border-radius:40px 40px 0 0;
-    padding:80px 0 30px;
+
+margin-top:90px;
+
+background:
+linear-gradient(
+135deg,
+#0f172a,
+#1e3a8a,
+#2563eb
+);
+
+border-radius:40px 40px 0 0;
+
+padding:80px 0 130px;
+
+position:relative;
+
+overflow:hidden;
+
 }
 
 .footer-grid{
-    display:grid;
-    grid-template-columns:1.2fr repeat(3,.7fr) 1fr;
-    gap:30px;
+display:grid;
+grid-template-columns:1.2fr repeat(3,.7fr) 1fr;
+gap:30px;
 }
 
 .footer h4{
-    margin-bottom:20px;
+color:white;
+margin-bottom:20px;
 }
 
 .footer p,
 .footer a{
-    color:#cbd5e1;
-    line-height:2;
+color:#cbd5e1;
+line-height:2;
 }
 
-.notify{
-    background:rgba(255,255,255,.05);
-    padding:24px;
-    border-radius:24px;
-    border:1px solid rgba(255,255,255,.08);
+.notify-card{
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.08);
+
+padding:24px;
+
+border-radius:28px;
+
 }
 
-.notify-input{
-    display:flex;
-    gap:10px;
-    margin-top:18px;
+.notify-box{
+margin-top:18px;
+display:flex;
+flex-direction:column;
+gap:14px;
 }
 
-.notify-input input{
-    flex:1;
-    border:none;
-    outline:none;
-    border-radius:14px;
-    padding:14px;
-    background:rgba(255,255,255,.08);
-    color:white;
+.notify-box input{
+
+height:56px;
+
+padding:0 18px;
+
+border-radius:18px;
+
+background:rgba(255,255,255,.08);
+
+color:white;
+
+border:none;
+outline:none;
+
 }
 
-.notify-input button{
-    padding:14px 18px;
+.notify-box input::placeholder{
+color:#cbd5e1;
+}
+
+.subscribed-box{
+
+display:none;
+align-items:center;
+gap:14px;
+
+background:rgba(16,185,129,.12);
+
+border:1px solid rgba(16,185,129,.25);
+
+padding:14px;
+
+border-radius:20px;
+
+}
+
+.subscribed-box img{
+width:50px;
+height:50px;
+border-radius:50%;
+}
+
+.verified{
+color:#10b981;
+font-size:.9rem;
 }
 
 .footer-bottom{
-    margin-top:50px;
-    border-top:1px solid rgba(255,255,255,.08);
-    padding-top:26px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:20px;
+
+margin-top:50px;
+padding-top:26px;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:20px;
+
 }
 
 .socials{
-    display:flex;
-    gap:16px;
+display:flex;
+gap:14px;
 }
 
 .socials a{
-    width:44px;
-    height:44px;
-    border-radius:50%;
-    background:rgba(255,255,255,.08);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition:.3s ease;
+
+width:50px;
+height:50px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.08);
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+transition:.35s ease;
+
 }
 
 .socials a:hover{
-    transform:translateY(-4px);
-    background:rgba(255,255,255,.16);
+transform:translateY(-5px) scale(1.08);
+background:rgba(255,255,255,.18);
+}
+
+/* MOBILE NAV */
+
+.mobile-nav{
+
+position:fixed;
+
+left:50%;
+bottom:18px;
+
+transform:translateX(-50%);
+
+width:92%;
+max-width:520px;
+
+height:78px;
+
+background:rgba(255,255,255,.82);
+
+backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.45);
+
+border-radius:28px;
+
+display:none;
+
+align-items:center;
+justify-content:space-around;
+
+z-index:3000;
+
+box-shadow:
+0 20px 50px rgba(15,23,42,.16);
+
+padding-bottom:env(safe-area-inset-bottom);
+
+}
+
+.mobile-item{
+
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:6px;
+
+font-size:.8rem;
+font-weight:700;
+
+color:var(--muted);
+
+transition:.3s ease;
+
+position:relative;
+
+}
+
+.mobile-item i{
+font-size:1.15rem;
+}
+
+.mobile-item.active{
+color:var(--primary2);
+transform:translateY(-4px);
 }
 
 /* WEBVIEW */
 
 .webview{
-    position:fixed;
-    inset:0;
-    z-index:3000;
-    background:rgba(2,6,23,.65);
-    backdrop-filter:blur(12px);
-    opacity:0;
-    visibility:hidden;
-    transition:.35s ease;
+
+position:fixed;
+inset:0;
+
+background:rgba(3,7,18,.55);
+
+backdrop-filter:blur(22px);
+
+z-index:4000;
+
+opacity:0;
+pointer-events:none;
+
+transition:.4s ease;
+
 }
 
 .webview.active{
-    opacity:1;
-    visibility:visible;
+opacity:1;
+pointer-events:auto;
 }
 
-.webview-content{
-    position:absolute;
-    inset:20px;
-    background:white;
-    border-radius:30px;
-    overflow:hidden;
-    transform:translateY(30px) scale(.97);
-    transition:.35s ease;
-    display:flex;
-    flex-direction:column;
+.webview-panel{
+
+position:absolute;
+
+inset:20px;
+
+background:white;
+
+border-radius:34px;
+
+overflow:hidden;
+
+display:flex;
+flex-direction:column;
+
+transform:
+translateY(40px)
+scale(.96);
+
+transition:.4s ease;
+
 }
 
-.webview.active .webview-content{
-    transform:translateY(0) scale(1);
+.webview.active .webview-panel{
+transform:
+translateY(0)
+scale(1);
 }
 
-.webview-header{
-    height:76px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 24px;
-    border-bottom:1px solid var(--border);
+.webview-top{
+
+height:74px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 22px;
+
+border-bottom:1px solid var(--border);
+
+background:rgba(255,255,255,.85);
+
+backdrop-filter:blur(18px);
+
 }
 
-.webview-header h3{
-    font-size:1.1rem;
+.webview-title{
+display:flex;
+align-items:center;
+gap:12px;
+font-weight:700;
 }
 
-.close-btn{
-    width:48px;
-    height:48px;
-    border:none;
-    border-radius:16px;
-    background:#f1f5f9;
-    cursor:pointer;
-    font-size:1.1rem;
+.loading-bar{
+
+height:4px;
+width:0%;
+
+background:
+linear-gradient(
+90deg,
+var(--primary),
+var(--primary2)
+);
+
+transition:width .35s ease;
+
 }
 
 .webview iframe{
-    flex:1;
-    width:100%;
-    border:none;
+flex:1;
+border:none;
+width:100%;
+background:white;
 }
 
-/* USER */
+.close-btn{
 
-.user-box{
-    display:none;
-    align-items:center;
-    gap:12px;
-    background:#f8fafc;
-    padding:8px 14px;
-    border-radius:18px;
-    border:1px solid var(--border);
+width:48px;
+height:48px;
+
+border-radius:18px;
+
+background:#f1f5f9;
+
+transition:.3s ease;
+
 }
 
-.user-box img{
-    width:42px;
-    height:42px;
-    border-radius:50%;
+.close-btn:hover{
+transform:rotate(90deg);
 }
 
 /* TOAST */
 
 .toast{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    background:#111827;
-    color:white;
-    padding:18px 22px;
-    border-radius:18px;
-    z-index:9999;
-    opacity:0;
-    transform:translateY(20px);
-    transition:.35s ease;
+
+position:fixed;
+
+bottom:110px;
+right:20px;
+
+padding:16px 20px;
+
+border-radius:20px;
+
+background:rgba(15,23,42,.92);
+
+color:white;
+
+z-index:6000;
+
+opacity:0;
+transform:translateY(20px);
+
+transition:.35s ease;
+
 }
 
 .toast.show{
-    opacity:1;
-    transform:translateY(0);
+opacity:1;
+transform:translateY(0);
 }
 
 /* RESPONSIVE */
@@ -736,81 +1165,76 @@ img{
 .hero-grid,
 .about-grid,
 .footer-grid{
-    grid-template-columns:1fr;
+grid-template-columns:1fr;
 }
 
 .channels-grid{
-    grid-template-columns:repeat(2,1fr);
+grid-template-columns:repeat(2,1fr);
 }
 
 .category-grid{
-    grid-template-columns:repeat(3,1fr);
+grid-template-columns:repeat(3,1fr);
 }
 
 .hero h1{
-    font-size:3.5rem;
+font-size:3.9rem;
 }
 
 }
 
 @media(max-width:768px){
 
-.nav-links,
-.nav-actions{
-    display:none;
-}
-
-.mobile-menu{
-    display:block;
+.nav-links{
+display:none;
 }
 
 .hero{
-    padding-top:50px;
+padding-top:50px;
 }
 
 .hero-grid{
-    grid-template-columns:1fr;
-    gap:50px;
+grid-template-columns:1fr;
+gap:40px;
 }
 
 .hero h1{
-    font-size:2.8rem;
+font-size:3rem;
 }
 
 .hero-visual{
-    min-height:420px;
+height:440px;
 }
 
-.hero-main-card{
-    inset:10px;
+.hero-card{
+inset:0;
 }
 
 .phone{
-    width:170px;
-    height:330px;
+width:180px;
+height:340px;
 }
 
 .channels-grid,
 .category-grid,
 .stats{
-    grid-template-columns:1fr;
+grid-template-columns:1fr;
 }
 
 .section-box{
-    padding:24px;
+padding:24px;
 }
 
-.webview-content{
-    inset:0;
-    border-radius:0;
+.mobile-nav{
+display:flex;
 }
 
 .footer{
-    border-radius:30px 30px 0 0;
+padding-bottom:150px;
 }
 
-.notify-input{
-    flex-direction:column;
+.webview-panel{
+inset:0;
+border-radius:0;
 }
 
 }
@@ -820,33 +1244,14 @@ img{
 
 <body>
 
-<!-- MOBILE NAV -->
-
-<div class="mobile-nav" id="mobileNav">
-
-<div class="top">
-<div class="logo">
-<img src="images/icon.png">
-<span>Moz Studio</span>
-</div>
-
-<i class="fa-solid fa-xmark" onclick="toggleMenu()"></i>
-</div>
-
-<div class="mobile-links">
-<a href="#">Home</a>
-<a href="#" onclick="openWebview('Templates','skeld-host-net.com')">Templates</a>
-<a href="#" onclick="openWebview('Utilities','https://example.com')">Utilities</a>
-<a href="#" onclick="openWebview('Packages','https://example.com')">Packages</a>
-<a href="#about">About</a>
-<button class="btn btn-primary" onclick="googleLogin()">Login with Google</button>
-</div>
-
-</div>
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="blob blob3"></div>
 
 <!-- NAVBAR -->
 
-<nav class="navbar glass">
+<nav class="navbar">
+
 <div class="container nav-wrap">
 
 <div class="logo">
@@ -855,34 +1260,72 @@ img{
 </div>
 
 <div class="nav-links">
+
 <a href="#">Home</a>
-<a href="#" onclick="openWebview('Templates','https://example.com')">Templates</a>
-<a href="#" onclick="openWebview('Utilities','https://example.com')">Utilities</a>
-<a href="#" onclick="openWebview('Packages','https://example.com')">Packages</a>
-<a href="#about">About</a>
+
+<a onclick="openWebview('Templates','https://example.com/templates')">
+Templates
+</a>
+
+<a onclick="openWebview('Utilities','https://example.com/utilities')">
+Utilities
+</a>
+
+<a onclick="openWebview('Packages','https://example.com/packages')">
+Packages
+</a>
+
+<a onclick="openWebview('About','https://example.com/about')">
+About
+</a>
+
 </div>
 
 <div class="nav-actions">
 
-<button class="btn btn-primary" id="loginBtn" onclick="googleLogin()">
-<i class="fa-brands fa-google"></i> Login
+<button class="login-btn" id="loginBtn" onclick="googleLogin()">
+<i class="fa-brands fa-google"></i>
+Login
 </button>
 
-<div class="user-box" id="userBox">
+<div class="user-panel" id="userPanel">
+
 <img id="userAvatar">
+
 <div>
 <div id="userName"></div>
-<small onclick="logout()" style="cursor:pointer;color:#ef4444;">Logout</small>
-</div>
+
+<div style="display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted);">
+<div class="status-dot"></div>
+Online
 </div>
 
 </div>
 
-<div class="mobile-menu" onclick="toggleMenu()">
-<i class="fa-solid fa-bars"></i>
+<div class="dropdown" id="dropdown">
+
+<div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+<img id="dropAvatar" style="width:52px;height:52px;border-radius:50%;">
+<div>
+<div id="dropName"></div>
+<div style="font-size:.85rem;color:var(--muted);">Google Account</div>
+</div>
+</div>
+
+<button class="btn btn-secondary"
+style="width:100%;"
+onclick="logout()">
+Logout
+</button>
+
 </div>
 
 </div>
+
+</div>
+
+</div>
+
 </nav>
 
 <!-- HERO -->
@@ -891,10 +1334,10 @@ img{
 
 <div class="container hero-grid">
 
-<div class="fade-up">
+<div>
 
 <div class="badge">
-<i class="fa-solid fa-wand-magic-sparkles"></i>
+<i class="fa-solid fa-sparkles"></i>
 Welcome to Moz Studio
 </div>
 
@@ -910,57 +1353,68 @@ Explore a wide range of apps, mods, files, utilities and templates for creators 
 <div class="hero-buttons">
 
 <button class="btn btn-primary"
-onclick="openWebview('Browse Downloads','https://example.com')">
+onclick="openWebview('Downloads','https://example.com/downloads')">
+
 <i class="fa-solid fa-download"></i>
 Browse Downloads
+
 </button>
 
 <a href="https://discord.com" target="_blank">
+
 <button class="btn btn-secondary">
-<i class="fa-brands fa-discord"></i>
+
+<i class="fa-solid fa-comments"></i>
 Join Community
+
 </button>
+
 </a>
 
 </div>
 
 </div>
 
-<div class="hero-visual fade-up">
+<div class="hero-visual">
 
-<div class="hero-main-card">
-<div class="fake-dashboard">
+<div class="hero-card">
+
 <div class="fake-grid">
+
 <div class="fake-box"></div>
 <div class="fake-box"></div>
 <div class="fake-box"></div>
+
 <div class="fake-box"></div>
 <div class="fake-box"></div>
 <div class="fake-box"></div>
+
 </div>
-</div>
+
 </div>
 
 <div class="phone">
+
 <div class="phone-content">
-<div class="phone-grid">
-<div class="phone-card"></div>
-<div class="phone-card"></div>
-<div class="phone-card"></div>
-<div class="phone-card"></div>
-</div>
-</div>
+
+<div class="phone-box"></div>
+<div class="phone-box"></div>
+<div class="phone-box"></div>
+<div class="phone-box"></div>
+
 </div>
 
-<div class="float-icon f1">
+</div>
+
+<div class="float-icon float1">
 <i class="fa-solid fa-folder"></i>
 </div>
 
-<div class="float-icon f2">
+<div class="float-icon float2">
 <i class="fa-solid fa-cloud-arrow-up"></i>
 </div>
 
-<div class="float-icon f3">
+<div class="float-icon float3">
 <i class="fa-solid fa-code"></i>
 </div>
 
@@ -970,328 +1424,71 @@ Join Community
 
 </section>
 
-<!-- CHANNELS -->
+<!-- MOBILE NAV -->
 
-<section class="card-section">
-<div class="container">
+<div class="mobile-nav">
 
-<div class="section-box fade-up">
-
-<div class="section-header">
-<h2>Explore Channels</h2>
-<a href="#">View all</a>
+<div class="mobile-item active" onclick="scrollToTop()">
+<i class="fa-solid fa-house"></i>
+<span>Home</span>
 </div>
 
-<div class="channels-grid">
-
-<div class="channel-card"
-onclick="openWebview('Downloads','https://example.com')">
-
-<div class="channel-icon blue">
-<i class="fa-solid fa-download"></i>
-</div>
-
-<h3>Downloads</h3>
-
-<p>
-Get the latest apps, mods, files and more.
-</p>
-
-<div class="member">12.4K members</div>
-
-</div>
-
-<div class="channel-card"
-onclick="openWebview('Packages','https://example.com')">
-
-<div class="channel-icon green">
-<i class="fa-solid fa-cube"></i>
-</div>
-
-<h3>Packages</h3>
-
-<p>
-Organized packages for easy integration.
-</p>
-
-<div class="member">8.7K members</div>
-
-</div>
-
-<div class="channel-card"
-onclick="openWebview('General Chat','https://example.com')">
-
-<div class="channel-icon purple">
-<i class="fa-solid fa-comments"></i>
-</div>
-
-<h3>General Chat</h3>
-
-<p>
-Talk, share help and connect with others.
-</p>
-
-<div class="member">15.2K members</div>
-
-</div>
-
-<div class="channel-card"
-onclick="openWebview('Templates','https://example.com')">
-
-<div class="channel-icon orange">
+<div class="mobile-item"
+onclick="openWebview('Templates','https://example.com/templates')">
 <i class="fa-solid fa-file"></i>
+<span>Templates</span>
 </div>
 
-<h3>Templates</h3>
-
-<p>
-Beautiful templates for your next project.
-</p>
-
-<div class="member">6.3K members</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-</section>
-
-<!-- CATEGORIES -->
-
-<section class="card-section">
-<div class="container">
-
-<div class="section-box fade-up">
-
-<div class="section-header">
-<h2>Featured Categories</h2>
-<a href="#">Browse all</a>
-</div>
-
-<div class="category-grid">
-
-<div class="category-card"
-onclick="openWebview('Apps','https://example.com')">
-<i class="fa-solid fa-table-cells-large"></i>
-<h3>Apps</h3>
-<p>Essential applications and useful tools.</p>
-</div>
-
-<div class="category-card"
-onclick="openWebview('Mods','https://example.com')">
-<i class="fa-solid fa-puzzle-piece"></i>
-<h3>Mods</h3>
-<p>Enhance your games and apps.</p>
-</div>
-
-<div class="category-card"
-onclick="openWebview('Files','https://example.com')">
-<i class="fa-solid fa-folder"></i>
-<h3>Files</h3>
-<p>Important resources and downloads.</p>
-</div>
-
-<div class="category-card"
-onclick="openWebview('Utilities','https://example.com')">
+<div class="mobile-item"
+onclick="openWebview('Utilities','https://example.com/utilities')">
 <i class="fa-solid fa-screwdriver-wrench"></i>
-<h3>Utilities</h3>
-<p>Tools that improve productivity.</p>
+<span>Utilities</span>
 </div>
 
-<div class="category-card"
-onclick="openWebview('Templates','https://example.com')">
-<i class="fa-solid fa-window-maximize"></i>
-<h3>Templates</h3>
-<p>Ready-to-use modern layouts.</p>
+<div class="mobile-item"
+onclick="openWebview('Packages','https://example.com/packages')">
+<i class="fa-solid fa-cube"></i>
+<span>Packages</span>
 </div>
 
-</div>
-
-</div>
-
-</div>
-</section>
-
-<!-- ABOUT -->
-
-<section class="section" id="about">
-
-<div class="container about-grid">
-
-<div class="about-card fade-up">
-
-<h2>About Moz Studio</h2>
-
-<p>
-Moz Studio is a modern platform built for creators, developers and digital enthusiasts. Browse apps, packages, utilities, templates and downloadable resources inside a premium responsive experience.
-</p>
-
-<p>
-Powered using modern technologies including Vercel deployment systems, GitHub repository management and Firebase backend services for authentication, cloud storage and real-time systems.
-</p>
-
-<div class="stats">
-
-<div class="stat">
-<h3>25K+</h3>
-<p>Community Members</p>
-</div>
-
-<div class="stat">
-<h3>5K+</h3>
-<p>Downloads Hosted</p>
-</div>
-
-<div class="stat">
-<h3>99.9%</h3>
-<p>Cloud Reliability</p>
-</div>
-
-<div class="stat">
-<h3>24/7</h3>
-<p>Platform Access</p>
+<div class="mobile-item"
+onclick="openWebview('About','https://example.com/about')">
+<i class="fa-solid fa-circle-info"></i>
+<span>About</span>
 </div>
 
 </div>
-
-</div>
-
-<div class="about-card fade-up">
-
-<h2>Modern Infrastructure</h2>
-
-<p>
-Moz Studio is designed with scalability and performance in mind. The platform structure is optimized for mobile-first browsing while maintaining premium desktop experiences.
-</p>
-
-<p>
-The Firebase backend handles:
-</p>
-
-<ul style="margin-top:20px;color:#64748b;line-height:2;">
-<li>Google Authentication</li>
-<li>Realtime Databases</li>
-<li>Firestore Email Collection</li>
-<li>Cloud Hosting Support</li>
-<li>Analytics Integration</li>
-</ul>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer class="footer">
-
-<div class="container">
-
-<div class="footer-grid">
-
-<div>
-
-<div class="logo" style="color:white;margin-bottom:20px;">
-<img src="images/icon.png">
-<span>Moz Studio</span>
-</div>
-
-<p>
-Your hub for apps, mods, files, utilities, templates and everything digital creation.
-</p>
-
-</div>
-
-<div>
-<h4>Resources</h4>
-<a href="#">Downloads</a><br>
-<a href="#">Packages</a><br>
-<a href="#">Templates</a><br>
-<a href="#">Utilities</a>
-</div>
-
-<div>
-<h4>Community</h4>
-<a href="#">General Chat</a><br>
-<a href="#">Members</a><br>
-<a href="#">Rules</a><br>
-<a href="#">Support</a>
-</div>
-
-<div>
-<h4>About</h4>
-<a href="#">About Us</a><br>
-<a href="#">Changelog</a><br>
-<a href="#">Contact</a><br>
-<a href="#">Privacy Policy</a>
-</div>
-
-<div class="notify">
-
-<h4>Stay Updated</h4>
-
-<p>
-Subscribe for updates and new releases.
-</p>
-
-<div class="notify-input">
-
-<input type="email"
-id="emailInput"
-placeholder="Enter your email">
-
-<button class="btn btn-primary"
-onclick="notifyMe()"
-id="notifyBtn">
-Notify Me
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="footer-bottom">
-
-<p>
-© 2026 Moz Studio. All rights reserved.
-</p>
-
-<div class="socials">
-<a href="#"><i class="fa-brands fa-github"></i></a>
-<a href="#"><i class="fa-brands fa-discord"></i></a>
-<a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-</div>
-
-</div>
-
-</div>
-
-</footer>
 
 <!-- WEBVIEW -->
 
 <div class="webview" id="webview">
 
-<div class="webview-content">
+<div class="webview-panel">
 
-<div class="webview-header">
+<div class="loading-bar" id="loadingBar"></div>
 
-<h3 id="webviewTitle">Webview</h3>
+<div class="webview-top">
 
-<button class="close-btn" onclick="closeWebview()">
+<div class="webview-title">
+
+<i class="fa-solid fa-globe"></i>
+
+<span id="webviewTitle">
+Webview
+</span>
+
+</div>
+
+<button class="close-btn"
+onclick="closeWebview()">
+
 <i class="fa-solid fa-xmark"></i>
+
 </button>
 
 </div>
 
-<iframe id="webviewFrame"
-src=""></iframe>
+<iframe id="webviewFrame"></iframe>
 
 </div>
 
@@ -1307,13 +1504,15 @@ Success
 
 <script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
 getAuth,
 GoogleAuthProvider,
 signInWithPopup,
-signOut
+signOut,
+onAuthStateChanged
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -1324,51 +1523,98 @@ addDoc
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-/* FIREBASE CONFIG */
-
 const firebaseConfig = {
-  apiKey: "AIzaSyCPdiQ65WkraRh4wGmhucCc-SlQNgFu_VU",
-  authDomain: "mozstudio-6c90d.firebaseapp.com",
-  projectId: "mozstudio-6c90d",
-  storageBucket: "mozstudio-6c90d.firebasestorage.app",
-  messagingSenderId: "961156544144",
-  appId: "1:961156544144:web:c7cb3ae163e2efeae14a15",
-  measurementId: "G-Z151SSF1L5"
+
+apiKey: "AIzaSyCPdiQ65WkraRh4wGmhucCc-SlQNgFu_VU",
+
+authDomain: "mozstudio-6c90d.firebaseapp.com",
+
+projectId: "mozstudio-6c90d",
+
+storageBucket: "mozstudio-6c90d.firebasestorage.app",
+
+messagingSenderId: "961156544144",
+
+appId: "1:961156544144:web:c7cb3ae163e2efeae14a15",
+
+measurementId: "G-Z151SSF1L5"
+
 };
 
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
+
 const provider = new GoogleAuthProvider();
 
 const db = getFirestore(app);
 
-/* GOOGLE LOGIN */
+/* LOGIN */
 
 window.googleLogin = async function(){
 
+const loginBtn = document.getElementById("loginBtn");
+
+loginBtn.innerHTML = `
+<i class="fa-solid fa-spinner fa-spin"></i>
+Loading
+`;
+
 try{
 
-const result = await signInWithPopup(auth, provider);
-
-const user = result.user;
-
-document.getElementById("loginBtn").style.display = "none";
-
-document.getElementById("userBox").style.display = "flex";
-
-document.getElementById("userAvatar").src = user.photoURL;
-
-document.getElementById("userName").innerText = user.displayName;
+await signInWithPopup(auth,provider);
 
 showToast("Successfully logged in");
 
 }catch(error){
 
-console.error(error);
+console.log(error);
+
 showToast("Login failed");
 
 }
+
+loginBtn.innerHTML = `
+<i class="fa-brands fa-google"></i>
+Login
+`;
+
+}
+
+/* AUTH */
+
+onAuthStateChanged(auth,(user)=>{
+
+if(user){
+
+document.getElementById("loginBtn").style.display = "none";
+
+document.getElementById("userPanel").style.display = "flex";
+
+document.getElementById("userAvatar").src = user.photoURL;
+
+document.getElementById("dropAvatar").src = user.photoURL;
+
+document.getElementById("userName").innerText = user.displayName;
+
+document.getElementById("dropName").innerText = user.displayName;
+
+}else{
+
+document.getElementById("loginBtn").style.display = "block";
+
+document.getElementById("userPanel").style.display = "none";
+
+}
+
+});
+
+/* DROPDOWN */
+
+document.getElementById("userPanel").onclick = function(){
+
+document.getElementById("dropdown")
+.classList.toggle("active");
 
 }
 
@@ -1378,53 +1624,40 @@ window.logout = async function(){
 
 await signOut(auth);
 
-document.getElementById("loginBtn").style.display = "block";
-
-document.getElementById("userBox").style.display = "none";
-
 showToast("Logged out");
 
 }
 
-/* NOTIFY ME */
+/* EMAIL SAVE */
 
 window.notifyMe = async function(){
 
-const email = document.getElementById("emailInput").value.trim();
-
-const btn = document.getElementById("notifyBtn");
+const email =
+document.getElementById("emailInput").value.trim();
 
 if(!email || !email.includes("@")){
 
-showToast("Enter a valid email");
+showToast("Enter valid email");
 return;
 
 }
 
-btn.innerHTML = "Loading...";
-
 try{
 
-await addDoc(collection(db, "subscribers"),{
+await addDoc(collection(db,"subscribers"),{
 
 email:email,
 createdAt:new Date().toISOString()
 
 });
 
-btn.innerHTML = "Notify Me";
-
-document.getElementById("emailInput").value = "";
-
-showToast("Email added successfully");
+showToast("Email saved");
 
 }catch(error){
 
-console.error(error);
+console.log(error);
 
-btn.innerHTML = "Notify Me";
-
-showToast("Failed to save email");
+showToast("Failed to save");
 
 }
 
@@ -1434,61 +1667,93 @@ showToast("Failed to save email");
 
 <script>
 
-/* MOBILE MENU */
+/* TOAST */
 
-function toggleMenu(){
-document.getElementById("mobileNav").classList.toggle("active");
+function showToast(text){
+
+const toast =
+document.getElementById("toast");
+
+toast.innerText = text;
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},3000);
+
 }
 
 /* WEBVIEW */
 
 function openWebview(title,url){
 
-document.getElementById("webviewTitle").innerText = title;
+const webview =
+document.getElementById("webview");
 
-document.getElementById("webviewFrame").src = url;
+document.getElementById("webviewTitle")
+.innerText = title;
 
-document.getElementById("webview").classList.add("active");
+const frame =
+document.getElementById("webviewFrame");
+
+const bar =
+document.getElementById("loadingBar");
+
+bar.style.width = "0%";
+
+webview.classList.add("active");
 
 document.body.style.overflow = "hidden";
 
+setTimeout(()=>{
+bar.style.width = "45%";
+},120);
+
+setTimeout(()=>{
+bar.style.width = "80%";
+},400);
+
+frame.src = url;
+
+frame.onload = ()=>{
+
+bar.style.width = "100%";
+
+setTimeout(()=>{
+bar.style.width = "0%";
+},400);
+
+};
+
 }
+
+/* CLOSE */
 
 function closeWebview(){
 
-document.getElementById("webview").classList.remove("active");
+document.getElementById("webview")
+.classList.remove("active");
 
-document.getElementById("webviewFrame").src = "";
+document.getElementById("webviewFrame")
+.src = "";
 
 document.body.style.overflow = "auto";
 
 }
 
-/* TOAST */
+/* SCROLL */
 
-function showToast(message){
+function scrollToTop(){
 
-const toast = document.getElementById("toast");
-
-toast.innerText = message;
-
-toast.classList.add("show");
-
-setTimeout(()=>{
-toast.classList.remove("show");
-},3000);
-
-}
-
-/* CLOSE ON ESC */
-
-document.addEventListener("keydown",function(e){
-
-if(e.key === "Escape"){
-closeWebview();
-}
-
+window.scrollTo({
+top:0,
+behavior:"smooth"
 });
+
+}
 
 </script>
 
