@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 
 <title>Moz Studio</title>
 
-<link rel="icon" type="image/png" href="images/icon.png">
+<link rel="icon" type="image/png" href="images/icon.png"/>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
@@ -19,13 +19,11 @@
 
 :root{
 
---bg:#f3f7fc;
---bg2:#edf4ff;
+--bg:#f5f7fb;
+--bg2:#eef4ff;
 
 --card:#ffffff;
---card2:rgba(255,255,255,.72);
-
---text:#081120;
+--text:#09101d;
 --muted:#64748b;
 
 --primary:#2563eb;
@@ -34,18 +32,16 @@
 --border:rgba(15,23,42,.08);
 
 --shadow:
-0 10px 30px rgba(15,23,42,.06),
+0 10px 30px rgba(15,23,42,.05),
 0 20px 60px rgba(15,23,42,.06);
 
 --footer:
 linear-gradient(
 135deg,
 #0f172a,
-#1e3a8a,
+#172554,
 #2563eb
 );
-
---success:#10b981;
 
 }
 
@@ -75,8 +71,8 @@ body{
 font-family:'Inter',sans-serif;
 
 background:
-radial-gradient(circle at top left, rgba(96,165,250,.12), transparent 30%),
-radial-gradient(circle at bottom right, rgba(37,99,235,.10), transparent 30%),
+radial-gradient(circle at top left, rgba(96,165,250,.10), transparent 30%),
+radial-gradient(circle at bottom right, rgba(37,99,235,.08), transparent 30%),
 var(--bg);
 
 color:var(--text);
@@ -85,47 +81,22 @@ overflow-x:hidden;
 
 }
 
-/* BLOBS */
+/* SCROLLBAR */
 
-.blob{
-position:fixed;
-border-radius:50%;
-filter:blur(90px);
-z-index:-1;
-opacity:.5;
-animation:floatBlob 10s ease-in-out infinite;
+::-webkit-scrollbar{
+width:10px;
 }
 
-.blob1{
-width:380px;
-height:380px;
-background:#60a5fa;
-top:-100px;
-left:-100px;
+::-webkit-scrollbar-thumb{
+background:#dbeafe;
+border-radius:999px;
 }
 
-.blob2{
-width:300px;
-height:300px;
-background:#3b82f6;
-right:-100px;
-top:40%;
-animation-delay:2s;
-}
+/* GLOBAL */
 
-.blob3{
-width:260px;
-height:260px;
-background:#93c5fd;
-bottom:-100px;
-left:35%;
-animation-delay:4s;
-}
-
-@keyframes floatBlob{
-0%{transform:translateY(0px);}
-50%{transform:translateY(-25px);}
-100%{transform:translateY(0px);}
+.container{
+width:min(1180px,92%);
+margin:auto;
 }
 
 a{
@@ -133,21 +104,16 @@ text-decoration:none;
 color:inherit;
 }
 
-img{
-pointer-events:none;
--webkit-user-drag:none;
-}
-
 button{
-font-family:inherit;
 border:none;
 outline:none;
 cursor:pointer;
+font-family:inherit;
 }
 
-.container{
-width:min(1200px,92%);
-margin:auto;
+img{
+pointer-events:none;
+-webkit-user-drag:none;
 }
 
 /* NAVBAR */
@@ -157,14 +123,13 @@ margin:auto;
 position:sticky;
 top:0;
 
-z-index:999;
+z-index:1000;
 
 padding:16px 0;
 
-background:rgba(255,255,255,.55);
+background:rgba(255,255,255,.72);
 
 backdrop-filter:blur(18px);
--webkit-backdrop-filter:blur(18px);
 
 border-bottom:1px solid var(--border);
 
@@ -182,165 +147,88 @@ display:flex;
 align-items:center;
 gap:14px;
 font-weight:800;
-font-size:1.15rem;
+font-size:1.12rem;
 }
 
 .logo img{
-width:48px;
-height:48px;
-border-radius:16px;
-box-shadow:0 10px 20px rgba(37,99,235,.25);
+width:44px;
+height:44px;
+border-radius:14px;
 }
 
 .nav-links{
 display:flex;
 align-items:center;
-gap:10px;
+gap:8px;
 }
 
 .nav-links a{
 
 padding:12px 16px;
 
-border-radius:16px;
+border-radius:14px;
 
+font-size:.95rem;
 font-weight:600;
 
-transition:.3s ease;
+transition:.25s ease;
 
 }
 
 .nav-links a:hover{
 
-background:rgba(96,165,250,.14);
+background:#eff6ff;
 
 color:var(--primary);
 
-transform:translateY(-2px);
-
 }
 
-.nav-actions{
+.right-nav{
 display:flex;
 align-items:center;
-gap:12px;
+gap:14px;
 }
 
 .login-btn{
 
-height:52px;
+height:50px;
 
 padding:0 20px;
 
-border-radius:18px;
-
-font-weight:700;
+border-radius:16px;
 
 background:
-linear-gradient(135deg,var(--primary),var(--primary2));
+linear-gradient(
+135deg,
+var(--primary),
+var(--primary2)
+);
 
 color:white;
 
+font-weight:700;
+
 box-shadow:
-0 15px 35px rgba(37,99,235,.26);
+0 12px 30px rgba(37,99,235,.24);
 
 transition:.3s ease;
 
 }
 
 .login-btn:hover{
-transform:translateY(-3px);
-}
-
-/* USER PANEL */
-
-.user-panel{
-
-display:none;
-align-items:center;
-gap:12px;
-
-padding:8px 14px;
-
-border-radius:22px;
-
-background:rgba(255,255,255,.75);
-
-backdrop-filter:blur(16px);
-
-border:1px solid var(--border);
-
-position:relative;
-
-cursor:pointer;
-
-}
-
-.user-panel img{
-width:44px;
-height:44px;
-border-radius:50%;
-object-fit:cover;
-}
-
-.status-dot{
-width:10px;
-height:10px;
-background:var(--success);
-border-radius:50%;
-box-shadow:0 0 15px var(--success);
-}
-
-.dropdown{
-
-position:absolute;
-
-top:70px;
-right:0;
-
-width:260px;
-
-background:white;
-
-border:1px solid var(--border);
-
-border-radius:24px;
-
-padding:20px;
-
-box-shadow:var(--shadow);
-
-display:none;
-
-animation:dropdown .3s ease;
-
-}
-
-.dropdown.active{
-display:block;
-}
-
-@keyframes dropdown{
-from{
-opacity:0;
-transform:translateY(10px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+transform:translateY(-2px);
 }
 
 /* HERO */
 
 .hero{
-padding:90px 0 70px;
+padding:70px 0 40px;
 }
 
 .hero-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:70px;
+gap:60px;
 align-items:center;
 }
 
@@ -350,34 +238,29 @@ display:inline-flex;
 align-items:center;
 gap:10px;
 
-padding:14px 18px;
+padding:12px 18px;
 
-background:rgba(255,255,255,.6);
-
-backdrop-filter:blur(16px);
-
-border:1px solid rgba(255,255,255,.35);
-
-border-radius:999px;
-
-font-weight:700;
+background:#eff6ff;
 
 color:var(--primary);
 
-margin-bottom:26px;
+border-radius:999px;
 
-box-shadow:var(--shadow);
+font-size:.92rem;
+font-weight:700;
+
+margin-bottom:24px;
 
 }
 
 .hero h1{
 
-font-size:4.7rem;
-line-height:1.02;
+font-size:4.4rem;
+line-height:1.03;
 
 letter-spacing:-3px;
 
-margin-bottom:24px;
+margin-bottom:22px;
 
 font-weight:900;
 
@@ -385,78 +268,61 @@ font-weight:900;
 
 .hero p{
 
-font-size:1.1rem;
+max-width:560px;
+
+font-size:1.08rem;
 line-height:1.9;
 
 color:var(--muted);
-
-max-width:580px;
 
 }
 
 .hero-buttons{
 display:flex;
+gap:14px;
 flex-wrap:wrap;
-gap:16px;
 margin-top:34px;
 }
 
 .btn{
 
-height:58px;
+height:56px;
 
-padding:0 26px;
+padding:0 24px;
 
-border-radius:20px;
+border-radius:16px;
 
 font-weight:700;
 
-transition:.35s ease;
+font-size:.96rem;
 
-position:relative;
-overflow:hidden;
+transition:.3s ease;
 
-}
-
-.btn::before{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(
-120deg,
-transparent,
-rgba(255,255,255,.2),
-transparent
-);
-transform:translateX(-120%);
-transition:.6s ease;
-}
-
-.btn:hover::before{
-transform:translateX(120%);
 }
 
 .btn-primary{
 
 background:
-linear-gradient(135deg,var(--primary),var(--primary2));
+linear-gradient(
+135deg,
+var(--primary),
+var(--primary2)
+);
 
 color:white;
 
 box-shadow:
-0 15px 35px rgba(37,99,235,.28);
+0 15px 35px rgba(37,99,235,.25);
 
 }
 
 .btn-primary:hover{
-transform:translateY(-4px) scale(1.03);
+transform:translateY(-4px);
 }
 
 .btn-secondary{
 
-background:rgba(255,255,255,.75);
-
-backdrop-filter:blur(16px);
+background:white;
 
 border:1px solid var(--border);
 
@@ -473,80 +339,64 @@ box-shadow:var(--shadow);
 
 .hero-visual{
 position:relative;
-height:580px;
+height:520px;
 }
 
 .hero-card{
 
 position:absolute;
 
-inset:40px;
+inset:30px;
 
-background:rgba(255,255,255,.7);
+background:rgba(255,255,255,.75);
 
 backdrop-filter:blur(20px);
 
-border-radius:36px;
+border-radius:34px;
 
 border:1px solid var(--border);
 
-box-shadow:var(--shadow);
-
 overflow:hidden;
 
-animation:floatCard 6s ease-in-out infinite;
+box-shadow:var(--shadow);
 
 }
 
-@keyframes floatCard{
-0%{transform:translateY(0px);}
-50%{transform:translateY(-10px);}
-100%{transform:translateY(0px);}
-}
-
-.fake-grid{
+.mock-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:20px;
-padding:35px;
+gap:18px;
+padding:30px;
 }
 
-.fake-box{
+.mock-box{
 height:100px;
-background:white;
-border-radius:24px;
-box-shadow:var(--shadow);
+border-radius:22px;
+background:#f8fafc;
+border:1px solid #edf2f7;
 }
 
 .phone{
 
 position:absolute;
 
-right:30px;
-bottom:20px;
+right:20px;
+bottom:10px;
 
 width:220px;
 height:430px;
 
-background:#ffffff;
+background:white;
 
-border:10px solid #0f172a;
+border:10px solid #111827;
 
-border-radius:44px;
+border-radius:42px;
 
 overflow:hidden;
 
 box-shadow:
-0 30px 60px rgba(0,0,0,.22);
+0 30px 60px rgba(0,0,0,.18);
 
-animation:floatPhone 5s ease-in-out infinite;
-
-}
-
-@keyframes floatPhone{
-0%{transform:translateY(0px);}
-50%{transform:translateY(-16px);}
-100%{transform:translateY(0px);}
 }
 
 .phone::before{
@@ -557,33 +407,33 @@ left:50%;
 transform:translateX(-50%);
 width:120px;
 height:24px;
-background:#0f172a;
+background:#111827;
 border-radius:999px;
 }
 
-.phone-content{
-padding:70px 16px 16px;
+.phone-grid{
+padding:70px 14px 14px;
 display:grid;
 grid-template-columns:repeat(2,1fr);
 gap:12px;
 }
 
 .phone-box{
-height:80px;
+height:76px;
 border-radius:18px;
-background:#f1f5f9;
+background:#eff6ff;
 }
 
-.float-icon{
+.float{
 
 position:absolute;
 
-width:70px;
-height:70px;
+width:66px;
+height:66px;
 
-border-radius:24px;
+border-radius:22px;
 
-background:rgba(255,255,255,.8);
+background:rgba(255,255,255,.85);
 
 backdrop-filter:blur(16px);
 
@@ -591,93 +441,73 @@ display:flex;
 align-items:center;
 justify-content:center;
 
-font-size:1.5rem;
+font-size:1.3rem;
 
 box-shadow:var(--shadow);
 
 color:var(--primary);
 
-border:1px solid var(--border);
-
-animation:floatMini 4s ease-in-out infinite;
-
 }
 
-.float1{
+.f1{
 left:0;
-bottom:80px;
+bottom:70px;
 }
 
-.float2{
-right:0;
-top:80px;
-animation-delay:1s;
-}
-
-.float3{
-top:0;
+.f2{
+top:20px;
 left:50%;
-animation-delay:2s;
 }
 
-@keyframes floatMini{
-0%{transform:translateY(0px);}
-50%{transform:translateY(-12px);}
-100%{transform:translateY(0px);}
+.f3{
+right:0;
+top:100px;
 }
 
 /* SECTION */
 
 .section{
-padding:40px 0;
+padding:18px 0;
 }
 
 .section-box{
 
-background:rgba(255,255,255,.72);
+background:rgba(255,255,255,.78);
 
 backdrop-filter:blur(20px);
 
-border-radius:34px;
+border-radius:28px;
+
+padding:30px;
 
 border:1px solid var(--border);
-
-padding:34px;
 
 box-shadow:var(--shadow);
 
 }
 
-.section-header{
+.section-top{
 display:flex;
 align-items:center;
 justify-content:space-between;
-margin-bottom:28px;
+margin-bottom:26px;
 }
 
-.section-header h2{
-font-size:1.45rem;
+.section-top h2{
+font-size:1.35rem;
 }
 
-.section-header a{
+.section-top a{
 font-weight:700;
 color:var(--primary);
 }
 
-/* CARDS */
+/* CHANNELS */
 
-.channels-grid,
-.category-grid{
+.channels{
 display:grid;
-gap:22px;
-}
-
-.channels-grid{
 grid-template-columns:repeat(4,1fr);
-}
-
-.category-grid{
-grid-template-columns:repeat(5,1fr);
+gap:18px;
 }
 
 .card{
@@ -686,9 +516,9 @@ background:white;
 
 border:1px solid var(--border);
 
-border-radius:28px;
+border-radius:22px;
 
-padding:26px;
+padding:22px;
 
 transition:.35s ease;
 
@@ -699,18 +529,18 @@ cursor:pointer;
 .card:hover{
 
 transform:
-translateY(-10px)
+translateY(-6px)
 scale(1.02);
 
 box-shadow:
-0 25px 50px rgba(15,23,42,.12);
+0 20px 40px rgba(15,23,42,.08);
 
 }
 
-.icon-wrap{
+.card-icon{
 
-width:66px;
-height:66px;
+width:60px;
+height:60px;
 
 border-radius:50%;
 
@@ -718,96 +548,87 @@ display:flex;
 align-items:center;
 justify-content:center;
 
-font-size:1.35rem;
+font-size:1.2rem;
 
 color:white;
 
-margin-bottom:20px;
+margin-bottom:18px;
 
 }
 
 .blue{
-background:linear-gradient(135deg,#2563eb,#60a5fa);
+background:
+linear-gradient(
+135deg,
+#2563eb,
+#60a5fa
+);
 }
 
 .green{
-background:linear-gradient(135deg,#10b981,#34d399);
+background:
+linear-gradient(
+135deg,
+#10b981,
+#34d399
+);
 }
 
 .purple{
-background:linear-gradient(135deg,#7c3aed,#a78bfa);
+background:
+linear-gradient(
+135deg,
+#7c3aed,
+#a78bfa
+);
 }
 
 .orange{
-background:linear-gradient(135deg,#f59e0b,#fbbf24);
+background:
+linear-gradient(
+135deg,
+#f59e0b,
+#fbbf24
+);
 }
 
 .card h3{
-margin-bottom:12px;
+margin-bottom:10px;
+font-size:1.02rem;
 }
 
 .card p{
-line-height:1.8;
-font-size:.96rem;
+font-size:.93rem;
+line-height:1.7;
 color:var(--muted);
 }
 
 .member{
-margin-top:18px;
+margin-top:16px;
 font-weight:700;
+font-size:.9rem;
 color:#94a3b8;
 }
 
-/* ABOUT */
+/* CATEGORIES */
 
-.about-grid{
+.categories{
 display:grid;
-grid-template-columns:1.1fr .9fr;
-gap:24px;
-}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(2,1fr);
+grid-template-columns:repeat(5,1fr);
 gap:18px;
-margin-top:24px;
-}
-
-.stat{
-
-background:white;
-
-padding:24px;
-
-border-radius:24px;
-
-border:1px solid var(--border);
-
-}
-
-.stat h3{
-font-size:2rem;
-color:var(--primary);
-margin-bottom:8px;
 }
 
 /* FOOTER */
 
 .footer{
 
-margin-top:90px;
+margin-top:80px;
 
-background:
-linear-gradient(
-135deg,
-#0f172a,
-#1e3a8a,
-#2563eb
-);
+background:var(--footer);
 
 border-radius:40px 40px 0 0;
 
-padding:80px 0 130px;
+padding:70px 0 120px;
 
 position:relative;
 
@@ -818,7 +639,20 @@ overflow:hidden;
 .footer-grid{
 display:grid;
 grid-template-columns:1.2fr repeat(3,.7fr) 1fr;
-gap:30px;
+gap:28px;
+}
+
+.footer-logo{
+display:flex;
+align-items:center;
+gap:14px;
+margin-bottom:18px;
+}
+
+.footer-logo img{
+width:46px;
+height:46px;
+border-radius:14px;
 }
 
 .footer h4{
@@ -828,103 +662,91 @@ margin-bottom:20px;
 
 .footer p,
 .footer a{
-color:#cbd5e1;
+color:#dbeafe;
 line-height:2;
+font-size:.95rem;
 }
 
-.notify-card{
+.notify{
 
 background:rgba(255,255,255,.08);
 
 backdrop-filter:blur(18px);
 
+padding:22px;
+
+border-radius:24px;
+
 border:1px solid rgba(255,255,255,.08);
 
-padding:24px;
-
-border-radius:28px;
-
 }
 
-.notify-box{
-margin-top:18px;
+.notify-input{
 display:flex;
-flex-direction:column;
-gap:14px;
+margin-top:18px;
+gap:10px;
 }
 
-.notify-box input{
+.notify-input input{
 
-height:56px;
+flex:1;
+height:52px;
 
-padding:0 18px;
+padding:0 16px;
 
-border-radius:18px;
+border:none;
+outline:none;
+
+border-radius:16px;
 
 background:rgba(255,255,255,.08);
 
 color:white;
 
-border:none;
-outline:none;
-
 }
 
-.notify-box input::placeholder{
-color:#cbd5e1;
+.notify-input input::placeholder{
+color:#dbeafe;
 }
 
-.subscribed-box{
+.subscribe-btn{
 
-display:none;
-align-items:center;
-gap:14px;
+padding:0 18px;
 
-background:rgba(16,185,129,.12);
+border-radius:14px;
 
-border:1px solid rgba(16,185,129,.25);
+background:white;
 
-padding:14px;
+font-weight:700;
 
-border-radius:20px;
+color:#0f172a;
 
-}
-
-.subscribed-box img{
-width:50px;
-height:50px;
-border-radius:50%;
-}
-
-.verified{
-color:#10b981;
-font-size:.9rem;
 }
 
 .footer-bottom{
 
-margin-top:50px;
-padding-top:26px;
+margin-top:40px;
+padding-top:24px;
 
-border-top:1px solid rgba(255,255,255,.08);
+border-top:1px solid rgba(255,255,255,.10);
 
 display:flex;
-justify-content:space-between;
 align-items:center;
-flex-wrap:wrap;
+justify-content:space-between;
 gap:20px;
+flex-wrap:wrap;
 
 }
 
 .socials{
 display:flex;
-gap:14px;
+gap:12px;
 }
 
 .socials a{
 
-width:50px;
-height:50px;
+width:46px;
+height:46px;
 
 border-radius:50%;
 
@@ -934,13 +756,13 @@ display:flex;
 align-items:center;
 justify-content:center;
 
-transition:.35s ease;
+transition:.3s ease;
 
 }
 
 .socials a:hover{
-transform:translateY(-5px) scale(1.08);
-background:rgba(255,255,255,.18);
+transform:translateY(-4px);
+background:rgba(255,255,255,.15);
 }
 
 /* MOBILE NAV */
@@ -950,32 +772,32 @@ background:rgba(255,255,255,.18);
 position:fixed;
 
 left:50%;
-bottom:18px;
+bottom:16px;
 
 transform:translateX(-50%);
 
 width:92%;
 max-width:520px;
 
-height:78px;
+height:74px;
 
-background:rgba(255,255,255,.82);
+background:rgba(255,255,255,.84);
 
 backdrop-filter:blur(20px);
 
-border:1px solid rgba(255,255,255,.45);
+border:1px solid rgba(255,255,255,.5);
 
-border-radius:28px;
+border-radius:26px;
 
 display:none;
 
 align-items:center;
 justify-content:space-around;
 
-z-index:3000;
+z-index:5000;
 
 box-shadow:
-0 20px 50px rgba(15,23,42,.16);
+0 18px 40px rgba(15,23,42,.12);
 
 padding-bottom:env(safe-area-inset-bottom);
 
@@ -986,26 +808,24 @@ padding-bottom:env(safe-area-inset-bottom);
 display:flex;
 flex-direction:column;
 align-items:center;
-gap:6px;
+gap:5px;
 
-font-size:.8rem;
+font-size:.76rem;
 font-weight:700;
 
-color:var(--muted);
+color:#64748b;
 
 transition:.3s ease;
-
-position:relative;
 
 }
 
 .mobile-item i{
-font-size:1.15rem;
+font-size:1.08rem;
 }
 
 .mobile-item.active{
-color:var(--primary2);
-transform:translateY(-4px);
+color:var(--primary);
+transform:translateY(-3px);
 }
 
 /* WEBVIEW */
@@ -1015,16 +835,16 @@ transform:translateY(-4px);
 position:fixed;
 inset:0;
 
-background:rgba(3,7,18,.55);
+background:rgba(2,6,23,.55);
 
-backdrop-filter:blur(22px);
+backdrop-filter:blur(16px);
 
-z-index:4000;
+z-index:6000;
 
 opacity:0;
 pointer-events:none;
 
-transition:.4s ease;
+transition:.35s ease;
 
 }
 
@@ -1033,7 +853,7 @@ opacity:1;
 pointer-events:auto;
 }
 
-.webview-panel{
+.webview-box{
 
 position:absolute;
 
@@ -1041,7 +861,7 @@ inset:20px;
 
 background:white;
 
-border-radius:34px;
+border-radius:30px;
 
 overflow:hidden;
 
@@ -1049,22 +869,22 @@ display:flex;
 flex-direction:column;
 
 transform:
-translateY(40px)
+translateY(30px)
 scale(.96);
 
-transition:.4s ease;
+transition:.35s ease;
 
 }
 
-.webview.active .webview-panel{
+.webview.active .webview-box{
 transform:
 translateY(0)
 scale(1);
 }
 
-.webview-top{
+.web-top{
 
-height:74px;
+height:72px;
 
 display:flex;
 align-items:center;
@@ -1074,48 +894,23 @@ padding:0 22px;
 
 border-bottom:1px solid var(--border);
 
-background:rgba(255,255,255,.85);
-
-backdrop-filter:blur(18px);
+background:white;
 
 }
 
-.webview-title{
+.web-title{
 display:flex;
 align-items:center;
 gap:12px;
 font-weight:700;
 }
 
-.loading-bar{
+.close{
 
-height:4px;
-width:0%;
+width:46px;
+height:46px;
 
-background:
-linear-gradient(
-90deg,
-var(--primary),
-var(--primary2)
-);
-
-transition:width .35s ease;
-
-}
-
-.webview iframe{
-flex:1;
-border:none;
-width:100%;
-background:white;
-}
-
-.close-btn{
-
-width:48px;
-height:48px;
-
-border-radius:18px;
+border-radius:16px;
 
 background:#f1f5f9;
 
@@ -1123,61 +918,31 @@ transition:.3s ease;
 
 }
 
-.close-btn:hover{
+.close:hover{
 transform:rotate(90deg);
 }
 
-/* TOAST */
-
-.toast{
-
-position:fixed;
-
-bottom:110px;
-right:20px;
-
-padding:16px 20px;
-
-border-radius:20px;
-
-background:rgba(15,23,42,.92);
-
-color:white;
-
-z-index:6000;
-
-opacity:0;
-transform:translateY(20px);
-
-transition:.35s ease;
-
-}
-
-.toast.show{
-opacity:1;
-transform:translateY(0);
+.webview iframe{
+flex:1;
+width:100%;
+border:none;
 }
 
 /* RESPONSIVE */
 
-@media(max-width:1100px){
+@media(max-width:1050px){
 
 .hero-grid,
-.about-grid,
 .footer-grid{
 grid-template-columns:1fr;
 }
 
-.channels-grid{
+.channels{
 grid-template-columns:repeat(2,1fr);
 }
 
-.category-grid{
+.categories{
 grid-template-columns:repeat(3,1fr);
-}
-
-.hero h1{
-font-size:3.9rem;
 }
 
 }
@@ -1189,7 +954,7 @@ display:none;
 }
 
 .hero{
-padding-top:50px;
+padding-top:40px;
 }
 
 .hero-grid{
@@ -1202,7 +967,7 @@ font-size:3rem;
 }
 
 .hero-visual{
-height:440px;
+height:420px;
 }
 
 .hero-card{
@@ -1214,14 +979,9 @@ width:180px;
 height:340px;
 }
 
-.channels-grid,
-.category-grid,
-.stats{
+.channels,
+.categories{
 grid-template-columns:1fr;
-}
-
-.section-box{
-padding:24px;
 }
 
 .mobile-nav{
@@ -1232,7 +992,7 @@ display:flex;
 padding-bottom:150px;
 }
 
-.webview-panel{
+.webview-box{
 inset:0;
 border-radius:0;
 }
@@ -1241,12 +1001,7 @@ border-radius:0;
 
 </style>
 </head>
-
 <body>
-
-<div class="blob blob1"></div>
-<div class="blob blob2"></div>
-<div class="blob blob3"></div>
 
 <!-- NAVBAR -->
 
@@ -1281,46 +1036,12 @@ About
 
 </div>
 
-<div class="nav-actions">
+<div class="right-nav">
 
-<button class="login-btn" id="loginBtn" onclick="googleLogin()">
+<button class="login-btn" onclick="googleLogin()">
 <i class="fa-brands fa-google"></i>
 Login
 </button>
-
-<div class="user-panel" id="userPanel">
-
-<img id="userAvatar">
-
-<div>
-<div id="userName"></div>
-
-<div style="display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted);">
-<div class="status-dot"></div>
-Online
-</div>
-
-</div>
-
-<div class="dropdown" id="dropdown">
-
-<div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
-<img id="dropAvatar" style="width:52px;height:52px;border-radius:50%;">
-<div>
-<div id="dropName"></div>
-<div style="font-size:.85rem;color:var(--muted);">Google Account</div>
-</div>
-</div>
-
-<button class="btn btn-secondary"
-style="width:100%;"
-onclick="logout()">
-Logout
-</button>
-
-</div>
-
-</div>
 
 </div>
 
@@ -1379,15 +1100,15 @@ Join Community
 
 <div class="hero-card">
 
-<div class="fake-grid">
+<div class="mock-grid">
 
-<div class="fake-box"></div>
-<div class="fake-box"></div>
-<div class="fake-box"></div>
+<div class="mock-box"></div>
+<div class="mock-box"></div>
+<div class="mock-box"></div>
 
-<div class="fake-box"></div>
-<div class="fake-box"></div>
-<div class="fake-box"></div>
+<div class="mock-box"></div>
+<div class="mock-box"></div>
+<div class="mock-box"></div>
 
 </div>
 
@@ -1395,10 +1116,11 @@ Join Community
 
 <div class="phone">
 
-<div class="phone-content">
+<div class="phone-grid">
 
 <div class="phone-box"></div>
 <div class="phone-box"></div>
+
 <div class="phone-box"></div>
 <div class="phone-box"></div>
 
@@ -1406,16 +1128,16 @@ Join Community
 
 </div>
 
-<div class="float-icon float1">
+<div class="float f1">
 <i class="fa-solid fa-folder"></i>
 </div>
 
-<div class="float-icon float2">
-<i class="fa-solid fa-cloud-arrow-up"></i>
+<div class="float f2">
+<i class="fa-solid fa-code"></i>
 </div>
 
-<div class="float-icon float3">
-<i class="fa-solid fa-code"></i>
+<div class="float f3">
+<i class="fa-solid fa-cloud-arrow-up"></i>
 </div>
 
 </div>
@@ -1424,25 +1146,365 @@ Join Community
 
 </section>
 
+<!-- CHANNELS -->
+
+<section class="section">
+
+<div class="container section-box">
+
+<div class="section-top">
+
+<h2>Explore Channels</h2>
+
+<a onclick="openWebview('Channels','https://example.com/channels')">
+View all
+</a>
+
+</div>
+
+<div class="channels">
+
+<div class="card"
+onclick="openWebview('Downloads','https://example.com/downloads')">
+
+<div class="card-icon blue">
+<i class="fa-solid fa-download"></i>
+</div>
+
+<h3>Downloads</h3>
+
+<p>
+Get the latest apps, mods, files and more.
+</p>
+
+<div class="member">
+12.4K members
+</div>
+
+</div>
+
+<div class="card"
+onclick="openWebview('Packages','https://example.com/packages')">
+
+<div class="card-icon green">
+<i class="fa-solid fa-cube"></i>
+</div>
+
+<h3>Packages</h3>
+
+<p>
+Organized packages for easy integration.
+</p>
+
+<div class="member">
+8.7K members
+</div>
+
+</div>
+
+<div class="card"
+onclick="openWebview('General Chat','https://example.com/chat')">
+
+<div class="card-icon purple">
+<i class="fa-solid fa-comments"></i>
+</div>
+
+<h3>General Chat</h3>
+
+<p>
+Talk, share, help and connect with others.
+</p>
+
+<div class="member">
+15.2K members
+</div>
+
+</div>
+
+<div class="card"
+onclick="openWebview('Templates','https://example.com/templates')">
+
+<div class="card-icon orange">
+<i class="fa-solid fa-file"></i>
+</div>
+
+<h3>Templates</h3>
+
+<p>
+Beautiful templates for your next project.
+</p>
+
+<div class="member">
+6.3K members
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CATEGORIES -->
+
+<section class="section">
+
+<div class="container section-box">
+
+<div class="section-top">
+
+<h2>Featured Categories</h2>
+
+<a onclick="openWebview('Categories','https://example.com/categories')">
+Browse all
+</a>
+
+</div>
+
+<div class="categories">
+
+<div class="card"
+onclick="openWebview('Apps','https://example.com/apps')">
+
+<div class="card-icon blue">
+<i class="fa-solid fa-table-cells-large"></i>
+</div>
+
+<h3>Apps</h3>
+
+<p>
+Essential & useful applications.
+</p>
+
+</div>
+
+<div class="card"
+onclick="openWebview('Mods','https://example.com/mods')">
+
+<div class="card-icon green">
+<i class="fa-solid fa-puzzle-piece"></i>
+</div>
+
+<h3>Mods</h3>
+
+<p>
+Enhance your apps and games.
+</p>
+
+</div>
+
+<div class="card"
+onclick="openWebview('Files','https://example.com/files')">
+
+<div class="card-icon orange">
+<i class="fa-solid fa-folder"></i>
+</div>
+
+<h3>Files</h3>
+
+<p>
+Important files and resources.
+</p>
+
+</div>
+
+<div class="card"
+onclick="openWebview('Utilities','https://example.com/utilities')">
+
+<div class="card-icon purple">
+<i class="fa-solid fa-screwdriver-wrench"></i>
+</div>
+
+<h3>Utilities</h3>
+
+<p>
+Tools to boost your productivity.
+</p>
+
+</div>
+
+<div class="card"
+onclick="openWebview('Templates','https://example.com/templates')">
+
+<div class="card-icon orange">
+<i class="fa-solid fa-window-maximize"></i>
+</div>
+
+<h3>Templates</h3>
+
+<p>
+Ready-to-use designs.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+<div class="container">
+
+<div class="footer-grid">
+
+<div>
+
+<div class="footer-logo">
+
+<img src="images/icon.png">
+
+<h2 style="color:white;">
+Moz Studio
+</h2>
+
+</div>
+
+<p>
+Your hub for apps, mods, files, utilities, templates and everything digital creation.
+</p>
+
+</div>
+
+<div>
+
+<h4>Resources</h4>
+
+<a onclick="openWebview('Downloads','https://example.com/downloads')">
+Downloads
+</a><br>
+
+<a onclick="openWebview('Packages','https://example.com/packages')">
+Packages
+</a><br>
+
+<a onclick="openWebview('Templates','https://example.com/templates')">
+Templates
+</a><br>
+
+<a onclick="openWebview('Utilities','https://example.com/utilities')">
+Utilities
+</a>
+
+</div>
+
+<div>
+
+<h4>Community</h4>
+
+<a onclick="openWebview('Chat','https://example.com/chat')">
+General Chat
+</a><br>
+
+<a onclick="openWebview('Members','https://example.com/members')">
+Members
+</a><br>
+
+<a onclick="openWebview('Rules','https://example.com/rules')">
+Rules
+</a><br>
+
+<a onclick="openWebview('Support','https://example.com/support')">
+Support
+</a>
+
+</div>
+
+<div>
+
+<h4>About</h4>
+
+<a onclick="openWebview('About Us','https://example.com/about')">
+About Us
+</a><br>
+
+<a onclick="openWebview('Changelog','https://example.com/changelog')">
+Changelog
+</a><br>
+
+<a onclick="openWebview('Contact','https://example.com/contact')">
+Contact
+</a><br>
+
+<a onclick="openWebview('Privacy Policy','https://example.com/privacy')">
+Privacy Policy
+</a>
+
+</div>
+
+<div class="notify">
+
+<h4>Stay Updated</h4>
+
+<p>
+Subscribe for updates and new releases.
+</p>
+
+<div class="notify-input">
+
+<input
+id="emailInput"
+type="email"
+placeholder="Enter your email"
+/>
+
+<button class="subscribe-btn"
+onclick="saveEmail()">
+Subscribe
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+<p style="color:#dbeafe;">
+© 2026 Moz Studio. All rights reserved.
+</p>
+
+<div class="socials">
+
+<a href="#">
+<i class="fa-brands fa-twitter"></i>
+</a>
+
+<a href="#">
+<i class="fa-brands fa-github"></i>
+</a>
+
+<a href="#">
+<i class="fa-brands fa-discord"></i>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</footer>
+
 <!-- MOBILE NAV -->
 
 <div class="mobile-nav">
 
-<div class="mobile-item active" onclick="scrollToTop()">
+<div class="mobile-item active">
 <i class="fa-solid fa-house"></i>
 <span>Home</span>
 </div>
 
 <div class="mobile-item"
-onclick="openWebview('Templates','https://example.com/templates')">
-<i class="fa-solid fa-file"></i>
-<span>Templates</span>
-</div>
-
-<div class="mobile-item"
-onclick="openWebview('Utilities','https://example.com/utilities')">
-<i class="fa-solid fa-screwdriver-wrench"></i>
-<span>Utilities</span>
+onclick="openWebview('Downloads','https://example.com/downloads')">
+<i class="fa-solid fa-download"></i>
+<span>Downloads</span>
 </div>
 
 <div class="mobile-item"
@@ -1452,9 +1514,15 @@ onclick="openWebview('Packages','https://example.com/packages')">
 </div>
 
 <div class="mobile-item"
-onclick="openWebview('About','https://example.com/about')">
-<i class="fa-solid fa-circle-info"></i>
-<span>About</span>
+onclick="openWebview('Chat','https://example.com/chat')">
+<i class="fa-solid fa-comments"></i>
+<span>Chat</span>
+</div>
+
+<div class="mobile-item"
+onclick="openWebview('Profile','https://example.com/profile')">
+<i class="fa-solid fa-user"></i>
+<span>Profile</span>
 </div>
 
 </div>
@@ -1463,23 +1531,21 @@ onclick="openWebview('About','https://example.com/about')">
 
 <div class="webview" id="webview">
 
-<div class="webview-panel">
+<div class="webview-box">
 
-<div class="loading-bar" id="loadingBar"></div>
+<div class="web-top">
 
-<div class="webview-top">
-
-<div class="webview-title">
+<div class="web-title">
 
 <i class="fa-solid fa-globe"></i>
 
-<span id="webviewTitle">
-Webview
+<span id="webTitle">
+Moz Studio
 </span>
 
 </div>
 
-<button class="close-btn"
+<button class="close"
 onclick="closeWebview()">
 
 <i class="fa-solid fa-xmark"></i>
@@ -1488,16 +1554,10 @@ onclick="closeWebview()">
 
 </div>
 
-<iframe id="webviewFrame"></iframe>
+<iframe id="webFrame"></iframe>
 
 </div>
 
-</div>
-
-<!-- TOAST -->
-
-<div class="toast" id="toast">
-Success
 </div>
 
 <!-- FIREBASE -->
@@ -1510,9 +1570,7 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
 getAuth,
 GoogleAuthProvider,
-signInWithPopup,
-signOut,
-onAuthStateChanged
+signInWithPopup
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -1549,95 +1607,36 @@ const provider = new GoogleAuthProvider();
 
 const db = getFirestore(app);
 
-/* LOGIN */
+/* GOOGLE LOGIN */
 
 window.googleLogin = async function(){
-
-const loginBtn = document.getElementById("loginBtn");
-
-loginBtn.innerHTML = `
-<i class="fa-solid fa-spinner fa-spin"></i>
-Loading
-`;
 
 try{
 
 await signInWithPopup(auth,provider);
 
-showToast("Successfully logged in");
+alert("Logged in successfully.");
 
 }catch(error){
 
 console.log(error);
 
-showToast("Login failed");
+alert("Login failed.");
 
 }
-
-loginBtn.innerHTML = `
-<i class="fa-brands fa-google"></i>
-Login
-`;
-
-}
-
-/* AUTH */
-
-onAuthStateChanged(auth,(user)=>{
-
-if(user){
-
-document.getElementById("loginBtn").style.display = "none";
-
-document.getElementById("userPanel").style.display = "flex";
-
-document.getElementById("userAvatar").src = user.photoURL;
-
-document.getElementById("dropAvatar").src = user.photoURL;
-
-document.getElementById("userName").innerText = user.displayName;
-
-document.getElementById("dropName").innerText = user.displayName;
-
-}else{
-
-document.getElementById("loginBtn").style.display = "block";
-
-document.getElementById("userPanel").style.display = "none";
-
-}
-
-});
-
-/* DROPDOWN */
-
-document.getElementById("userPanel").onclick = function(){
-
-document.getElementById("dropdown")
-.classList.toggle("active");
-
-}
-
-/* LOGOUT */
-
-window.logout = async function(){
-
-await signOut(auth);
-
-showToast("Logged out");
 
 }
 
 /* EMAIL SAVE */
 
-window.notifyMe = async function(){
+window.saveEmail = async function(){
 
 const email =
 document.getElementById("emailInput").value.trim();
 
 if(!email || !email.includes("@")){
 
-showToast("Enter valid email");
+alert("Enter valid email.");
 return;
 
 }
@@ -1651,13 +1650,15 @@ createdAt:new Date().toISOString()
 
 });
 
-showToast("Email saved");
+alert("Subscribed successfully.");
+
+document.getElementById("emailInput").value = "";
 
 }catch(error){
 
 console.log(error);
 
-showToast("Failed to save");
+alert("Failed to subscribe.");
 
 }
 
@@ -1667,66 +1668,20 @@ showToast("Failed to save");
 
 <script>
 
-/* TOAST */
-
-function showToast(text){
-
-const toast =
-document.getElementById("toast");
-
-toast.innerText = text;
-
-toast.classList.add("show");
-
-setTimeout(()=>{
-
-toast.classList.remove("show");
-
-},3000);
-
-}
-
 /* WEBVIEW */
 
 function openWebview(title,url){
 
-const webview =
-document.getElementById("webview");
-
-document.getElementById("webviewTitle")
+document.getElementById("webTitle")
 .innerText = title;
 
-const frame =
-document.getElementById("webviewFrame");
+document.getElementById("webFrame")
+.src = url;
 
-const bar =
-document.getElementById("loadingBar");
-
-bar.style.width = "0%";
-
-webview.classList.add("active");
+document.getElementById("webview")
+.classList.add("active");
 
 document.body.style.overflow = "hidden";
-
-setTimeout(()=>{
-bar.style.width = "45%";
-},120);
-
-setTimeout(()=>{
-bar.style.width = "80%";
-},400);
-
-frame.src = url;
-
-frame.onload = ()=>{
-
-bar.style.width = "100%";
-
-setTimeout(()=>{
-bar.style.width = "0%";
-},400);
-
-};
 
 }
 
@@ -1737,21 +1692,10 @@ function closeWebview(){
 document.getElementById("webview")
 .classList.remove("active");
 
-document.getElementById("webviewFrame")
+document.getElementById("webFrame")
 .src = "";
 
 document.body.style.overflow = "auto";
-
-}
-
-/* SCROLL */
-
-function scrollToTop(){
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
 
 }
 
