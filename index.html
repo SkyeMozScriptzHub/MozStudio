@@ -19,17 +19,19 @@
 <style>
 
 :root{
---bg:#f4f7fb;
---card:#ffffff;
---primary:#2563eb;
+--bg:#06070b;
+--bg2:#0d1117;
+--card:#111827;
+--card2:#161f2d;
+--primary:#3b82f6;
 --primary2:#60a5fa;
---text:#0f172a;
---muted:#64748b;
---border:rgba(15,23,42,.08);
+--text:#f8fafc;
+--muted:#94a3b8;
+--border:rgba(255,255,255,.06);
 
 --shadow:
-0 10px 30px rgba(15,23,42,.05),
-0 20px 60px rgba(15,23,42,.06);
+0 10px 30px rgba(0,0,0,.35),
+0 20px 60px rgba(0,0,0,.45);
 }
 
 *{
@@ -37,13 +39,6 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 -webkit-tap-highlight-color:transparent;
-user-select:none;
--webkit-user-select:none;
-}
-
-input,textarea{
-user-select:text;
--webkit-user-select:text;
 }
 
 html{
@@ -53,8 +48,8 @@ scroll-behavior:smooth;
 body{
 font-family:'Inter',sans-serif;
 background:
-radial-gradient(circle at top left, rgba(96,165,250,.08), transparent 30%),
-radial-gradient(circle at bottom right, rgba(37,99,235,.06), transparent 30%),
+radial-gradient(circle at top left, rgba(59,130,246,.14), transparent 30%),
+radial-gradient(circle at bottom right, rgba(96,165,250,.08), transparent 30%),
 var(--bg);
 color:var(--text);
 overflow-x:hidden;
@@ -65,7 +60,7 @@ width:10px;
 }
 
 ::-webkit-scrollbar-thumb{
-background:#dbeafe;
+background:#1e293b;
 border-radius:999px;
 }
 
@@ -74,20 +69,16 @@ width:min(1180px,92%);
 margin:auto;
 }
 
-button,a,.card,.mobile-item{
-cursor:pointer;
-}
-
-button{
-border:none;
-outline:none;
-font-family:inherit;
-transition:.25s ease;
-}
-
 a{
 text-decoration:none;
 color:inherit;
+}
+
+button,
+.card,
+.mobile-item,
+.nav-links a{
+cursor:pointer;
 }
 
 img{
@@ -100,8 +91,8 @@ pointer-events:none;
 .navbar{
 position:sticky;
 top:0;
-z-index:1000;
-background:rgba(255,255,255,.78);
+z-index:999;
+background:rgba(6,7,11,.72);
 backdrop-filter:blur(18px);
 border-bottom:1px solid var(--border);
 padding:16px 0;
@@ -119,7 +110,7 @@ display:flex;
 align-items:center;
 gap:14px;
 font-weight:800;
-font-size:1.08rem;
+font-size:1.05rem;
 }
 
 .logo img{
@@ -131,7 +122,7 @@ border-radius:14px;
 .nav-links{
 display:flex;
 align-items:center;
-gap:8px;
+gap:10px;
 }
 
 .nav-links a{
@@ -140,99 +131,19 @@ border-radius:14px;
 font-size:.95rem;
 font-weight:700;
 transition:.25s ease;
+color:#cbd5e1;
 }
 
 .nav-links a:hover{
-background:#eff6ff;
-color:var(--primary);
-transform:translateY(-2px);
-}
-
-.right-nav{
-display:flex;
-align-items:center;
-gap:14px;
-}
-
-.login-btn{
-height:50px;
-padding:0 22px;
-border-radius:16px;
-background:linear-gradient(135deg,var(--primary),var(--primary2));
+background:#111827;
 color:white;
-font-weight:700;
-font-size:.95rem;
-box-shadow:0 15px 35px rgba(37,99,235,.22);
-}
-
-.login-btn:hover{
-transform:translateY(-3px);
-}
-
-.login-btn:active{
-transform:scale(.97);
-}
-
-.profile-mini{
-display:flex;
-align-items:center;
-gap:12px;
-padding:8px 14px 8px 8px;
-border-radius:18px;
-background:white;
-border:1px solid var(--border);
-box-shadow:var(--shadow);
-transition:.3s ease;
-position:relative;
-}
-
-.profile-mini:hover{
 transform:translateY(-2px);
-}
-
-.profile-avatar-wrap{
-position:relative;
-}
-
-.profile-avatar-wrap img{
-width:42px;
-height:42px;
-border-radius:50%;
-object-fit:cover;
-}
-
-.online-dot{
-position:absolute;
-right:0;
-bottom:0;
-width:12px;
-height:12px;
-background:#22c55e;
-border:2px solid white;
-border-radius:50%;
-}
-
-.profile-info{
-display:flex;
-flex-direction:column;
-line-height:1.2;
-}
-
-.profile-info span{
-font-weight:700;
-font-size:.94rem;
-}
-
-.profile-info small{
-font-size:.8rem;
-color:var(--muted);
-font-weight:600;
 }
 
 /* HERO */
 
 .hero{
-padding:70px 0 40px;
+padding:80px 0 50px;
 }
 
 .hero-grid{
@@ -247,8 +158,9 @@ display:inline-flex;
 align-items:center;
 gap:10px;
 padding:12px 18px;
-background:#eff6ff;
-color:var(--primary);
+background:#0f172a;
+border:1px solid var(--border);
+color:#60a5fa;
 border-radius:999px;
 font-size:.92rem;
 font-weight:700;
@@ -256,8 +168,8 @@ margin-bottom:24px;
 }
 
 .hero h1{
-font-size:4.2rem;
-line-height:1.02;
+font-size:4.5rem;
+line-height:1;
 letter-spacing:-3px;
 margin-bottom:22px;
 font-weight:900;
@@ -265,7 +177,7 @@ font-weight:900;
 
 .hero p{
 max-width:560px;
-font-size:1.06rem;
+font-size:1.05rem;
 line-height:1.9;
 color:var(--muted);
 }
@@ -280,20 +192,23 @@ margin-top:34px;
 .btn{
 height:56px;
 padding:0 24px;
-border-radius:16px;
+border:none;
+border-radius:18px;
 font-weight:700;
 font-size:.95rem;
+transition:.25s ease;
 }
 
 .btn-primary{
 background:linear-gradient(135deg,var(--primary),var(--primary2));
 color:white;
-box-shadow:0 15px 35px rgba(37,99,235,.22);
+box-shadow:0 15px 35px rgba(59,130,246,.25);
 }
 
 .btn-secondary{
-background:white;
+background:#111827;
 border:1px solid var(--border);
+color:white;
 }
 
 .btn:hover{
@@ -308,13 +223,13 @@ transform:scale(.96);
 
 .hero-visual{
 position:relative;
-height:520px;
+height:540px;
 }
 
 .hero-card{
 position:absolute;
 inset:30px;
-background:rgba(255,255,255,.78);
+background:rgba(17,24,39,.88);
 backdrop-filter:blur(20px);
 border-radius:34px;
 border:1px solid var(--border);
@@ -332,8 +247,8 @@ padding:30px;
 .mock-box{
 height:100px;
 border-radius:22px;
-background:#f8fafc;
-border:1px solid #edf2f7;
+background:#1e293b;
+border:1px solid rgba(255,255,255,.04);
 }
 
 .phone{
@@ -342,11 +257,11 @@ right:20px;
 bottom:10px;
 width:220px;
 height:430px;
-background:white;
-border:10px solid #111827;
+background:#0f172a;
+border:10px solid #020617;
 border-radius:42px;
 overflow:hidden;
-box-shadow:0 30px 60px rgba(0,0,0,.18);
+box-shadow:0 30px 60px rgba(0,0,0,.5);
 }
 
 .phone::before{
@@ -357,7 +272,7 @@ left:50%;
 transform:translateX(-50%);
 width:120px;
 height:24px;
-background:#111827;
+background:#020617;
 border-radius:999px;
 }
 
@@ -371,7 +286,7 @@ gap:12px;
 .phone-box{
 height:76px;
 border-radius:18px;
-background:#eff6ff;
+background:#1e293b;
 }
 
 .float{
@@ -379,14 +294,15 @@ position:absolute;
 width:66px;
 height:66px;
 border-radius:22px;
-background:rgba(255,255,255,.9);
+background:#111827;
 display:flex;
 align-items:center;
 justify-content:center;
 font-size:1.2rem;
-color:var(--primary);
+color:#60a5fa;
 box-shadow:var(--shadow);
 animation:float 4s ease-in-out infinite;
+border:1px solid var(--border);
 }
 
 .f1{left:0;bottom:70px;}
@@ -406,9 +322,9 @@ padding:18px 0;
 }
 
 .section-box{
-background:rgba(255,255,255,.82);
+background:rgba(17,24,39,.8);
 backdrop-filter:blur(20px);
-border-radius:28px;
+border-radius:30px;
 padding:30px;
 border:1px solid var(--border);
 box-shadow:var(--shadow);
@@ -428,7 +344,7 @@ font-size:1.35rem;
 
 .section-top a{
 font-weight:700;
-color:var(--primary);
+color:#60a5fa;
 }
 
 /* CARDS */
@@ -446,16 +362,16 @@ gap:18px;
 }
 
 .card{
-background:white;
+background:linear-gradient(180deg,#111827,#0f172a);
 border:1px solid var(--border);
-border-radius:22px;
+border-radius:24px;
 padding:22px;
 transition:.35s ease;
 }
 
 .card:hover{
 transform:translateY(-6px) scale(1.02);
-box-shadow:0 20px 40px rgba(15,23,42,.08);
+box-shadow:0 20px 40px rgba(0,0,0,.35);
 }
 
 .card-icon{
@@ -490,22 +406,23 @@ color:var(--muted);
 margin-top:16px;
 font-weight:700;
 font-size:.9rem;
-color:#94a3b8;
+color:#64748b;
 }
 
 /* FOOTER */
 
 .footer{
 margin-top:80px;
-background:linear-gradient(135deg,#0f172a,#172554,#2563eb);
+background:linear-gradient(135deg,#020617,#0f172a,#111827);
 border-radius:40px 40px 0 0;
 padding:70px 0 120px;
 overflow:hidden;
+border-top:1px solid var(--border);
 }
 
 .footer-grid{
 display:grid;
-grid-template-columns:1.2fr repeat(3,.7fr) 1fr;
+grid-template-columns:1.2fr repeat(3,.7fr);
 gap:28px;
 }
 
@@ -529,19 +446,19 @@ margin-bottom:20px;
 
 .footer p,
 .footer a{
-color:#dbeafe;
+color:#94a3b8;
 line-height:2;
 font-size:.95rem;
 }
 
 .footer a:hover{
-opacity:.85;
+color:white;
 }
 
 .footer-bottom{
 margin-top:40px;
 padding-top:24px;
-border-top:1px solid rgba(255,255,255,.10);
+border-top:1px solid rgba(255,255,255,.06);
 display:flex;
 align-items:center;
 justify-content:space-between;
@@ -558,16 +475,17 @@ gap:12px;
 width:46px;
 height:46px;
 border-radius:50%;
-background:rgba(255,255,255,.08);
+background:#111827;
 display:flex;
 align-items:center;
 justify-content:center;
 transition:.3s ease;
+border:1px solid var(--border);
 }
 
 .socials a:hover{
 transform:translateY(-4px);
-background:rgba(255,255,255,.15);
+background:#1e293b;
 }
 
 /* MOBILE NAV */
@@ -580,16 +498,15 @@ transform:translateX(-50%);
 width:92%;
 max-width:520px;
 height:74px;
-background:rgba(255,255,255,.86);
+background:rgba(15,23,42,.92);
 backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,.5);
+border:1px solid var(--border);
 border-radius:26px;
 display:none;
 align-items:center;
 justify-content:space-around;
 z-index:5000;
-box-shadow:0 18px 40px rgba(15,23,42,.12);
-padding-bottom:env(safe-area-inset-bottom);
+box-shadow:0 18px 40px rgba(0,0,0,.45);
 }
 
 .mobile-item{
@@ -608,7 +525,7 @@ font-size:1.08rem;
 }
 
 .mobile-item.active{
-color:var(--primary);
+color:#60a5fa;
 transform:translateY(-4px);
 }
 
@@ -676,10 +593,6 @@ display:flex;
 padding-bottom:150px;
 }
 
-.profile-info{
-display:none;
-}
-
 }
 
 </style>
@@ -700,50 +613,11 @@ display:none;
 
 <div class="nav-links">
 
-<a href="#top">Home</a>
-
-<a href="templates/index.html">
-Templates
-</a>
-
-<a href="utilities/index.html">
-Utilities
-</a>
-
-<a href="packages/index.html">
-Packages
-</a>
-
-<a href="about/index.html">
-About
-</a>
-
-</div>
-
-<div class="right-nav">
-
-<button class="login-btn" id="loginBtn" onclick="googleLogin()">
-<i class="fa-brands fa-google"></i>
-Login
-</button>
-
-<div id="profileCard" style="display:none;">
-
-<div class="profile-mini">
-
-<div class="profile-avatar-wrap">
-<img id="profileAvatar" src="">
-<div class="online-dot"></div>
-</div>
-
-<div class="profile-info">
-<span id="profileName">User</span>
-<small>Online</small>
-</div>
-
-</div>
-
-</div>
+<a href="/">Home</a>
+<a href="/templates">Templates</a>
+<a href="/utilities">Utilities</a>
+<a href="/packages">Packages</a>
+<a href="/about">About</a>
 
 </div>
 
@@ -753,7 +627,7 @@ Login
 
 <!-- HERO -->
 
-<section class="hero" id="top">
+<section class="hero">
 
 <div class="container hero-grid">
 
@@ -775,7 +649,7 @@ Explore a wide range of apps, mods, files, utilities and templates for creators 
 
 <div class="hero-buttons">
 
-<a href="downloads/index.html">
+<a href="/downloads">
 
 <button class="btn btn-primary">
 
@@ -861,7 +735,7 @@ Join Community
 
 <h2>Explore Channels</h2>
 
-<a href="channels/index.html">
+<a href="/channels">
 View all
 </a>
 
@@ -869,7 +743,7 @@ View all
 
 <div class="channels">
 
-<a href="downloads/index.html">
+<a href="/downloads">
 
 <div class="card">
 
@@ -887,7 +761,7 @@ View all
 
 </a>
 
-<a href="packages/index.html">
+<a href="/packages">
 
 <div class="card">
 
@@ -905,7 +779,7 @@ View all
 
 </a>
 
-<a href="chat/index.html">
+<a href="/chat">
 
 <div class="card">
 
@@ -923,7 +797,7 @@ View all
 
 </a>
 
-<a href="templates/index.html">
+<a href="/templates">
 
 <div class="card">
 
@@ -957,7 +831,7 @@ View all
 
 <h2>Featured Categories</h2>
 
-<a href="categories/index.html">
+<a href="/categories">
 Browse all
 </a>
 
@@ -965,7 +839,7 @@ Browse all
 
 <div class="categories">
 
-<a href="apps/index.html">
+<a href="/apps">
 
 <div class="card">
 
@@ -981,7 +855,7 @@ Browse all
 
 </a>
 
-<a href="mods/index.html">
+<a href="/mods">
 
 <div class="card">
 
@@ -997,7 +871,7 @@ Browse all
 
 </a>
 
-<a href="files/index.html">
+<a href="/files">
 
 <div class="card">
 
@@ -1013,7 +887,7 @@ Browse all
 
 </a>
 
-<a href="utilities/index.html">
+<a href="/utilities">
 
 <div class="card">
 
@@ -1029,7 +903,7 @@ Browse all
 
 </a>
 
-<a href="templates/index.html">
+<a href="/templates">
 
 <div class="card">
 
@@ -1081,10 +955,10 @@ Your hub for apps, mods, files, utilities, templates and everything digital crea
 
 <h4>Resources</h4>
 
-<a href="downloads/index.html">Downloads</a><br>
-<a href="packages/index.html">Packages</a><br>
-<a href="templates/index.html">Templates</a><br>
-<a href="utilities/index.html">Utilities</a>
+<a href="/downloads">Downloads</a><br>
+<a href="/packages">Packages</a><br>
+<a href="/templates">Templates</a><br>
+<a href="/utilities">Utilities</a>
 
 </div>
 
@@ -1092,10 +966,10 @@ Your hub for apps, mods, files, utilities, templates and everything digital crea
 
 <h4>Community</h4>
 
-<a href="chat/index.html">General Chat</a><br>
-<a href="members/index.html">Members</a><br>
-<a href="rules/index.html">Rules</a><br>
-<a href="support/index.html">Support</a>
+<a href="/chat">General Chat</a><br>
+<a href="/members">Members</a><br>
+<a href="/rules">Rules</a><br>
+<a href="/support">Support</a>
 
 </div>
 
@@ -1103,54 +977,10 @@ Your hub for apps, mods, files, utilities, templates and everything digital crea
 
 <h4>About</h4>
 
-<a href="about/index.html">About Us</a><br>
-<a href="changelog/index.html">Changelog</a><br>
-<a href="contact/index.html">Contact</a><br>
-<a href="privacy/index.html">Privacy Policy</a>
-
-</div>
-
-<div>
-
-<h4>Stay Updated</h4>
-
-<p>
-Subscribe for updates and new releases.
-</p>
-
-<div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;">
-
-<input
-id="emailInput"
-type="email"
-placeholder="Enter your email"
-style="
-flex:1;
-height:52px;
-padding:0 16px;
-border:none;
-outline:none;
-border-radius:16px;
-background:rgba(255,255,255,.08);
-color:white;
-"
-/>
-
-<button
-onclick="saveEmail()"
-style="
-padding:0 18px;
-border-radius:14px;
-background:white;
-font-weight:700;
-color:#0f172a;
-">
-
-Subscribe
-
-</button>
-
-</div>
+<a href="/about">About Us</a><br>
+<a href="/changelog">Changelog</a><br>
+<a href="/contact">Contact</a><br>
+<a href="/privacy">Privacy Policy</a>
 
 </div>
 
@@ -1158,7 +988,7 @@ Subscribe
 
 <div class="footer-bottom">
 
-<p style="color:#dbeafe;">
+<p style="color:#64748b;">
 © 2026 Moz Studio. All rights reserved.
 </p>
 
@@ -1188,177 +1018,32 @@ Subscribe
 
 <div class="mobile-nav">
 
-<a class="mobile-item active" href="#top">
+<a class="mobile-item active" href="/">
 <i class="fa-solid fa-house"></i>
 <span>Home</span>
 </a>
 
-<a class="mobile-item" href="downloads/index.html">
+<a class="mobile-item" href="/downloads">
 <i class="fa-solid fa-download"></i>
 <span>Downloads</span>
 </a>
 
-<a class="mobile-item" href="packages/index.html">
+<a class="mobile-item" href="/packages">
 <i class="fa-solid fa-cube"></i>
 <span>Packages</span>
 </a>
 
-<a class="mobile-item" href="chat/index.html">
+<a class="mobile-item" href="/chat">
 <i class="fa-solid fa-comments"></i>
 <span>Chat</span>
 </a>
 
-<a class="mobile-item" href="profile/index.html">
+<a class="mobile-item" href="/about">
 <i class="fa-solid fa-user"></i>
-<span>Profile</span>
+<span>About</span>
 </a>
 
 </div>
 
-<!-- FIREBASE -->
-
-<script type="module">
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-getAuth,
-GoogleAuthProvider,
-signInWithPopup,
-onAuthStateChanged,
-setPersistence,
-browserLocalPersistence
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-import {
-getFirestore,
-collection,
-addDoc
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
-
-apiKey: "YOUR_API_KEY",
-authDomain: "YOUR_AUTH_DOMAIN",
-projectId: "YOUR_PROJECT_ID",
-storageBucket: "YOUR_STORAGE_BUCKET",
-messagingSenderId: "YOUR_MESSAGING_ID",
-appId: "YOUR_APP_ID"
-
-};
-
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-const provider = new GoogleAuthProvider();
-
-const db = getFirestore(app);
-
-/* LOGIN */
-
-window.googleLogin = async function(){
-
-const loginBtn =
-document.getElementById("loginBtn");
-
-try{
-
-loginBtn.innerHTML =
-'<i class="fa-solid fa-spinner fa-spin"></i> Signing In';
-
-await setPersistence(
-auth,
-browserLocalPersistence
-);
-
-const result =
-await signInWithPopup(auth,provider);
-
-showProfile(result.user);
-
-}catch(error){
-
-console.log(error);
-
-alert("Google Login Failed.");
-
-loginBtn.innerHTML =
-'<i class="fa-brands fa-google"></i> Login';
-
-}
-
-}
-
-/* PROFILE */
-
-function showProfile(user){
-
-document.getElementById("loginBtn")
-.style.display = "none";
-
-document.getElementById("profileCard")
-.style.display = "block";
-
-document.getElementById("profileAvatar")
-.src = user.photoURL;
-
-document.getElementById("profileName")
-.innerText = user.displayName;
-
-}
-
-/* AUTH CHECK */
-
-onAuthStateChanged(auth,(user)=>{
-
-if(user){
-showProfile(user);
-}
-
-});
-
-/* EMAIL SAVE */
-
-window.saveEmail = async function(){
-
-const email =
-document.getElementById("emailInput").value.trim();
-
-if(!email || !email.includes("@")){
-
-alert("Enter valid email.");
-return;
-
-}
-
-try{
-
-await addDoc(collection(db,"subscribers"),{
-
-email:email,
-createdAt:new Date().toISOString()
-
-});
-
-alert("Subscribed successfully.");
-
-document.getElementById("emailInput").value = "";
-
-}catch(error){
-
-console.log(error);
-
-alert("Failed to subscribe.");
-
-}
-
-}
-
-</script>
-
 </body>
-    </html>
+</html>
