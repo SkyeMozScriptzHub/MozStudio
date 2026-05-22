@@ -1,869 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-
-<title>Moz Studio</title>
-
-<link rel="icon" type="image/png" href="images/icon.png"/>
+<title>Coming Soon</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
---bg:#f4f7fb;
---card:#ffffff;
---primary:#2563eb;
---primary2:#60a5fa;
---text:#0f172a;
---muted:#64748b;
---border:rgba(15,23,42,.08);
-
---shadow:
-0 10px 30px rgba(15,23,42,.05),
-0 20px 60px rgba(15,23,42,.06);
+    --bg:#0b0b0d;
+    --card:#121216;
+    --soft:#1b1b22;
+    --text:#ffffff;
+    --muted:#8d8d98;
+    --line:rgba(255,255,255,0.06);
+    --glow:rgba(255,255,255,0.08);
 }
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
--webkit-tap-highlight-color:transparent;
-user-select:none;
--webkit-user-select:none;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-input,textarea{
-user-select:text;
--webkit-user-select:text;
-}
-
-html{
-scroll-behavior:smooth;
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:var(--bg);
+    font-family:'Inter',sans-serif;
+    color:var(--text);
 }
 
 body{
-font-family:'Inter',sans-serif;
-background:
-radial-gradient(circle at top left, rgba(96,165,250,.08), transparent 30%),
-radial-gradient(circle at bottom right, rgba(37,99,235,.06), transparent 30%),
-var(--bg);
-color:var(--text);
-overflow-x:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
 }
 
-body.modal-open{
-overflow:hidden;
-touch-action:none;
+/* Background Glow */
+
+.bg{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
 }
 
-::-webkit-scrollbar{
-width:10px;
+.circle{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.18;
+    animation:float 12s ease-in-out infinite;
 }
 
-::-webkit-scrollbar-thumb{
-background:#dbeafe;
-border-radius:999px;
+.circle:nth-child(1){
+    width:350px;
+    height:350px;
+    background:#ffffff;
+    top:-120px;
+    left:-120px;
 }
 
-.container{
-width:min(1180px,92%);
-margin:auto;
+.circle:nth-child(2){
+    width:250px;
+    height:250px;
+    background:#3d3d45;
+    bottom:-80px;
+    right:-80px;
+    animation-delay:3s;
 }
 
-button,a,.card,.mobile-item{
-cursor:pointer;
+.circle:nth-child(3){
+    width:180px;
+    height:180px;
+    background:#2b2b33;
+    top:50%;
+    left:60%;
+    animation-delay:6s;
 }
-
-button{
-border:none;
-outline:none;
-font-family:inherit;
-transition:.25s ease;
-}
-
-a{
-text-decoration:none;
-color:inherit;
-}
-
-img{
-pointer-events:none;
--webkit-user-drag:none;
-}
-
-/* NAVBAR */
-
-.navbar{
-position:sticky;
-top:0;
-z-index:1000;
-background:rgba(255,255,255,.78);
-backdrop-filter:blur(18px);
-border-bottom:1px solid var(--border);
-padding:16px 0;
-}
-
-.nav-wrap{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:20px;
-}
-
-.logo{
-display:flex;
-align-items:center;
-gap:14px;
-font-weight:800;
-font-size:1.08rem;
-}
-
-.logo img{
-width:46px;
-height:46px;
-border-radius:14px;
-}
-
-.nav-links{
-display:flex;
-align-items:center;
-gap:8px;
-}
-
-.nav-links a{
-padding:12px 16px;
-border-radius:14px;
-font-size:.95rem;
-font-weight:700;
-transition:.25s ease;
-}
-
-.nav-links a:hover{
-background:#eff6ff;
-color:var(--primary);
-transform:translateY(-2px);
-}
-
-.right-nav{
-display:flex;
-align-items:center;
-gap:14px;
-}
-
-.login-btn{
-height:50px;
-padding:0 22px;
-border-radius:16px;
-background:linear-gradient(135deg,var(--primary),var(--primary2));
-color:white;
-font-weight:700;
-font-size:.95rem;
-box-shadow:0 15px 35px rgba(37,99,235,.22);
-}
-
-.login-btn:hover{
-transform:translateY(-3px);
-}
-
-.login-btn:active{
-transform:scale(.97);
-}
-
-.profile-mini{
-display:flex;
-align-items:center;
-gap:12px;
-padding:8px 14px 8px 8px;
-border-radius:18px;
-background:white;
-border:1px solid var(--border);
-box-shadow:var(--shadow);
-transition:.3s ease;
-position:relative;
-}
-
-.profile-mini:hover{
-transform:translateY(-2px);
-}
-
-.profile-avatar-wrap{
-position:relative;
-}
-
-.profile-avatar-wrap img{
-width:42px;
-height:42px;
-border-radius:50%;
-object-fit:cover;
-}
-
-.online-dot{
-position:absolute;
-right:0;
-bottom:0;
-width:12px;
-height:12px;
-background:#22c55e;
-border:2px solid white;
-border-radius:50%;
-}
-
-.profile-info{
-display:flex;
-flex-direction:column;
-line-height:1.2;
-}
-
-.profile-info span{
-font-weight:700;
-font-size:.94rem;
-}
-
-.profile-info small{
-font-size:.8rem;
-color:var(--muted);
-font-weight:600;
-}
-
-/* HERO */
-
-.hero{
-padding:70px 0 40px;
-}
-
-.hero-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:60px;
-align-items:center;
-}
-
-.badge{
-display:inline-flex;
-align-items:center;
-gap:10px;
-padding:12px 18px;
-background:#eff6ff;
-color:var(--primary);
-border-radius:999px;
-font-size:.92rem;
-font-weight:700;
-margin-bottom:24px;
-animation:fadeUp .7s ease;
-}
-
-.hero h1{
-font-size:4.2rem;
-line-height:1.02;
-letter-spacing:-3px;
-margin-bottom:22px;
-font-weight:900;
-animation:fadeUp .9s ease;
-}
-
-.hero p{
-max-width:560px;
-font-size:1.06rem;
-line-height:1.9;
-color:var(--muted);
-animation:fadeUp 1s ease;
-}
-
-.hero-buttons{
-display:flex;
-gap:14px;
-flex-wrap:wrap;
-margin-top:34px;
-}
-
-.btn{
-height:56px;
-padding:0 24px;
-border-radius:16px;
-font-weight:700;
-font-size:.95rem;
-}
-
-.btn:active{
-transform:scale(.96);
-}
-
-.btn-primary{
-background:linear-gradient(135deg,var(--primary),var(--primary2));
-color:white;
-box-shadow:0 15px 35px rgba(37,99,235,.22);
-}
-
-.btn-primary:hover{
-transform:translateY(-4px);
-}
-
-.btn-secondary{
-background:white;
-border:1px solid var(--border);
-}
-
-.btn-secondary:hover{
-transform:translateY(-4px);
-box-shadow:var(--shadow);
-}
-
-/* HERO VISUAL */
-
-.hero-visual{
-position:relative;
-height:520px;
-}
-
-.hero-card{
-position:absolute;
-inset:30px;
-background:rgba(255,255,255,.78);
-backdrop-filter:blur(20px);
-border-radius:34px;
-border:1px solid var(--border);
-overflow:hidden;
-box-shadow:var(--shadow);
-animation:fadeScale 1s ease;
-}
-
-.mock-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:18px;
-padding:30px;
-}
-
-.mock-box{
-height:100px;
-border-radius:22px;
-background:#f8fafc;
-border:1px solid #edf2f7;
-}
-
-.phone{
-position:absolute;
-right:20px;
-bottom:10px;
-width:220px;
-height:430px;
-background:white;
-border:10px solid #111827;
-border-radius:42px;
-overflow:hidden;
-box-shadow:0 30px 60px rgba(0,0,0,.18);
-}
-
-.phone::before{
-content:"";
-position:absolute;
-top:10px;
-left:50%;
-transform:translateX(-50%);
-width:120px;
-height:24px;
-background:#111827;
-border-radius:999px;
-}
-
-.phone-grid{
-padding:70px 14px 14px;
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:12px;
-}
-
-.phone-box{
-height:76px;
-border-radius:18px;
-background:#eff6ff;
-}
-
-.float{
-position:absolute;
-width:66px;
-height:66px;
-border-radius:22px;
-background:rgba(255,255,255,.9);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:1.2rem;
-color:var(--primary);
-box-shadow:var(--shadow);
-animation:float 4s ease-in-out infinite;
-}
-
-.f1{left:0;bottom:70px;}
-.f2{top:20px;left:50%;}
-.f3{right:0;top:100px;}
 
 @keyframes float{
-0%{transform:translateY(0px);}
-50%{transform:translateY(-12px);}
-100%{transform:translateY(0px);}
+    0%{
+        transform:translateY(0px) translateX(0px);
+    }
+    50%{
+        transform:translateY(-20px) translateX(15px);
+    }
+    100%{
+        transform:translateY(0px) translateX(0px);
+    }
+}
+
+/* Card */
+
+.container{
+    position:relative;
+    width:min(92%, 760px);
+    background:rgba(18,18,22,0.78);
+    border:1px solid var(--line);
+    backdrop-filter:blur(18px);
+    border-radius:34px;
+    padding:60px 50px;
+    overflow:hidden;
+    box-shadow:
+        0 0 40px rgba(0,0,0,0.45),
+        inset 0 0 0 1px rgba(255,255,255,0.02);
+    animation:fadeUp 1s ease;
 }
 
 @keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-@keyframes fadeScale{
-from{
-opacity:0;
-transform:scale(.96);
-}
-to{
-opacity:1;
-transform:scale(1);
-}
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
-/* SECTION */
+/* Tiny Top Bar */
 
-.section{
-padding:18px 0;
+.top{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:40px;
 }
 
-.section-box{
-background:rgba(255,255,255,.82);
-backdrop-filter:blur(20px);
-border-radius:28px;
-padding:30px;
-border:1px solid var(--border);
-box-shadow:var(--shadow);
+.dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#ffffff;
+    opacity:.8;
 }
 
-.section-top{
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin-bottom:26px;
-gap:20px;
+.line{
+    width:80px;
+    height:1px;
+    background:rgba(255,255,255,0.1);
 }
 
-.section-top h2{
-font-size:1.35rem;
+/* Icon */
+
+.icon-wrap{
+    width:84px;
+    height:84px;
+    border-radius:24px;
+    background:linear-gradient(
+        145deg,
+        rgba(255,255,255,0.09),
+        rgba(255,255,255,0.03)
+    );
+    border:1px solid rgba(255,255,255,0.08);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:32px;
+    animation:pulse 3s ease infinite;
 }
 
-.section-top a{
-font-weight:700;
-color:var(--primary);
+@keyframes pulse{
+    0%{
+        transform:scale(1);
+        box-shadow:0 0 0 rgba(255,255,255,0);
+    }
+    50%{
+        transform:scale(1.03);
+        box-shadow:0 0 30px rgba(255,255,255,0.05);
+    }
+    100%{
+        transform:scale(1);
+        box-shadow:0 0 0 rgba(255,255,255,0);
+    }
 }
 
-/* CARDS */
-
-.channels{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:18px;
+.icon{
+    width:38px;
+    height:38px;
 }
 
-.categories{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:18px;
+/* Text */
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 16px;
+    border-radius:999px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.07);
+    color:#d8d8df;
+    font-size:13px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin-bottom:24px;
+}
+
+.badge span{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#ffffff;
+    animation:blink 1.5s infinite;
+}
+
+@keyframes blink{
+    0%,100%{
+        opacity:1;
+    }
+    50%{
+        opacity:.3;
+    }
+}
+
+h1{
+    font-size:clamp(42px, 8vw, 82px);
+    line-height:1;
+    font-weight:700;
+    letter-spacing:-0.06em;
+    margin-bottom:24px;
+}
+
+.subtitle{
+    max-width:620px;
+    font-size:17px;
+    line-height:1.8;
+    color:var(--muted);
+    margin-bottom:40px;
+}
+
+/* Bottom */
+
+.bottom{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
 }
 
 .card{
-background:white;
-border:1px solid var(--border);
-border-radius:22px;
-padding:22px;
-transition:.35s ease;
-transform:translateZ(0);
+    flex:1;
+    min-width:180px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.05);
+    border-radius:20px;
+    padding:18px;
+    transition:.3s ease;
 }
 
 .card:hover{
-transform:translateY(-6px) scale(1.02);
-box-shadow:0 20px 40px rgba(15,23,42,.08);
+    transform:translateY(-4px);
+    background:rgba(255,255,255,0.05);
 }
 
-.card:active{
-transform:scale(.98);
+.card svg{
+    width:22px;
+    height:22px;
+    margin-bottom:14px;
+    opacity:.9;
 }
-
-.card-icon{
-width:60px;
-height:60px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:1.2rem;
-color:white;
-margin-bottom:18px;
-}
-
-.blue{background:linear-gradient(135deg,#2563eb,#60a5fa);}
-.green{background:linear-gradient(135deg,#10b981,#34d399);}
-.purple{background:linear-gradient(135deg,#7c3aed,#a78bfa);}
-.orange{background:linear-gradient(135deg,#f59e0b,#fbbf24);}
 
 .card h3{
-margin-bottom:10px;
-font-size:1rem;
+    font-size:15px;
+    font-weight:600;
+    margin-bottom:8px;
 }
 
 .card p{
-font-size:.93rem;
-line-height:1.7;
-color:var(--muted);
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.6;
 }
 
-.member{
-margin-top:16px;
-font-weight:700;
-font-size:.9rem;
-color:#94a3b8;
-}
-
-/* FOOTER */
+/* Footer */
 
 .footer{
-margin-top:80px;
-background:linear-gradient(135deg,#0f172a,#172554,#2563eb);
-border-radius:40px 40px 0 0;
-padding:70px 0 120px;
-overflow:hidden;
+    margin-top:40px;
+    font-size:13px;
+    color:#666672;
+    letter-spacing:.04em;
 }
 
-.footer-grid{
-display:grid;
-grid-template-columns:1.2fr repeat(3,.7fr) 1fr;
-gap:28px;
-}
+/* Responsive */
 
-.footer-logo{
-display:flex;
-align-items:center;
-gap:14px;
-margin-bottom:18px;
-}
+@media(max-width:700px){
 
-.footer-logo img{
-width:46px;
-height:46px;
-border-radius:14px;
-}
+    .container{
+        padding:40px 28px;
+        border-radius:28px;
+    }
 
-.footer h4{
-color:white;
-margin-bottom:20px;
-}
+    h1{
+        font-size:52px;
+    }
 
-.footer p,
-.footer a{
-color:#dbeafe;
-line-height:2;
-font-size:.95rem;
-}
-
-.footer a:hover{
-opacity:.85;
-}
-
-.notify{
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(18px);
-padding:22px;
-border-radius:24px;
-border:1px solid rgba(255,255,255,.08);
-}
-
-.notify-input{
-display:flex;
-margin-top:18px;
-gap:10px;
-}
-
-.notify-input input{
-flex:1;
-height:52px;
-padding:0 16px;
-border:none;
-outline:none;
-border-radius:16px;
-background:rgba(255,255,255,.08);
-color:white;
-}
-
-.notify-input input::placeholder{
-color:#dbeafe;
-}
-
-.subscribe-btn{
-padding:0 18px;
-border-radius:14px;
-background:white;
-font-weight:700;
-color:#0f172a;
-}
-
-.logged-sub{
-display:none;
-align-items:center;
-gap:12px;
-margin-top:18px;
-background:rgba(255,255,255,.08);
-padding:14px;
-border-radius:18px;
-}
-
-.logged-sub img{
-width:46px;
-height:46px;
-border-radius:50%;
-}
-
-.logged-sub h5{
-color:white;
-font-size:.95rem;
-}
-
-.logged-sub p{
-font-size:.82rem;
-line-height:1.4;
-}
-
-.footer-bottom{
-margin-top:40px;
-padding-top:24px;
-border-top:1px solid rgba(255,255,255,.10);
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:20px;
-flex-wrap:wrap;
-}
-
-.socials{
-display:flex;
-gap:12px;
-}
-
-.socials a{
-width:46px;
-height:46px;
-border-radius:50%;
-background:rgba(255,255,255,.08);
-display:flex;
-align-items:center;
-justify-content:center;
-transition:.3s ease;
-}
-
-.socials a:hover{
-transform:translateY(-4px);
-background:rgba(255,255,255,.15);
-}
-
-/* MOBILE NAV */
-
-.mobile-nav{
-position:fixed;
-left:50%;
-bottom:16px;
-transform:translateX(-50%);
-width:92%;
-max-width:520px;
-height:74px;
-background:rgba(255,255,255,.86);
-backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,.5);
-border-radius:26px;
-display:none;
-align-items:center;
-justify-content:space-around;
-z-index:5000;
-box-shadow:0 18px 40px rgba(15,23,42,.12);
-padding-bottom:env(safe-area-inset-bottom);
-}
-
-.mobile-item{
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:5px;
-font-size:.76rem;
-font-weight:700;
-color:#64748b;
-transition:.3s ease;
-}
-
-.mobile-item i{
-font-size:1.08rem;
-}
-
-.mobile-item.active{
-color:var(--primary);
-transform:translateY(-4px);
-}
-
-/* WEBVIEW */
-
-.webview{
-position:fixed;
-inset:0;
-background:rgba(2,6,23,.55);
-backdrop-filter:blur(16px);
-z-index:6000;
-opacity:0;
-pointer-events:none;
-transition:.35s ease;
-}
-
-.webview.active{
-opacity:1;
-pointer-events:auto;
-}
-
-.webview-box{
-position:absolute;
-inset:20px;
-background:white;
-border-radius:30px;
-overflow:hidden;
-display:flex;
-flex-direction:column;
-transform:translateY(40px) scale(.95);
-transition:.35s cubic-bezier(.2,.8,.2,1);
-}
-
-.webview.active .webview-box{
-transform:translateY(0) scale(1);
-}
-
-.web-top{
-height:72px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 22px;
-border-bottom:1px solid var(--border);
-background:white;
-}
-
-.web-title{
-display:flex;
-align-items:center;
-gap:12px;
-font-weight:700;
-}
-
-.close{
-width:46px;
-height:46px;
-border-radius:16px;
-background:#f1f5f9;
-}
-
-.close:hover{
-transform:rotate(90deg);
-}
-
-.webview iframe{
-flex:1;
-width:100%;
-border:none;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:1050px){
-
-.hero-grid,
-.footer-grid{
-grid-template-columns:1fr;
-}
-
-.channels{
-grid-template-columns:repeat(2,1fr);
-}
-
-.categories{
-grid-template-columns:repeat(3,1fr);
-}
-
-}
-
-@media(max-width:768px){
-
-.nav-links{
-display:none;
-}
-
-.hero{
-padding-top:40px;
-}
-
-.hero-grid{
-grid-template-columns:1fr;
-gap:40px;
-}
-
-.hero h1{
-font-size:3rem;
-}
-
-.hero-visual{
-height:420px;
-}
-
-.hero-card{
-inset:0;
-}
-
-.phone{
-width:180px;
-height:340px;
-}
-
-.channels,
-.categories{
-grid-template-columns:1fr;
-}
-
-.mobile-nav{
-display:flex;
-}
-
-.footer{
-padding-bottom:150px;
-}
-
-.webview-box{
-inset:0;
-border-radius:0;
-}
-
-.profile-info{
-display:none;
-}
-
-.notify-input{
-flex-direction:column;
-}
-
-.subscribe-btn{
-height:52px;
-}
+    .subtitle{
+        font-size:15px;
+    }
 
 }
 
@@ -871,850 +313,122 @@ height:52px;
 </head>
 <body>
 
-<!-- NAVBAR -->
-
-<nav class="navbar">
-
-<div class="container nav-wrap">
-
-<div class="logo">
-<img src="images/icon.png">
-<span>Moz Studio</span>
+<div class="bg">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
 </div>
-
-<div class="nav-links">
-
-<a onclick="scrollToTop()">Home</a>
-
-<a onclick="openWebview('Templates','https://example.com')">
-Templates
-</a>
-
-<a onclick="openWebview('Utilities','https://example.com')">
-Utilities
-</a>
-
-<a onclick="openWebview('Packages','https://example.com')">
-Packages
-</a>
-
-<a onclick="openWebview('About Us','https://example.com')">
-About
-</a>
-
-</div>
-
-<div class="right-nav">
-
-<button class="login-btn" id="loginBtn" onclick="googleLogin()">
-<i class="fa-brands fa-google"></i>
-Login
-</button>
-
-<div id="profileCard" style="display:none;">
-
-<div class="profile-mini">
-
-<div class="profile-avatar-wrap">
-<img id="profileAvatar" src="">
-<div class="online-dot"></div>
-</div>
-
-<div class="profile-info">
-<span id="profileName">User</span>
-<small>Online</small>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</nav>
-
-<!-- HERO -->
-
-<section class="hero">
-
-<div class="container hero-grid">
-
-<div>
-
-<div class="badge">
-<i class="fa-solid fa-sparkles"></i>
-Welcome to Moz Studio
-</div>
-
-<h1>
-Apps. Mods. Files.
-Create More.
-</h1>
-
-<p>
-Explore a wide range of apps, mods, files, utilities and templates for creators and digital enthusiasts.
-</p>
-
-<div class="hero-buttons">
-
-<button class="btn btn-primary"
-onclick="openWebview('Downloads','https://example.com')">
-
-<i class="fa-solid fa-download"></i>
-Browse Downloads
-
-</button>
-
-<a href="https://discord.com" target="_blank">
-
-<button class="btn btn-secondary">
-
-<i class="fa-solid fa-comments"></i>
-Join Community
-
-</button>
-
-</a>
-
-</div>
-
-</div>
-
-<div class="hero-visual">
-
-<div class="hero-card">
-
-<div class="mock-grid">
-
-<div class="mock-box"></div>
-<div class="mock-box"></div>
-<div class="mock-box"></div>
-
-<div class="mock-box"></div>
-<div class="mock-box"></div>
-<div class="mock-box"></div>
-
-</div>
-
-</div>
-
-<div class="phone">
-
-<div class="phone-grid">
-
-<div class="phone-box"></div>
-<div class="phone-box"></div>
-
-<div class="phone-box"></div>
-<div class="phone-box"></div>
-
-</div>
-
-</div>
-
-<div class="float f1">
-<i class="fa-solid fa-folder"></i>
-</div>
-
-<div class="float f2">
-<i class="fa-solid fa-code"></i>
-</div>
-
-<div class="float f3">
-<i class="fa-solid fa-cloud-arrow-up"></i>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- CHANNELS -->
-
-<section class="section">
-
-<div class="container section-box">
-
-<div class="section-top">
-
-<h2>Explore Channels</h2>
-
-<a onclick="openWebview('Channels','https://example.com')">
-View all
-</a>
-
-</div>
-
-<div class="channels">
-
-<div class="card"
-onclick="openWebview('Downloads','https://example.com')">
-
-<div class="card-icon blue">
-<i class="fa-solid fa-download"></i>
-</div>
-
-<h3>Downloads</h3>
-
-<p>Get the latest apps, mods, files and more.</p>
-
-<div class="member">12.4K members</div>
-
-</div>
-
-<div class="card"
-onclick="openWebview('Packages','https://example.com')">
-
-<div class="card-icon green">
-<i class="fa-solid fa-cube"></i>
-</div>
-
-<h3>Packages</h3>
-
-<p>Organized packages for easy integration.</p>
-
-<div class="member">8.7K members</div>
-
-</div>
-
-<div class="card"
-onclick="openWebview('General Chat','https://example.com')">
-
-<div class="card-icon purple">
-<i class="fa-solid fa-comments"></i>
-</div>
-
-<h3>General Chat</h3>
-
-<p>Talk, share, help and connect with others.</p>
-
-<div class="member">15.2K members</div>
-
-</div>
-
-<div class="card"
-onclick="openWebview('Templates','https://example.com')">
-
-<div class="card-icon orange">
-<i class="fa-solid fa-file"></i>
-</div>
-
-<h3>Templates</h3>
-
-<p>Beautiful templates for your next project.</p>
-
-<div class="member">6.3K members</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- CATEGORIES -->
-
-<section class="section">
-
-<div class="container section-box">
-
-<div class="section-top">
-
-<h2>Featured Categories</h2>
-
-<a onclick="openWebview('Categories','https://example.com')">
-Browse all
-</a>
-
-</div>
-
-<div class="categories">
-
-<div class="card" onclick="openWebview('Apps','https://example.com')">
-
-<div class="card-icon blue">
-<i class="fa-solid fa-table-cells-large"></i>
-</div>
-
-<h3>Apps</h3>
-
-<p>Essential & useful applications.</p>
-
-</div>
-
-<div class="card" onclick="openWebview('Mods','https://example.com')">
-
-<div class="card-icon green">
-<i class="fa-solid fa-puzzle-piece"></i>
-</div>
-
-<h3>Mods</h3>
-
-<p>Enhance your apps and games.</p>
-
-</div>
-
-<div class="card" onclick="openWebview('Files','https://example.com')">
-
-<div class="card-icon orange">
-<i class="fa-solid fa-folder"></i>
-</div>
-
-<h3>Files</h3>
-
-<p>Important files and resources.</p>
-
-</div>
-
-<div class="card" onclick="openWebview('Utilities','https://example.com')">
-
-<div class="card-icon purple">
-<i class="fa-solid fa-screwdriver-wrench"></i>
-</div>
-
-<h3>Utilities</h3>
-
-<p>Tools to boost your productivity.</p>
-
-</div>
-
-<div class="card" onclick="openWebview('Templates','https://example.com')">
-
-<div class="card-icon orange">
-<i class="fa-solid fa-window-maximize"></i>
-</div>
-
-<h3>Templates</h3>
-
-<p>Ready-to-use designs.</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer class="footer">
 
 <div class="container">
 
-<div class="footer-grid">
+    <div class="top">
+        <div class="dot"></div>
+        <div class="line"></div>
+    </div>
 
-<div>
+    <div class="icon-wrap">
 
-<div class="footer-logo">
+        <!-- Minimal Vector Symbol -->
 
-<img src="images/icon.png">
+        <svg class="icon" viewBox="0 0 24 24" fill="none">
 
-<h2 style="color:white;">
-Moz Studio
-</h2>
+            <path d="M12 2L20 6V12C20 17 16.8 20.7 12 22C7.2 20.7 4 17 4 12V6L12 2Z"
+            stroke="white"
+            stroke-width="1.5"
+            stroke-linejoin="round"/>
 
-</div>
+            <path d="M9 12L11 14L15 10"
+            stroke="white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"/>
 
-<p>
-Your hub for apps, mods, files, utilities, templates and everything digital creation.
-</p>
+        </svg>
 
-</div>
+    </div>
 
-<div>
+    <div class="badge">
+        <span></span>
+        Work In Progress
+    </div>
 
-<h4>Resources</h4>
+    <h1>Coming Soon</h1>
 
-<a onclick="openWebview('Downloads','https://example.com')">Downloads</a><br>
+    <p class="subtitle">
+        We’re currently crafting a modern digital experience focused on performance,
+        simplicity, and clean interactive design. This project is actively under development
+        with ongoing improvements, refined visuals, smooth animations, and optimized functionality
+        across all devices.
+        <br><br>
+        A polished release is on the way — designed to feel minimal, dynamic, and professional
+        while delivering a seamless user experience from the very first interaction.
+    </p>
 
-<a onclick="openWebview('Packages','https://example.com')">Packages</a><br>
+    <div class="bottom">
 
-<a onclick="openWebview('Templates','https://example.com')">Templates</a><br>
+        <div class="card">
 
-<a onclick="openWebview('Utilities','https://example.com')">Utilities</a>
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 12H20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M12 4V20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
 
-</div>
+            <h3>Modern UI</h3>
 
-<div>
+            <p>
+                Carefully designed layouts with clean spacing,
+                premium visuals, and smooth interactions.
+            </p>
 
-<h4>Community</h4>
+        </div>
 
-<a onclick="openWebview('General Chat','https://example.com')">General Chat</a><br>
+        <div class="card">
 
-<a onclick="openWebview('Members','https://example.com')">Members</a><br>
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3L19 7V17L12 21L5 17V7L12 3Z"
+                stroke="white"
+                stroke-width="1.5"
+                stroke-linejoin="round"/>
+            </svg>
 
-<a onclick="openWebview('Rules','https://example.com')">Rules</a><br>
+            <h3>Responsive</h3>
 
-<a onclick="openWebview('Support','https://example.com')">Support</a>
+            <p>
+                Optimized for desktop, tablet, and mobile
+                with adaptive modern responsiveness.
+            </p>
 
-</div>
+        </div>
 
-<div>
+        <div class="card">
 
-<h4>About</h4>
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 6V12L16 14"
+                stroke="white"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+                <circle cx="12" cy="12" r="9"
+                stroke="white"
+                stroke-width="1.5"/>
+            </svg>
 
-<a onclick="openWebview('About Us','https://example.com')">About Us</a><br>
+            <h3>In Development</h3>
 
-<a onclick="openWebview('Changelog','https://example.com')">Changelog</a><br>
+            <p>
+                New features, animations, and polished experiences
+                are currently being finalized.
+            </p>
 
-<a onclick="openWebview('Contact','https://example.com')">Contact</a><br>
+        </div>
 
-<a onclick="openWebview('Privacy Policy','https://example.com')">Privacy Policy</a>
+    </div>
 
-</div>
-
-<div class="notify">
-
-<h4>Stay Updated</h4>
-
-<p>
-Subscribe for updates and new releases.
-</p>
-
-<div class="notify-input" id="notifyInput">
-
-<input
-id="emailInput"
-type="email"
-placeholder="Enter your email"
-/>
-
-<button class="subscribe-btn"
-onclick="saveEmail()">
-
-Subscribe
-
-</button>
-
-</div>
-
-<div class="logged-sub" id="loggedSub">
-
-<img id="subAvatar" src="">
-
-<div>
-
-<h5 id="subName">User</h5>
-
-<p>
-<i class="fa-solid fa-circle-check"></i>
-You're subscribed with your Google account.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="footer-bottom">
-
-<p style="color:#dbeafe;">
-© 2026 Moz Studio. All rights reserved.
-</p>
-
-<div class="socials">
-
-<a href="#">
-<i class="fa-brands fa-twitter"></i>
-</a>
-
-<a href="#">
-<i class="fa-brands fa-github"></i>
-</a>
-
-<a href="#">
-<i class="fa-brands fa-discord"></i>
-</a>
+    <div class="footer">
+        © 2026 — All Rights Reserved
+    </div>
 
 </div>
-
-</div>
-
-</div>
-
-</footer>
-
-<!-- MOBILE NAV -->
-
-<div class="mobile-nav">
-
-<div class="mobile-item active" onclick="mobileHome(this)">
-<i class="fa-solid fa-house"></i>
-<span>Home</span>
-</div>
-
-<div class="mobile-item"
-onclick="mobileOpen(this,'Downloads')">
-
-<i class="fa-solid fa-download"></i>
-<span>Downloads</span>
-
-</div>
-
-<div class="mobile-item"
-onclick="mobileOpen(this,'Packages')">
-
-<i class="fa-solid fa-cube"></i>
-<span>Packages</span>
-
-</div>
-
-<div class="mobile-item"
-onclick="mobileOpen(this,'General Chat')">
-
-<i class="fa-solid fa-comments"></i>
-<span>Chat</span>
-
-</div>
-
-<div class="mobile-item"
-onclick="mobileProfile(this)">
-
-<i class="fa-solid fa-user"></i>
-<span>Profile</span>
-
-</div>
-
-</div>
-
-<!-- WEBVIEW -->
-
-<div class="webview" id="webview">
-
-<div class="webview-box">
-
-<div class="web-top">
-
-<div class="web-title">
-
-<i class="fa-solid fa-globe"></i>
-
-<span id="webTitle">
-Moz Studio
-</span>
-
-</div>
-
-<button class="close" onclick="closeWebview()">
-<i class="fa-solid fa-xmark"></i>
-</button>
-
-</div>
-
-<iframe id="webFrame"></iframe>
-
-</div>
-
-</div>
-
-<!-- FIREBASE -->
-
-<script type="module">
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-getAuth,
-GoogleAuthProvider,
-signInWithPopup,
-onAuthStateChanged,
-setPersistence,
-browserLocalPersistence
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-import {
-getFirestore,
-collection,
-addDoc
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
-
-apiKey: "AIzaSyCPdiQ65WkraRh4wGmhucCc-SlQNgFu_VU",
-
-authDomain: "mozstudio-6c90d.firebaseapp.com",
-
-projectId: "mozstudio-6c90d",
-
-storageBucket: "mozstudio-6c90d.firebasestorage.app",
-
-messagingSenderId: "961156544144",
-
-appId: "1:961156544144:web:c7cb3ae163e2efeae14a15",
-
-measurementId: "G-Z151SSF1L5"
-
-};
-
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-const provider = new GoogleAuthProvider();
-
-const db = getFirestore(app);
-
-/* LOGIN */
-
-window.googleLogin = async function(){
-
-const loginBtn =
-document.getElementById("loginBtn");
-
-try{
-
-loginBtn.innerHTML =
-'<i class="fa-solid fa-spinner fa-spin"></i> Signing In';
-
-loginBtn.disabled = true;
-
-await setPersistence(
-auth,
-browserLocalPersistence
-);
-
-const result =
-await signInWithPopup(auth,provider);
-
-showProfile(result.user);
-
-}catch(error){
-
-console.log(error);
-
-alert(
-"Google Login Failed.\nEnable Google Provider inside Firebase."
-);
-
-loginBtn.innerHTML =
-'<i class="fa-brands fa-google"></i> Login';
-
-loginBtn.disabled = false;
-
-}
-
-}
-
-/* PROFILE */
-
-function showProfile(user){
-
-document.getElementById("loginBtn")
-.style.display = "none";
-
-document.getElementById("profileCard")
-.style.display = "block";
-
-document.getElementById("profileAvatar")
-.src = user.photoURL;
-
-document.getElementById("profileName")
-.innerText = user.displayName;
-
-/* NOTIFY */
-
-document.getElementById("notifyInput")
-.style.display = "none";
-
-document.getElementById("loggedSub")
-.style.display = "flex";
-
-document.getElementById("subAvatar")
-.src = user.photoURL;
-
-document.getElementById("subName")
-.innerText = user.displayName;
-
-}
-
-/* AUTH CHECK */
-
-onAuthStateChanged(auth,(user)=>{
-
-if(user){
-showProfile(user);
-}
-
-});
-
-/* EMAIL SAVE */
-
-window.saveEmail = async function(){
-
-const email =
-document.getElementById("emailInput").value.trim();
-
-if(!email || !email.includes("@")){
-
-alert("Enter valid email.");
-return;
-
-}
-
-try{
-
-await addDoc(collection(db,"subscribers"),{
-
-email:email,
-createdAt:new Date().toISOString()
-
-});
-
-alert("Subscribed successfully.");
-
-document.getElementById("emailInput").value = "";
-
-}catch(error){
-
-console.log(error);
-
-alert("Failed to subscribe.");
-
-}
-
-}
-
-</script>
-
-<script>
-
-/* HOME */
-
-function scrollToTop(){
-
-window.scrollTo({
-top:0,
-behavior:'smooth'
-});
-
-}
-
-/* WEBVIEW */
-
-function openWebview(title,url){
-
-const modal =
-document.getElementById("webview");
-
-const frame =
-document.getElementById("webFrame");
-
-document.getElementById("webTitle")
-.innerText = title;
-
-frame.src = "";
-
-setTimeout(()=>{
-frame.src = url;
-},120);
-
-modal.classList.add("active");
-
-document.body.classList.add("modal-open");
-
-}
-
-function closeWebview(){
-
-const modal =
-document.getElementById("webview");
-
-const frame =
-document.getElementById("webFrame");
-
-modal.classList.remove("active");
-
-setTimeout(()=>{
-frame.src = "";
-},300);
-
-document.body.classList.remove("modal-open");
-
-}
-
-/* BACKDROP CLOSE */
-
-document.getElementById("webview")
-.addEventListener("click",(e)=>{
-
-if(e.target.id === "webview"){
-closeWebview();
-}
-
-});
-
-/* ESC CLOSE */
-
-document.addEventListener("keydown",(e)=>{
-
-if(e.key === "Escape"){
-closeWebview();
-}
-
-});
-
-/* MOBILE NAV */
-
-function setActive(el){
-
-document.querySelectorAll(".mobile-item")
-.forEach(item=>item.classList.remove("active"));
-
-el.classList.add("active");
-
-}
-
-function mobileHome(el){
-
-setActive(el);
-
-scrollToTop();
-
-}
-
-function mobileOpen(el,title){
-
-setActive(el);
-
-openWebview(title,"https://example.com");
-
-}
-
-function mobileProfile(el){
-
-setActive(el);
-
-const logged =
-document.getElementById("profileCard")
-.style.display === "block";
-
-if(logged){
-
-openWebview(
-"About Us",
-"https://example.com"
-);
-
-}else{
-
-googleLogin();
-
-}
-
-}
-
-</script>
 
 </body>
 </html>
