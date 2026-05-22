@@ -1,36 +1,1364 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 
 <title>Moz Studio</title>
 
+<link rel="icon" type="image/png" href="images/icon.png"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
 <style>
+
+:root{
+--bg:#f4f7fb;
+--card:#ffffff;
+--primary:#2563eb;
+--primary2:#60a5fa;
+--text:#0f172a;
+--muted:#64748b;
+--border:rgba(15,23,42,.08);
+
+--shadow:
+0 10px 30px rgba(15,23,42,.05),
+0 20px 60px rgba(15,23,42,.06);
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+user-select:none;
+-webkit-user-select:none;
+}
+
+input,textarea{
+user-select:text;
+-webkit-user-select:text;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
 body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#111;
-    font-family:Arial, sans-serif;
+font-family:'Inter',sans-serif;
+background:
+radial-gradient(circle at top left, rgba(96,165,250,.08), transparent 30%),
+radial-gradient(circle at bottom right, rgba(37,99,235,.06), transparent 30%),
+var(--bg);
+color:var(--text);
+overflow-x:hidden;
+}
+
+::-webkit-scrollbar{
+width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+background:#dbeafe;
+border-radius:999px;
+}
+
+.container{
+width:min(1180px,92%);
+margin:auto;
+}
+
+button,a,.card,.mobile-item{
+cursor:pointer;
 }
 
 button{
-    padding:14px 40px;
-    font-size:18px;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
+border:none;
+outline:none;
+font-family:inherit;
+transition:.25s ease;
 }
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+img{
+pointer-events:none;
+-webkit-user-drag:none;
+}
+
+/* NAVBAR */
+
+.navbar{
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(255,255,255,.78);
+backdrop-filter:blur(18px);
+border-bottom:1px solid var(--border);
+padding:16px 0;
+}
+
+.nav-wrap{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:14px;
+font-weight:800;
+font-size:1.08rem;
+}
+
+.logo img{
+width:46px;
+height:46px;
+border-radius:14px;
+}
+
+.nav-links{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.nav-links a{
+padding:12px 16px;
+border-radius:14px;
+font-size:.95rem;
+font-weight:700;
+transition:.25s ease;
+}
+
+.nav-links a:hover{
+background:#eff6ff;
+color:var(--primary);
+transform:translateY(-2px);
+}
+
+.right-nav{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+.login-btn{
+height:50px;
+padding:0 22px;
+border-radius:16px;
+background:linear-gradient(135deg,var(--primary),var(--primary2));
+color:white;
+font-weight:700;
+font-size:.95rem;
+box-shadow:0 15px 35px rgba(37,99,235,.22);
+}
+
+.login-btn:hover{
+transform:translateY(-3px);
+}
+
+.login-btn:active{
+transform:scale(.97);
+}
+
+.profile-mini{
+display:flex;
+align-items:center;
+gap:12px;
+padding:8px 14px 8px 8px;
+border-radius:18px;
+background:white;
+border:1px solid var(--border);
+box-shadow:var(--shadow);
+transition:.3s ease;
+position:relative;
+}
+
+.profile-mini:hover{
+transform:translateY(-2px);
+}
+
+.profile-avatar-wrap{
+position:relative;
+}
+
+.profile-avatar-wrap img{
+width:42px;
+height:42px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.online-dot{
+position:absolute;
+right:0;
+bottom:0;
+width:12px;
+height:12px;
+background:#22c55e;
+border:2px solid white;
+border-radius:50%;
+}
+
+.profile-info{
+display:flex;
+flex-direction:column;
+line-height:1.2;
+}
+
+.profile-info span{
+font-weight:700;
+font-size:.94rem;
+}
+
+.profile-info small{
+font-size:.8rem;
+color:var(--muted);
+font-weight:600;
+}
+
+/* HERO */
+
+.hero{
+padding:70px 0 40px;
+}
+
+.hero-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
+}
+
+.badge{
+display:inline-flex;
+align-items:center;
+gap:10px;
+padding:12px 18px;
+background:#eff6ff;
+color:var(--primary);
+border-radius:999px;
+font-size:.92rem;
+font-weight:700;
+margin-bottom:24px;
+}
+
+.hero h1{
+font-size:4.2rem;
+line-height:1.02;
+letter-spacing:-3px;
+margin-bottom:22px;
+font-weight:900;
+}
+
+.hero p{
+max-width:560px;
+font-size:1.06rem;
+line-height:1.9;
+color:var(--muted);
+}
+
+.hero-buttons{
+display:flex;
+gap:14px;
+flex-wrap:wrap;
+margin-top:34px;
+}
+
+.btn{
+height:56px;
+padding:0 24px;
+border-radius:16px;
+font-weight:700;
+font-size:.95rem;
+}
+
+.btn-primary{
+background:linear-gradient(135deg,var(--primary),var(--primary2));
+color:white;
+box-shadow:0 15px 35px rgba(37,99,235,.22);
+}
+
+.btn-secondary{
+background:white;
+border:1px solid var(--border);
+}
+
+.btn:hover{
+transform:translateY(-4px);
+}
+
+.btn:active{
+transform:scale(.96);
+}
+
+/* HERO VISUAL */
+
+.hero-visual{
+position:relative;
+height:520px;
+}
+
+.hero-card{
+position:absolute;
+inset:30px;
+background:rgba(255,255,255,.78);
+backdrop-filter:blur(20px);
+border-radius:34px;
+border:1px solid var(--border);
+overflow:hidden;
+box-shadow:var(--shadow);
+}
+
+.mock-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+padding:30px;
+}
+
+.mock-box{
+height:100px;
+border-radius:22px;
+background:#f8fafc;
+border:1px solid #edf2f7;
+}
+
+.phone{
+position:absolute;
+right:20px;
+bottom:10px;
+width:220px;
+height:430px;
+background:white;
+border:10px solid #111827;
+border-radius:42px;
+overflow:hidden;
+box-shadow:0 30px 60px rgba(0,0,0,.18);
+}
+
+.phone::before{
+content:"";
+position:absolute;
+top:10px;
+left:50%;
+transform:translateX(-50%);
+width:120px;
+height:24px;
+background:#111827;
+border-radius:999px;
+}
+
+.phone-grid{
+padding:70px 14px 14px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}
+
+.phone-box{
+height:76px;
+border-radius:18px;
+background:#eff6ff;
+}
+
+.float{
+position:absolute;
+width:66px;
+height:66px;
+border-radius:22px;
+background:rgba(255,255,255,.9);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:1.2rem;
+color:var(--primary);
+box-shadow:var(--shadow);
+animation:float 4s ease-in-out infinite;
+}
+
+.f1{left:0;bottom:70px;}
+.f2{top:20px;left:50%;}
+.f3{right:0;top:100px;}
+
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-12px);}
+100%{transform:translateY(0px);}
+}
+
+/* SECTION */
+
+.section{
+padding:18px 0;
+}
+
+.section-box{
+background:rgba(255,255,255,.82);
+backdrop-filter:blur(20px);
+border-radius:28px;
+padding:30px;
+border:1px solid var(--border);
+box-shadow:var(--shadow);
+}
+
+.section-top{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:26px;
+gap:20px;
+}
+
+.section-top h2{
+font-size:1.35rem;
+}
+
+.section-top a{
+font-weight:700;
+color:var(--primary);
+}
+
+/* CARDS */
+
+.channels{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+}
+
+.categories{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:18px;
+}
+
+.card{
+background:white;
+border:1px solid var(--border);
+border-radius:22px;
+padding:22px;
+transition:.35s ease;
+}
+
+.card:hover{
+transform:translateY(-6px) scale(1.02);
+box-shadow:0 20px 40px rgba(15,23,42,.08);
+}
+
+.card-icon{
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:1.2rem;
+color:white;
+margin-bottom:18px;
+}
+
+.blue{background:linear-gradient(135deg,#2563eb,#60a5fa);}
+.green{background:linear-gradient(135deg,#10b981,#34d399);}
+.purple{background:linear-gradient(135deg,#7c3aed,#a78bfa);}
+.orange{background:linear-gradient(135deg,#f59e0b,#fbbf24);}
+
+.card h3{
+margin-bottom:10px;
+font-size:1rem;
+}
+
+.card p{
+font-size:.93rem;
+line-height:1.7;
+color:var(--muted);
+}
+
+.member{
+margin-top:16px;
+font-weight:700;
+font-size:.9rem;
+color:#94a3b8;
+}
+
+/* FOOTER */
+
+.footer{
+margin-top:80px;
+background:linear-gradient(135deg,#0f172a,#172554,#2563eb);
+border-radius:40px 40px 0 0;
+padding:70px 0 120px;
+overflow:hidden;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:1.2fr repeat(3,.7fr) 1fr;
+gap:28px;
+}
+
+.footer-logo{
+display:flex;
+align-items:center;
+gap:14px;
+margin-bottom:18px;
+}
+
+.footer-logo img{
+width:46px;
+height:46px;
+border-radius:14px;
+}
+
+.footer h4{
+color:white;
+margin-bottom:20px;
+}
+
+.footer p,
+.footer a{
+color:#dbeafe;
+line-height:2;
+font-size:.95rem;
+}
+
+.footer a:hover{
+opacity:.85;
+}
+
+.footer-bottom{
+margin-top:40px;
+padding-top:24px;
+border-top:1px solid rgba(255,255,255,.10);
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.socials{
+display:flex;
+gap:12px;
+}
+
+.socials a{
+width:46px;
+height:46px;
+border-radius:50%;
+background:rgba(255,255,255,.08);
+display:flex;
+align-items:center;
+justify-content:center;
+transition:.3s ease;
+}
+
+.socials a:hover{
+transform:translateY(-4px);
+background:rgba(255,255,255,.15);
+}
+
+/* MOBILE NAV */
+
+.mobile-nav{
+position:fixed;
+left:50%;
+bottom:16px;
+transform:translateX(-50%);
+width:92%;
+max-width:520px;
+height:74px;
+background:rgba(255,255,255,.86);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.5);
+border-radius:26px;
+display:none;
+align-items:center;
+justify-content:space-around;
+z-index:5000;
+box-shadow:0 18px 40px rgba(15,23,42,.12);
+padding-bottom:env(safe-area-inset-bottom);
+}
+
+.mobile-item{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:5px;
+font-size:.76rem;
+font-weight:700;
+color:#64748b;
+transition:.3s ease;
+}
+
+.mobile-item i{
+font-size:1.08rem;
+}
+
+.mobile-item.active{
+color:var(--primary);
+transform:translateY(-4px);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1050px){
+
+.hero-grid,
+.footer-grid{
+grid-template-columns:1fr;
+}
+
+.channels{
+grid-template-columns:repeat(2,1fr);
+}
+
+.categories{
+grid-template-columns:repeat(3,1fr);
+}
+
+}
+
+@media(max-width:768px){
+
+.nav-links{
+display:none;
+}
+
+.hero{
+padding-top:40px;
+}
+
+.hero-grid{
+grid-template-columns:1fr;
+gap:40px;
+}
+
+.hero h1{
+font-size:3rem;
+}
+
+.hero-visual{
+height:420px;
+}
+
+.hero-card{
+inset:0;
+}
+
+.phone{
+width:180px;
+height:340px;
+}
+
+.channels,
+.categories{
+grid-template-columns:1fr;
+}
+
+.mobile-nav{
+display:flex;
+}
+
+.footer{
+padding-bottom:150px;
+}
+
+.profile-info{
+display:none;
+}
+
+}
+
 </style>
 </head>
+
 <body>
 
-<button onclick="window.location.href='/download'">
-    Open
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<div class="container nav-wrap">
+
+<div class="logo">
+<img src="images/icon.png">
+<span>Moz Studio</span>
+</div>
+
+<div class="nav-links">
+
+<a href="#top">Home</a>
+
+<a href="templates/index.html">
+Templates
+</a>
+
+<a href="utilities/index.html">
+Utilities
+</a>
+
+<a href="packages/index.html">
+Packages
+</a>
+
+<a href="about/index.html">
+About
+</a>
+
+</div>
+
+<div class="right-nav">
+
+<button class="login-btn" id="loginBtn" onclick="googleLogin()">
+<i class="fa-brands fa-google"></i>
+Login
 </button>
 
+<div id="profileCard" style="display:none;">
+
+<div class="profile-mini">
+
+<div class="profile-avatar-wrap">
+<img id="profileAvatar" src="">
+<div class="online-dot"></div>
+</div>
+
+<div class="profile-info">
+<span id="profileName">User</span>
+<small>Online</small>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero" id="top">
+
+<div class="container hero-grid">
+
+<div>
+
+<div class="badge">
+<i class="fa-solid fa-sparkles"></i>
+Welcome to Moz Studio
+</div>
+
+<h1>
+Apps. Mods. Files.
+Create More.
+</h1>
+
+<p>
+Explore a wide range of apps, mods, files, utilities and templates for creators and digital enthusiasts.
+</p>
+
+<div class="hero-buttons">
+
+<a href="downloads/index.html">
+
+<button class="btn btn-primary">
+
+<i class="fa-solid fa-download"></i>
+Browse Downloads
+
+</button>
+
+</a>
+
+<a href="https://discord.com" target="_blank">
+
+<button class="btn btn-secondary">
+
+<i class="fa-solid fa-comments"></i>
+Join Community
+
+</button>
+
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-visual">
+
+<div class="hero-card">
+
+<div class="mock-grid">
+
+<div class="mock-box"></div>
+<div class="mock-box"></div>
+<div class="mock-box"></div>
+
+<div class="mock-box"></div>
+<div class="mock-box"></div>
+<div class="mock-box"></div>
+
+</div>
+
+</div>
+
+<div class="phone">
+
+<div class="phone-grid">
+
+<div class="phone-box"></div>
+<div class="phone-box"></div>
+
+<div class="phone-box"></div>
+<div class="phone-box"></div>
+
+</div>
+
+</div>
+
+<div class="float f1">
+<i class="fa-solid fa-folder"></i>
+</div>
+
+<div class="float f2">
+<i class="fa-solid fa-code"></i>
+</div>
+
+<div class="float f3">
+<i class="fa-solid fa-cloud-arrow-up"></i>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CHANNELS -->
+
+<section class="section">
+
+<div class="container section-box">
+
+<div class="section-top">
+
+<h2>Explore Channels</h2>
+
+<a href="channels/index.html">
+View all
+</a>
+
+</div>
+
+<div class="channels">
+
+<a href="downloads/index.html">
+
+<div class="card">
+
+<div class="card-icon blue">
+<i class="fa-solid fa-download"></i>
+</div>
+
+<h3>Downloads</h3>
+
+<p>Get the latest apps, mods, files and more.</p>
+
+<div class="member">12.4K members</div>
+
+</div>
+
+</a>
+
+<a href="packages/index.html">
+
+<div class="card">
+
+<div class="card-icon green">
+<i class="fa-solid fa-cube"></i>
+</div>
+
+<h3>Packages</h3>
+
+<p>Organized packages for easy integration.</p>
+
+<div class="member">8.7K members</div>
+
+</div>
+
+</a>
+
+<a href="chat/index.html">
+
+<div class="card">
+
+<div class="card-icon purple">
+<i class="fa-solid fa-comments"></i>
+</div>
+
+<h3>General Chat</h3>
+
+<p>Talk, share, help and connect with others.</p>
+
+<div class="member">15.2K members</div>
+
+</div>
+
+</a>
+
+<a href="templates/index.html">
+
+<div class="card">
+
+<div class="card-icon orange">
+<i class="fa-solid fa-file"></i>
+</div>
+
+<h3>Templates</h3>
+
+<p>Beautiful templates for your next project.</p>
+
+<div class="member">6.3K members</div>
+
+</div>
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CATEGORIES -->
+
+<section class="section">
+
+<div class="container section-box">
+
+<div class="section-top">
+
+<h2>Featured Categories</h2>
+
+<a href="categories/index.html">
+Browse all
+</a>
+
+</div>
+
+<div class="categories">
+
+<a href="apps/index.html">
+
+<div class="card">
+
+<div class="card-icon blue">
+<i class="fa-solid fa-table-cells-large"></i>
+</div>
+
+<h3>Apps</h3>
+
+<p>Essential & useful applications.</p>
+
+</div>
+
+</a>
+
+<a href="mods/index.html">
+
+<div class="card">
+
+<div class="card-icon green">
+<i class="fa-solid fa-puzzle-piece"></i>
+</div>
+
+<h3>Mods</h3>
+
+<p>Enhance your apps and games.</p>
+
+</div>
+
+</a>
+
+<a href="files/index.html">
+
+<div class="card">
+
+<div class="card-icon orange">
+<i class="fa-solid fa-folder"></i>
+</div>
+
+<h3>Files</h3>
+
+<p>Important files and resources.</p>
+
+</div>
+
+</a>
+
+<a href="utilities/index.html">
+
+<div class="card">
+
+<div class="card-icon purple">
+<i class="fa-solid fa-screwdriver-wrench"></i>
+</div>
+
+<h3>Utilities</h3>
+
+<p>Tools to boost your productivity.</p>
+
+</div>
+
+</a>
+
+<a href="templates/index.html">
+
+<div class="card">
+
+<div class="card-icon orange">
+<i class="fa-solid fa-window-maximize"></i>
+</div>
+
+<h3>Templates</h3>
+
+<p>Ready-to-use designs.</p>
+
+</div>
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+<div class="container">
+
+<div class="footer-grid">
+
+<div>
+
+<div class="footer-logo">
+
+<img src="images/icon.png">
+
+<h2 style="color:white;">
+Moz Studio
+</h2>
+
+</div>
+
+<p>
+Your hub for apps, mods, files, utilities, templates and everything digital creation.
+</p>
+
+</div>
+
+<div>
+
+<h4>Resources</h4>
+
+<a href="downloads/index.html">Downloads</a><br>
+<a href="packages/index.html">Packages</a><br>
+<a href="templates/index.html">Templates</a><br>
+<a href="utilities/index.html">Utilities</a>
+
+</div>
+
+<div>
+
+<h4>Community</h4>
+
+<a href="chat/index.html">General Chat</a><br>
+<a href="members/index.html">Members</a><br>
+<a href="rules/index.html">Rules</a><br>
+<a href="support/index.html">Support</a>
+
+</div>
+
+<div>
+
+<h4>About</h4>
+
+<a href="about/index.html">About Us</a><br>
+<a href="changelog/index.html">Changelog</a><br>
+<a href="contact/index.html">Contact</a><br>
+<a href="privacy/index.html">Privacy Policy</a>
+
+</div>
+
+<div>
+
+<h4>Stay Updated</h4>
+
+<p>
+Subscribe for updates and new releases.
+</p>
+
+<div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;">
+
+<input
+id="emailInput"
+type="email"
+placeholder="Enter your email"
+style="
+flex:1;
+height:52px;
+padding:0 16px;
+border:none;
+outline:none;
+border-radius:16px;
+background:rgba(255,255,255,.08);
+color:white;
+"
+/>
+
+<button
+onclick="saveEmail()"
+style="
+padding:0 18px;
+border-radius:14px;
+background:white;
+font-weight:700;
+color:#0f172a;
+">
+
+Subscribe
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+<p style="color:#dbeafe;">
+© 2026 Moz Studio. All rights reserved.
+</p>
+
+<div class="socials">
+
+<a href="#">
+<i class="fa-brands fa-twitter"></i>
+</a>
+
+<a href="#">
+<i class="fa-brands fa-github"></i>
+</a>
+
+<a href="#">
+<i class="fa-brands fa-discord"></i>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</footer>
+
+<!-- MOBILE NAV -->
+
+<div class="mobile-nav">
+
+<a class="mobile-item active" href="#top">
+<i class="fa-solid fa-house"></i>
+<span>Home</span>
+</a>
+
+<a class="mobile-item" href="downloads/index.html">
+<i class="fa-solid fa-download"></i>
+<span>Downloads</span>
+</a>
+
+<a class="mobile-item" href="packages/index.html">
+<i class="fa-solid fa-cube"></i>
+<span>Packages</span>
+</a>
+
+<a class="mobile-item" href="chat/index.html">
+<i class="fa-solid fa-comments"></i>
+<span>Chat</span>
+</a>
+
+<a class="mobile-item" href="profile/index.html">
+<i class="fa-solid fa-user"></i>
+<span>Profile</span>
+</a>
+
+</div>
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getAuth,
+GoogleAuthProvider,
+signInWithPopup,
+onAuthStateChanged,
+setPersistence,
+browserLocalPersistence
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+getFirestore,
+collection,
+addDoc
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+
+apiKey: "YOUR_API_KEY",
+authDomain: "YOUR_AUTH_DOMAIN",
+projectId: "YOUR_PROJECT_ID",
+storageBucket: "YOUR_STORAGE_BUCKET",
+messagingSenderId: "YOUR_MESSAGING_ID",
+appId: "YOUR_APP_ID"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const provider = new GoogleAuthProvider();
+
+const db = getFirestore(app);
+
+/* LOGIN */
+
+window.googleLogin = async function(){
+
+const loginBtn =
+document.getElementById("loginBtn");
+
+try{
+
+loginBtn.innerHTML =
+'<i class="fa-solid fa-spinner fa-spin"></i> Signing In';
+
+await setPersistence(
+auth,
+browserLocalPersistence
+);
+
+const result =
+await signInWithPopup(auth,provider);
+
+showProfile(result.user);
+
+}catch(error){
+
+console.log(error);
+
+alert("Google Login Failed.");
+
+loginBtn.innerHTML =
+'<i class="fa-brands fa-google"></i> Login';
+
+}
+
+}
+
+/* PROFILE */
+
+function showProfile(user){
+
+document.getElementById("loginBtn")
+.style.display = "none";
+
+document.getElementById("profileCard")
+.style.display = "block";
+
+document.getElementById("profileAvatar")
+.src = user.photoURL;
+
+document.getElementById("profileName")
+.innerText = user.displayName;
+
+}
+
+/* AUTH CHECK */
+
+onAuthStateChanged(auth,(user)=>{
+
+if(user){
+showProfile(user);
+}
+
+});
+
+/* EMAIL SAVE */
+
+window.saveEmail = async function(){
+
+const email =
+document.getElementById("emailInput").value.trim();
+
+if(!email || !email.includes("@")){
+
+alert("Enter valid email.");
+return;
+
+}
+
+try{
+
+await addDoc(collection(db,"subscribers"),{
+
+email:email,
+createdAt:new Date().toISOString()
+
+});
+
+alert("Subscribed successfully.");
+
+document.getElementById("emailInput").value = "";
+
+}catch(error){
+
+console.log(error);
+
+alert("Failed to subscribe.");
+
+}
+
+}
+
+</script>
+
 </body>
-</html>
+    </html>
