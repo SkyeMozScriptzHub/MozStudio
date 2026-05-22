@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 
 <title>Moz Studio</title>
@@ -12,14 +12,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
 <style>
 
 :root{
-
 --bg:#f4f7fb;
 --card:#ffffff;
 --primary:#2563eb;
@@ -31,22 +30,15 @@
 --shadow:
 0 10px 30px rgba(15,23,42,.05),
 0 20px 60px rgba(15,23,42,.06);
-
 }
 
-/* RESET */
-
 *{
-
 margin:0;
 padding:0;
 box-sizing:border-box;
-
 -webkit-tap-highlight-color:transparent;
-
 user-select:none;
 -webkit-user-select:none;
-
 }
 
 input,textarea{
@@ -59,21 +51,19 @@ scroll-behavior:smooth;
 }
 
 body{
-
 font-family:'Inter',sans-serif;
-
 background:
 radial-gradient(circle at top left, rgba(96,165,250,.08), transparent 30%),
 radial-gradient(circle at bottom right, rgba(37,99,235,.06), transparent 30%),
 var(--bg);
-
 color:var(--text);
-
 overflow-x:hidden;
-
 }
 
-/* SCROLLBAR */
+body.modal-open{
+overflow:hidden;
+touch-action:none;
+}
 
 ::-webkit-scrollbar{
 width:10px;
@@ -84,18 +74,20 @@ background:#dbeafe;
 border-radius:999px;
 }
 
-/* GLOBAL */
-
 .container{
 width:min(1180px,92%);
 margin:auto;
 }
 
+button,a,.card,.mobile-item{
+cursor:pointer;
+}
+
 button{
 border:none;
 outline:none;
-cursor:pointer;
 font-family:inherit;
+transition:.25s ease;
 }
 
 a{
@@ -111,19 +103,13 @@ pointer-events:none;
 /* NAVBAR */
 
 .navbar{
-
 position:sticky;
 top:0;
-z-index:999;
-
-background:rgba(255,255,255,.72);
-
-backdrop-filter:blur(20px);
-
+z-index:1000;
+background:rgba(255,255,255,.78);
+backdrop-filter:blur(18px);
 border-bottom:1px solid var(--border);
-
 padding:16px 0;
-
 }
 
 .nav-wrap{
@@ -138,7 +124,7 @@ display:flex;
 align-items:center;
 gap:14px;
 font-weight:800;
-font-size:1.12rem;
+font-size:1.08rem;
 }
 
 .logo img{
@@ -154,21 +140,17 @@ gap:8px;
 }
 
 .nav-links a{
-
 padding:12px 16px;
-
 border-radius:14px;
-
 font-size:.95rem;
 font-weight:700;
-
 transition:.25s ease;
-
 }
 
 .nav-links a:hover{
 background:#eff6ff;
 color:var(--primary);
+transform:translateY(-2px);
 }
 
 .right-nav{
@@ -178,74 +160,61 @@ gap:14px;
 }
 
 .login-btn{
-
 height:50px;
-
 padding:0 22px;
-
 border-radius:16px;
-
-background:
-linear-gradient(
-135deg,
-var(--primary),
-var(--primary2)
-);
-
+background:linear-gradient(135deg,var(--primary),var(--primary2));
 color:white;
-
 font-weight:700;
-
 font-size:.95rem;
-
-box-shadow:
-0 15px 35px rgba(37,99,235,.22);
-
-transition:.3s ease;
-
+box-shadow:0 15px 35px rgba(37,99,235,.22);
 }
 
 .login-btn:hover{
 transform:translateY(-3px);
 }
 
-#authArea{
-display:flex;
-align-items:center;
-gap:12px;
+.login-btn:active{
+transform:scale(.97);
 }
 
 .profile-mini{
-
 display:flex;
 align-items:center;
 gap:12px;
-
 padding:8px 14px 8px 8px;
-
 border-radius:18px;
-
 background:white;
-
 border:1px solid var(--border);
-
 box-shadow:var(--shadow);
-
-cursor:pointer;
-
 transition:.3s ease;
-
+position:relative;
 }
 
 .profile-mini:hover{
-transform:translateY(-3px);
+transform:translateY(-2px);
 }
 
-.profile-mini img{
+.profile-avatar-wrap{
+position:relative;
+}
+
+.profile-avatar-wrap img{
 width:42px;
 height:42px;
 border-radius:50%;
 object-fit:cover;
+}
+
+.online-dot{
+position:absolute;
+right:0;
+bottom:0;
+width:12px;
+height:12px;
+background:#22c55e;
+border:2px solid white;
+border-radius:50%;
 }
 
 .profile-info{
@@ -279,48 +248,34 @@ align-items:center;
 }
 
 .badge{
-
 display:inline-flex;
 align-items:center;
 gap:10px;
-
 padding:12px 18px;
-
 background:#eff6ff;
-
 color:var(--primary);
-
 border-radius:999px;
-
 font-size:.92rem;
 font-weight:700;
-
 margin-bottom:24px;
-
+animation:fadeUp .7s ease;
 }
 
 .hero h1{
-
-font-size:4.3rem;
+font-size:4.2rem;
 line-height:1.02;
-
 letter-spacing:-3px;
-
 margin-bottom:22px;
-
 font-weight:900;
-
+animation:fadeUp .9s ease;
 }
 
 .hero p{
-
 max-width:560px;
-
 font-size:1.06rem;
 line-height:1.9;
-
 color:var(--muted);
-
+animation:fadeUp 1s ease;
 }
 
 .hero-buttons{
@@ -331,35 +286,21 @@ margin-top:34px;
 }
 
 .btn{
-
 height:56px;
-
 padding:0 24px;
-
 border-radius:16px;
-
 font-weight:700;
-
 font-size:.95rem;
+}
 
-transition:.3s ease;
-
+.btn:active{
+transform:scale(.96);
 }
 
 .btn-primary{
-
-background:
-linear-gradient(
-135deg,
-var(--primary),
-var(--primary2)
-);
-
+background:linear-gradient(135deg,var(--primary),var(--primary2));
 color:white;
-
-box-shadow:
-0 15px 35px rgba(37,99,235,.22);
-
+box-shadow:0 15px 35px rgba(37,99,235,.22);
 }
 
 .btn-primary:hover{
@@ -367,13 +308,8 @@ transform:translateY(-4px);
 }
 
 .btn-secondary{
-
 background:white;
-
 border:1px solid var(--border);
-
-color:var(--text);
-
 }
 
 .btn-secondary:hover{
@@ -389,22 +325,15 @@ height:520px;
 }
 
 .hero-card{
-
 position:absolute;
 inset:30px;
-
-background:rgba(255,255,255,.74);
-
+background:rgba(255,255,255,.78);
 backdrop-filter:blur(20px);
-
 border-radius:34px;
-
 border:1px solid var(--border);
-
 overflow:hidden;
-
 box-shadow:var(--shadow);
-
+animation:fadeScale 1s ease;
 }
 
 .mock-grid{
@@ -422,26 +351,16 @@ border:1px solid #edf2f7;
 }
 
 .phone{
-
 position:absolute;
-
 right:20px;
 bottom:10px;
-
 width:220px;
 height:430px;
-
 background:white;
-
 border:10px solid #111827;
-
 border-radius:42px;
-
 overflow:hidden;
-
-box-shadow:
-0 30px 60px rgba(0,0,0,.18);
-
+box-shadow:0 30px 60px rgba(0,0,0,.18);
 }
 
 .phone::before{
@@ -470,81 +389,65 @@ background:#eff6ff;
 }
 
 .float{
-
 position:absolute;
-
 width:66px;
 height:66px;
-
 border-radius:22px;
-
-background:rgba(255,255,255,.85);
-
+background:rgba(255,255,255,.9);
 display:flex;
 align-items:center;
 justify-content:center;
-
 font-size:1.2rem;
-
 color:var(--primary);
-
 box-shadow:var(--shadow);
-
 animation:float 4s ease-in-out infinite;
-
 }
 
-.f1{
-left:0;
-bottom:70px;
-}
-
-.f2{
-top:20px;
-left:50%;
-}
-
-.f3{
-right:0;
-top:100px;
-}
+.f1{left:0;bottom:70px;}
+.f2{top:20px;left:50%;}
+.f3{right:0;top:100px;}
 
 @keyframes float{
-
-0%{
-transform:translateY(0px);
+0%{transform:translateY(0px);}
+50%{transform:translateY(-12px);}
+100%{transform:translateY(0px);}
 }
 
-50%{
-transform:translateY(-12px);
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
-100%{
-transform:translateY(0px);
+@keyframes fadeScale{
+from{
+opacity:0;
+transform:scale(.96);
+}
+to{
+opacity:1;
+transform:scale(1);
+}
 }
 
-}
-
-/* SECTIONS */
+/* SECTION */
 
 .section{
 padding:18px 0;
 }
 
 .section-box{
-
-background:rgba(255,255,255,.78);
-
+background:rgba(255,255,255,.82);
 backdrop-filter:blur(20px);
-
 border-radius:28px;
-
 padding:30px;
-
 border:1px solid var(--border);
-
 box-shadow:var(--shadow);
-
 }
 
 .section-top{
@@ -552,6 +455,7 @@ display:flex;
 align-items:center;
 justify-content:space-between;
 margin-bottom:26px;
+gap:20px;
 }
 
 .section-top h2{
@@ -563,7 +467,7 @@ font-weight:700;
 color:var(--primary);
 }
 
-/* CHANNELS */
+/* CARDS */
 
 .channels{
 display:grid;
@@ -578,66 +482,39 @@ gap:18px;
 }
 
 .card{
-
 background:white;
-
 border:1px solid var(--border);
-
 border-radius:22px;
-
 padding:22px;
-
 transition:.35s ease;
-
-cursor:pointer;
-
+transform:translateZ(0);
 }
 
 .card:hover{
+transform:translateY(-6px) scale(1.02);
+box-shadow:0 20px 40px rgba(15,23,42,.08);
+}
 
-transform:
-translateY(-6px)
-scale(1.02);
-
-box-shadow:
-0 20px 40px rgba(15,23,42,.08);
-
+.card:active{
+transform:scale(.98);
 }
 
 .card-icon{
-
 width:60px;
 height:60px;
-
 border-radius:50%;
-
 display:flex;
 align-items:center;
 justify-content:center;
-
 font-size:1.2rem;
-
 color:white;
-
 margin-bottom:18px;
-
 }
 
-.blue{
-background:linear-gradient(135deg,#2563eb,#60a5fa);
-}
-
-.green{
-background:linear-gradient(135deg,#10b981,#34d399);
-}
-
-.purple{
-background:linear-gradient(135deg,#7c3aed,#a78bfa);
-}
-
-.orange{
-background:linear-gradient(135deg,#f59e0b,#fbbf24);
-}
+.blue{background:linear-gradient(135deg,#2563eb,#60a5fa);}
+.green{background:linear-gradient(135deg,#10b981,#34d399);}
+.purple{background:linear-gradient(135deg,#7c3aed,#a78bfa);}
+.orange{background:linear-gradient(135deg,#f59e0b,#fbbf24);}
 
 .card h3{
 margin-bottom:10px;
@@ -660,25 +537,11 @@ color:#94a3b8;
 /* FOOTER */
 
 .footer{
-
 margin-top:80px;
-
-background:
-linear-gradient(
-135deg,
-#0f172a,
-#172554,
-#2563eb
-);
-
+background:linear-gradient(135deg,#0f172a,#172554,#2563eb);
 border-radius:40px 40px 0 0;
-
 padding:70px 0 120px;
-
-position:relative;
-
 overflow:hidden;
-
 }
 
 .footer-grid{
@@ -712,18 +575,16 @@ line-height:2;
 font-size:.95rem;
 }
 
+.footer a:hover{
+opacity:.85;
+}
+
 .notify{
-
 background:rgba(255,255,255,.08);
-
 backdrop-filter:blur(18px);
-
 padding:22px;
-
 border-radius:24px;
-
 border:1px solid rgba(255,255,255,.08);
-
 }
 
 .notify-input{
@@ -733,22 +594,14 @@ gap:10px;
 }
 
 .notify-input input{
-
 flex:1;
-
 height:52px;
-
 padding:0 16px;
-
 border:none;
 outline:none;
-
 border-radius:16px;
-
 background:rgba(255,255,255,.08);
-
 color:white;
-
 }
 
 .notify-input input::placeholder{
@@ -756,32 +609,48 @@ color:#dbeafe;
 }
 
 .subscribe-btn{
-
 padding:0 18px;
-
 border-radius:14px;
-
 background:white;
-
 font-weight:700;
-
 color:#0f172a;
+}
 
+.logged-sub{
+display:none;
+align-items:center;
+gap:12px;
+margin-top:18px;
+background:rgba(255,255,255,.08);
+padding:14px;
+border-radius:18px;
+}
+
+.logged-sub img{
+width:46px;
+height:46px;
+border-radius:50%;
+}
+
+.logged-sub h5{
+color:white;
+font-size:.95rem;
+}
+
+.logged-sub p{
+font-size:.82rem;
+line-height:1.4;
 }
 
 .footer-bottom{
-
 margin-top:40px;
 padding-top:24px;
-
 border-top:1px solid rgba(255,255,255,.10);
-
 display:flex;
 align-items:center;
 justify-content:space-between;
 gap:20px;
 flex-wrap:wrap;
-
 }
 
 .socials{
@@ -790,20 +659,14 @@ gap:12px;
 }
 
 .socials a{
-
 width:46px;
 height:46px;
-
 border-radius:50%;
-
 background:rgba(255,255,255,.08);
-
 display:flex;
 align-items:center;
 justify-content:center;
-
 transition:.3s ease;
-
 }
 
 .socials a:hover{
@@ -814,55 +677,34 @@ background:rgba(255,255,255,.15);
 /* MOBILE NAV */
 
 .mobile-nav{
-
 position:fixed;
-
 left:50%;
 bottom:16px;
-
 transform:translateX(-50%);
-
 width:92%;
 max-width:520px;
-
 height:74px;
-
-background:rgba(255,255,255,.84);
-
+background:rgba(255,255,255,.86);
 backdrop-filter:blur(20px);
-
 border:1px solid rgba(255,255,255,.5);
-
 border-radius:26px;
-
 display:none;
-
 align-items:center;
 justify-content:space-around;
-
 z-index:5000;
-
-box-shadow:
-0 18px 40px rgba(15,23,42,.12);
-
+box-shadow:0 18px 40px rgba(15,23,42,.12);
 padding-bottom:env(safe-area-inset-bottom);
-
 }
 
 .mobile-item{
-
 display:flex;
 flex-direction:column;
 align-items:center;
 gap:5px;
-
 font-size:.76rem;
 font-weight:700;
-
 color:#64748b;
-
 transition:.3s ease;
-
 }
 
 .mobile-item i{
@@ -871,27 +713,20 @@ font-size:1.08rem;
 
 .mobile-item.active{
 color:var(--primary);
-transform:translateY(-3px);
+transform:translateY(-4px);
 }
 
 /* WEBVIEW */
 
 .webview{
-
 position:fixed;
 inset:0;
-
 background:rgba(2,6,23,.55);
-
 backdrop-filter:blur(16px);
-
 z-index:6000;
-
 opacity:0;
 pointer-events:none;
-
 transition:.35s ease;
-
 }
 
 .webview.active{
@@ -900,48 +735,29 @@ pointer-events:auto;
 }
 
 .webview-box{
-
 position:absolute;
-
 inset:20px;
-
 background:white;
-
 border-radius:30px;
-
 overflow:hidden;
-
 display:flex;
 flex-direction:column;
-
-transform:
-translateY(30px)
-scale(.96);
-
-transition:.35s ease;
-
+transform:translateY(40px) scale(.95);
+transition:.35s cubic-bezier(.2,.8,.2,1);
 }
 
 .webview.active .webview-box{
-transform:
-translateY(0)
-scale(1);
+transform:translateY(0) scale(1);
 }
 
 .web-top{
-
 height:72px;
-
 display:flex;
 align-items:center;
 justify-content:space-between;
-
 padding:0 22px;
-
 border-bottom:1px solid var(--border);
-
 background:white;
-
 }
 
 .web-title{
@@ -952,16 +768,10 @@ font-weight:700;
 }
 
 .close{
-
 width:46px;
 height:46px;
-
 border-radius:16px;
-
 background:#f1f5f9;
-
-transition:.3s ease;
-
 }
 
 .close:hover{
@@ -1047,6 +857,14 @@ border-radius:0;
 display:none;
 }
 
+.notify-input{
+flex-direction:column;
+}
+
+.subscribe-btn{
+height:52px;
+}
+
 }
 
 </style>
@@ -1066,7 +884,7 @@ display:none;
 
 <div class="nav-links">
 
-<a href="#">Home</a>
+<a onclick="scrollToTop()">Home</a>
 
 <a onclick="openWebview('Templates','https://example.com')">
 Templates
@@ -1080,7 +898,7 @@ Utilities
 Packages
 </a>
 
-<a onclick="openWebview('About','https://example.com')">
+<a onclick="openWebview('About Us','https://example.com')">
 About
 </a>
 
@@ -1088,29 +906,23 @@ About
 
 <div class="right-nav">
 
-<div id="authArea">
-
 <button class="login-btn" id="loginBtn" onclick="googleLogin()">
-
 <i class="fa-brands fa-google"></i>
 Login
-
 </button>
 
 <div id="profileCard" style="display:none;">
 
-<div class="profile-mini"
-onclick="openWebview('About','https://example.com')">
+<div class="profile-mini">
 
+<div class="profile-avatar-wrap">
 <img id="profileAvatar" src="">
-
-<div class="profile-info">
-
-<span id="profileName">User</span>
-<small>About</small>
-
+<div class="online-dot"></div>
 </div>
 
+<div class="profile-info">
+<span id="profileName">User</span>
+<small>Online</small>
 </div>
 
 </div>
@@ -1132,10 +944,8 @@ onclick="openWebview('About','https://example.com')">
 <div>
 
 <div class="badge">
-
 <i class="fa-solid fa-sparkles"></i>
 Welcome to Moz Studio
-
 </div>
 
 <h1>
@@ -1249,13 +1059,9 @@ onclick="openWebview('Downloads','https://example.com')">
 
 <h3>Downloads</h3>
 
-<p>
-Get the latest apps, mods, files and more.
-</p>
+<p>Get the latest apps, mods, files and more.</p>
 
-<div class="member">
-12.4K members
-</div>
+<div class="member">12.4K members</div>
 
 </div>
 
@@ -1268,13 +1074,9 @@ onclick="openWebview('Packages','https://example.com')">
 
 <h3>Packages</h3>
 
-<p>
-Organized packages for easy integration.
-</p>
+<p>Organized packages for easy integration.</p>
 
-<div class="member">
-8.7K members
-</div>
+<div class="member">8.7K members</div>
 
 </div>
 
@@ -1287,13 +1089,9 @@ onclick="openWebview('General Chat','https://example.com')">
 
 <h3>General Chat</h3>
 
-<p>
-Talk, share, help and connect with others.
-</p>
+<p>Talk, share, help and connect with others.</p>
 
-<div class="member">
-15.2K members
-</div>
+<div class="member">15.2K members</div>
 
 </div>
 
@@ -1306,13 +1104,9 @@ onclick="openWebview('Templates','https://example.com')">
 
 <h3>Templates</h3>
 
-<p>
-Beautiful templates for your next project.
-</p>
+<p>Beautiful templates for your next project.</p>
 
-<div class="member">
-6.3K members
-</div>
+<div class="member">6.3K members</div>
 
 </div>
 
@@ -1340,7 +1134,7 @@ Browse all
 
 <div class="categories">
 
-<div class="card">
+<div class="card" onclick="openWebview('Apps','https://example.com')">
 
 <div class="card-icon blue">
 <i class="fa-solid fa-table-cells-large"></i>
@@ -1348,13 +1142,11 @@ Browse all
 
 <h3>Apps</h3>
 
-<p>
-Essential & useful applications.
-</p>
+<p>Essential & useful applications.</p>
 
 </div>
 
-<div class="card">
+<div class="card" onclick="openWebview('Mods','https://example.com')">
 
 <div class="card-icon green">
 <i class="fa-solid fa-puzzle-piece"></i>
@@ -1362,13 +1154,11 @@ Essential & useful applications.
 
 <h3>Mods</h3>
 
-<p>
-Enhance your apps and games.
-</p>
+<p>Enhance your apps and games.</p>
 
 </div>
 
-<div class="card">
+<div class="card" onclick="openWebview('Files','https://example.com')">
 
 <div class="card-icon orange">
 <i class="fa-solid fa-folder"></i>
@@ -1376,13 +1166,11 @@ Enhance your apps and games.
 
 <h3>Files</h3>
 
-<p>
-Important files and resources.
-</p>
+<p>Important files and resources.</p>
 
 </div>
 
-<div class="card">
+<div class="card" onclick="openWebview('Utilities','https://example.com')">
 
 <div class="card-icon purple">
 <i class="fa-solid fa-screwdriver-wrench"></i>
@@ -1390,13 +1178,11 @@ Important files and resources.
 
 <h3>Utilities</h3>
 
-<p>
-Tools to boost your productivity.
-</p>
+<p>Tools to boost your productivity.</p>
 
 </div>
 
-<div class="card">
+<div class="card" onclick="openWebview('Templates','https://example.com')">
 
 <div class="card-icon orange">
 <i class="fa-solid fa-window-maximize"></i>
@@ -1404,9 +1190,7 @@ Tools to boost your productivity.
 
 <h3>Templates</h3>
 
-<p>
-Ready-to-use designs.
-</p>
+<p>Ready-to-use designs.</p>
 
 </div>
 
@@ -1446,10 +1230,13 @@ Your hub for apps, mods, files, utilities, templates and everything digital crea
 
 <h4>Resources</h4>
 
-<a href="#">Downloads</a><br>
-<a href="#">Packages</a><br>
-<a href="#">Templates</a><br>
-<a href="#">Utilities</a>
+<a onclick="openWebview('Downloads','https://example.com')">Downloads</a><br>
+
+<a onclick="openWebview('Packages','https://example.com')">Packages</a><br>
+
+<a onclick="openWebview('Templates','https://example.com')">Templates</a><br>
+
+<a onclick="openWebview('Utilities','https://example.com')">Utilities</a>
 
 </div>
 
@@ -1457,10 +1244,13 @@ Your hub for apps, mods, files, utilities, templates and everything digital crea
 
 <h4>Community</h4>
 
-<a href="#">General Chat</a><br>
-<a href="#">Members</a><br>
-<a href="#">Rules</a><br>
-<a href="#">Support</a>
+<a onclick="openWebview('General Chat','https://example.com')">General Chat</a><br>
+
+<a onclick="openWebview('Members','https://example.com')">Members</a><br>
+
+<a onclick="openWebview('Rules','https://example.com')">Rules</a><br>
+
+<a onclick="openWebview('Support','https://example.com')">Support</a>
 
 </div>
 
@@ -1468,10 +1258,13 @@ Your hub for apps, mods, files, utilities, templates and everything digital crea
 
 <h4>About</h4>
 
-<a href="#">About Us</a><br>
-<a href="#">Changelog</a><br>
-<a href="#">Contact</a><br>
-<a href="#">Privacy Policy</a>
+<a onclick="openWebview('About Us','https://example.com')">About Us</a><br>
+
+<a onclick="openWebview('Changelog','https://example.com')">Changelog</a><br>
+
+<a onclick="openWebview('Contact','https://example.com')">Contact</a><br>
+
+<a onclick="openWebview('Privacy Policy','https://example.com')">Privacy Policy</a>
 
 </div>
 
@@ -1483,7 +1276,7 @@ Your hub for apps, mods, files, utilities, templates and everything digital crea
 Subscribe for updates and new releases.
 </p>
 
-<div class="notify-input">
+<div class="notify-input" id="notifyInput">
 
 <input
 id="emailInput"
@@ -1497,6 +1290,23 @@ onclick="saveEmail()">
 Subscribe
 
 </button>
+
+</div>
+
+<div class="logged-sub" id="loggedSub">
+
+<img id="subAvatar" src="">
+
+<div>
+
+<h5 id="subName">User</h5>
+
+<p>
+<i class="fa-solid fa-circle-check"></i>
+You're subscribed with your Google account.
+</p>
+
+</div>
 
 </div>
 
@@ -1536,29 +1346,41 @@ Subscribe
 
 <div class="mobile-nav">
 
-<div class="mobile-item active">
+<div class="mobile-item active" onclick="mobileHome(this)">
 <i class="fa-solid fa-house"></i>
 <span>Home</span>
 </div>
 
-<div class="mobile-item">
+<div class="mobile-item"
+onclick="mobileOpen(this,'Downloads')">
+
 <i class="fa-solid fa-download"></i>
 <span>Downloads</span>
+
 </div>
 
-<div class="mobile-item">
+<div class="mobile-item"
+onclick="mobileOpen(this,'Packages')">
+
 <i class="fa-solid fa-cube"></i>
 <span>Packages</span>
+
 </div>
 
-<div class="mobile-item">
+<div class="mobile-item"
+onclick="mobileOpen(this,'General Chat')">
+
 <i class="fa-solid fa-comments"></i>
 <span>Chat</span>
+
 </div>
 
-<div class="mobile-item">
+<div class="mobile-item"
+onclick="mobileProfile(this)">
+
 <i class="fa-solid fa-user"></i>
 <span>Profile</span>
+
 </div>
 
 </div>
@@ -1581,11 +1403,8 @@ Moz Studio
 
 </div>
 
-<button class="close"
-onclick="closeWebview()">
-
+<button class="close" onclick="closeWebview()">
 <i class="fa-solid fa-xmark"></i>
-
 </button>
 
 </div>
@@ -1668,16 +1487,14 @@ browserLocalPersistence
 const result =
 await signInWithPopup(auth,provider);
 
-const user = result.user;
-
-showProfile(user);
+showProfile(result.user);
 
 }catch(error){
 
 console.log(error);
 
 alert(
-"Google Login Failed.\nEnable Google Provider in Firebase."
+"Google Login Failed.\nEnable Google Provider inside Firebase."
 );
 
 loginBtn.innerHTML =
@@ -1705,6 +1522,20 @@ document.getElementById("profileAvatar")
 document.getElementById("profileName")
 .innerText = user.displayName;
 
+/* NOTIFY */
+
+document.getElementById("notifyInput")
+.style.display = "none";
+
+document.getElementById("loggedSub")
+.style.display = "flex";
+
+document.getElementById("subAvatar")
+.src = user.photoURL;
+
+document.getElementById("subName")
+.innerText = user.displayName;
+
 }
 
 /* AUTH CHECK */
@@ -1712,14 +1543,12 @@ document.getElementById("profileName")
 onAuthStateChanged(auth,(user)=>{
 
 if(user){
-
 showProfile(user);
-
 }
 
 });
 
-/* SAVE EMAIL */
+/* EMAIL SAVE */
 
 window.saveEmail = async function(){
 
@@ -1760,32 +1589,128 @@ alert("Failed to subscribe.");
 
 <script>
 
+/* HOME */
+
+function scrollToTop(){
+
+window.scrollTo({
+top:0,
+behavior:'smooth'
+});
+
+}
+
 /* WEBVIEW */
 
 function openWebview(title,url){
 
+const modal =
+document.getElementById("webview");
+
+const frame =
+document.getElementById("webFrame");
+
 document.getElementById("webTitle")
 .innerText = title;
 
-document.getElementById("webFrame")
-.src = url;
+frame.src = "";
 
-document.getElementById("webview")
-.classList.add("active");
+setTimeout(()=>{
+frame.src = url;
+},120);
 
-document.body.style.overflow = "hidden";
+modal.classList.add("active");
+
+document.body.classList.add("modal-open");
 
 }
 
 function closeWebview(){
 
+const modal =
+document.getElementById("webview");
+
+const frame =
+document.getElementById("webFrame");
+
+modal.classList.remove("active");
+
+setTimeout(()=>{
+frame.src = "";
+},300);
+
+document.body.classList.remove("modal-open");
+
+}
+
+/* BACKDROP CLOSE */
+
 document.getElementById("webview")
-.classList.remove("active");
+.addEventListener("click",(e)=>{
 
-document.getElementById("webFrame")
-.src = "";
+if(e.target.id === "webview"){
+closeWebview();
+}
 
-document.body.style.overflow = "auto";
+});
+
+/* ESC CLOSE */
+
+document.addEventListener("keydown",(e)=>{
+
+if(e.key === "Escape"){
+closeWebview();
+}
+
+});
+
+/* MOBILE NAV */
+
+function setActive(el){
+
+document.querySelectorAll(".mobile-item")
+.forEach(item=>item.classList.remove("active"));
+
+el.classList.add("active");
+
+}
+
+function mobileHome(el){
+
+setActive(el);
+
+scrollToTop();
+
+}
+
+function mobileOpen(el,title){
+
+setActive(el);
+
+openWebview(title,"https://example.com");
+
+}
+
+function mobileProfile(el){
+
+setActive(el);
+
+const logged =
+document.getElementById("profileCard")
+.style.display === "block";
+
+if(logged){
+
+openWebview(
+"About Us",
+"https://example.com"
+);
+
+}else{
+
+googleLogin();
+
+}
 
 }
 
